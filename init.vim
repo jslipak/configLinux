@@ -85,9 +85,11 @@ Plug 'mxw/vim-jsx'
 Plug 'mlaursen/vim-react-snippets'
 " Entertainment
 "Plug 'ryanss/vim-hackernews'
-" Color Schema
+" Color Scheme
 Plug 'wadackel/vim-dogrun'
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
+Plug 'jacoborus/tender.vim'
 Plug 'morhetz/gruvbox'
 Plug 'franbach/miramare'
 Plug 'pgavlin/pulumi.vim'
@@ -382,8 +384,8 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 :set mouse=a
 :set scrolloff=8 " Start to scrolling down or up 8 lines before ord after
-:colorscheme uwu "bluewery
-":call RltvNmbr#RltvNmbrCtrl(1)
+:colorscheme spaceduck
+:call RltvNmbr#RltvNmbrCtrl(1)
 " shortcuts
 " vimwiki <leader>ww
 " formater reals \==
