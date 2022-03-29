@@ -379,6 +379,8 @@ nmap <S-Tab> :bprevious<CR>
 nmap <C-s> :w<CR>
 nmap <leader>%  :vsplit<CR>
 nmap <leader>@  :split<CR>
+nmap <leader>bc  :Codi<CR>
+nmap <leader>bC  :Codi!<CR>
 noremap <C-p> :GFiles<CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
@@ -403,7 +405,7 @@ let g:copilot_no_tab_map = v:true
 "
 " " Annotate every line
 "
-nmap <leader>b :%!seeing_is_believing --timeout 12 --line-length 500 --number-of-captures 300 --alignment-strategy chunk<CR>;
+nmap <leader>br :%!seeing_is_believing --timeout 12 --line-length 500 --number-of-captures 300 --alignment-strategy chunk<CR>;
 "
 "  " Annotate marked lines
 "
@@ -411,7 +413,7 @@ nmap <leader>n :%.!seeing_is_believing --timeout 12 --line-length 500 --number-o
 "
 "  " Remove annotations
 "
-nmap <leader>cl :%.!seeing_is_believing --clean<CR>;
+nmap <leader>c- :%.!seeing_is_believing --clean<CR>;
 "
 "  " Mark the current line for annotation
 "
