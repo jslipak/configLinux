@@ -146,8 +146,8 @@ nmap <leader>cf  <Plug>(coc-fix-current)
 "RainbowParentheses
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 """ Python3 VirtunlEnv
-let g:python3_host_prog='/usr/bin/python3.9'
-let g:python_host_prog='/usr/bin/python3.9'
+let g:python3_host_prog='/usr/bin/python3.10'
+let g:python_host_prog='/usr/bin/python3.10'
 
 """ Coloring
 syntax on
@@ -372,7 +372,7 @@ nmap <leader>k :ColorToggle<CR>
 nmap <leader>l :Limelight!!<CR>
 xmap <leader>l :Limelight!!<CR>
 autocmd FileType python nmap <leader>x :0,$!~/.config/nvim/env/bin/python -m yapf<CR>
-nmap <leader>n :RN<CR>J
+nmap <leader>N :RN<CR>J
 nmap <silent> <leader><leader> :noh<CR>
 nmap <Tab> :bnext<CR>
 nmap <S-Tab> :bprevious<CR>
@@ -384,10 +384,39 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 :set mouse=a
 :set scrolloff=8 " Start to scrolling down or up 8 lines before ord after
-:colorscheme spaceduck
+:colorscheme Tomorrow
 :call RltvNmbr#RltvNmbrCtrl(1)
 " shortcuts
 " vimwiki <leader>ww
 " formater reals \==
 " GoTo code navigation.
 set pastetoggle=<F3>
+imap <silent><script><expr> <C-J> copilot#Accept("<CR>")
+let g:copilot_no_tab_map = v:true
+
+
+" ===== Seeing Is Believing =====
+" " Assumes you have a Ruby with SiB available in the PATH
+" " If it doesn't work, you may need to `gem install seeing_is_believing -v
+" 3.0.0.beta.6`
+" " ...yeah, current release is a beta, which won't auto-install
+"
+" " Annotate every line
+"
+nmap <leader>b :%!seeing_is_believing --timeout 12 --line-length 500 --number-of-captures 300 --alignment-strategy chunk<CR>;
+"
+"  " Annotate marked lines
+"
+nmap <leader>n :%.!seeing_is_believing --timeout 12 --line-length 500 --number-of-captures 300 --alignment-strategy chunk --xmpfilter-style<CR>;
+"
+"  " Remove annotations
+"
+nmap <leader>cl :%.!seeing_is_believing --clean<CR>;
+"
+"  " Mark the current line for annotation
+"
+nnoremap <leader>m A # => <Esc>
+"
+"  " Mark the highlighted lines for annotation
+"
+vnoremap <leader>m :norm A # => <Esc>

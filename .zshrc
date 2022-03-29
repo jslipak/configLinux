@@ -71,7 +71,7 @@ POWERLEVEL9K_DISABLE_RPROMPT=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux rails ruby alias-finder zsh-autosuggestions fzf)
+plugins=(git tmux rails ruby alias-finder docker node  zsh-autosuggestions fzf)
 ZSH_ALIAS_FINDER_AUTOMATIC=true
 bindkey '^ ' autosuggest-accept
 
@@ -123,3 +123,5 @@ tmux="TERM=xterm-256color tmux";
 #export STRIPE_TEST_SECRET_KEY=sk_test_51H1VQmBQqZAt1xOw19VM1r2gXEvs4O0nY3fXaXCL3BJ9tds1AQPZHobPlYa58tOAvZq2Iu5E25NmN7mzFfemXzUD003Pu1VEuV
 #export TWILIO_SID=AC1b5365ca59580469ee1bca9c0a235aa7
 #export TWILIO_AUTH_TOKEN=201c8751ee5f1c692ad5649fb1337ffd
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
