@@ -1,4 +1,3 @@
-""" Optixal's Neovim Init.vim
 
 """ Vim-Plug
 call plug#begin()
@@ -17,6 +16,7 @@ Plug 'junegunn/vim-journal'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'nightsense/forgotten'
 Plug 'zaki/zazen'
+Plug 'tpope/vim-ragtag'
 
 " Aethetics - Additional
 Plug 'nightsense/nemo'
@@ -107,9 +107,13 @@ Plug 'mangeshrex/uwu.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
 Plug 'vim-ruby/vim-ruby' " For Facts, Ruby functions, and custom providers
+Plug 'tpope/vim-endwise'
 Plug 'kien/ctrlp.vim'
 "Backet Color
 Plug 'luochen1990/rainbow'
+" Docset itnegration
+Plug 'sunaku/vim-dasht'
+
 "Blockchain
 Plug 'tomlion/vim-solidity'
 call plug#end()
@@ -368,7 +372,7 @@ nmap <leader>gu :diffget //2<CR>
 nmap <leader>gc :GCheckout<CR>
 nmap <leader>h :RainbowParentheses!!<CR>
 nmap <leader>j :set filetype=journal<CR>
-nmap <leader>k :ColorToggle<CR>
+"nmap <leader>k :ColorToggle<CR>
 nmap <leader>l :Limelight!!<CR>
 xmap <leader>l :Limelight!!<CR>
 autocmd FileType python nmap <leader>x :0,$!~/.config/nvim/env/bin/python -m yapf<CR>
@@ -395,30 +399,32 @@ vnoremap K :m '<-2<CR>gv=gv
 set pastetoggle=<F3>
 imap <silent><script><expr> <C-J> copilot#Accept("<CR>")
 let g:copilot_no_tab_map = v:true
-
-
 " ===== Seeing Is Believing =====
 " " Assumes you have a Ruby with SiB available in the PATH
 " " If it doesn't work, you may need to `gem install seeing_is_believing -v
 " 3.0.0.beta.6`
 " " ...yeah, current release is a beta, which won't auto-install
-"
 " " Annotate every line
-"
 nmap <leader>br :%!seeing_is_believing --timeout 12 --line-length 500 --number-of-captures 300 --alignment-strategy chunk<CR>;
-"
 "  " Annotate marked lines
-"
 nmap <leader>n :%.!seeing_is_believing --timeout 12 --line-length 500 --number-of-captures 300 --alignment-strategy chunk --xmpfilter-style<CR>;
-"
 "  " Remove annotations
-"
 nmap <leader>c- :%.!seeing_is_believing --clean<CR>;
-"
 "  " Mark the current line for annotation
-"
 nnoremap <leader>m A # => <Esc>
-"
 "  " Mark the highlighted lines for annotation
-"
 vnoremap <leader>m :norm A # => <Esc>
+
+"DASHT
+" search related docsets
+nnoremap <Leader>k :Dasht<Space>
+" search ALL the docsets
+nnoremap <Leader><Leader>k :Dasht!<Space>
+" search related docsets
+nnoremap <silent> <Leader>K :call Dasht(dasht#cursor_search_terms())<Return>
+" search ALL the docsets
+nnoremap <silent> <Leader><Leader>K :call Dasht(dasht#cursor_search_terms(), '!')<Return>
+" search related docsets
+vnoremap <silent> <Leader>K y:<C-U>call Dasht(getreg(0))<Return>
+" search ALL the docsets
+vnoremap <silent> <Leader><Leader>K y:<C-U>call Dasht(getreg(0), '!')<Return>

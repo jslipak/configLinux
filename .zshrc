@@ -71,7 +71,7 @@ POWERLEVEL9K_DISABLE_RPROMPT=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux rails ruby alias-finder docker node  zsh-autosuggestions fzf)
+plugins=(git tmux rails ruby alias-finder docker node  zsh-autosuggestions fzf heroku) 
 ZSH_ALIAS_FINDER_AUTOMATIC=true
 bindkey '^ ' autosuggest-accept
 
