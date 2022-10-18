@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/jona/.oh-my-zsh"
+export ZSH="/Users/jonathanslipak/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -71,11 +71,11 @@ POWERLEVEL9K_DISABLE_RPROMPT=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux rails ruby alias-finder zsh-autosuggestions fzf)
+plugins=(git node tmux macos docker dotenv rails ruby alias-finder zsh-autosuggestions fzf-zsh-plugin)
 ZSH_ALIAS_FINDER_AUTOMATIC=true
 bindkey '^ ' autosuggest-accept
-
 source $ZSH/oh-my-zsh.sh
+
 
 # User configuration
 
@@ -112,6 +112,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 #add NVM
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 #  256 colors
 TERM='rxvt-256color'
@@ -123,3 +124,7 @@ tmux="TERM=xterm-256color tmux";
 #export STRIPE_TEST_SECRET_KEY=sk_test_51H1VQmBQqZAt1xOw19VM1r2gXEvs4O0nY3fXaXCL3BJ9tds1AQPZHobPlYa58tOAvZq2Iu5E25NmN7mzFfemXzUD003Pu1VEuV
 #export TWILIO_SID=AC1b5365ca59580469ee1bca9c0a235aa7
 #export TWILIO_AUTH_TOKEN=201c8751ee5f1c692ad5649fb1337ffd
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+#tmux ls && read tmux_session && tmux attach -t ${tmux_session:-default} || tmux new -s ${tmux_session:-default}
+
+

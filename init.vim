@@ -17,6 +17,7 @@ Plug 'junegunn/vim-journal'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'nightsense/forgotten'
 Plug 'zaki/zazen'
+Plug 'tpope/vim-ragtag'
 
 " Aethetics - Additional
 Plug 'nightsense/nemo'
@@ -135,7 +136,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-inoremap <silent><expr> <C-space> coc#select()
+inoremap <silent><expr> <C-Space> coc#select()
 xmap <leader>a :CocAction<CR>
 nmap <leader>a :CocAction<CR>
 
@@ -146,8 +147,8 @@ nmap <leader>cf  <Plug>(coc-fix-current)
 "RainbowParentheses
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 """ Python3 VirtunlEnv
-let g:python3_host_prog='/usr/bin/python3.9'
-let g:python_host_prog='/usr/bin/python3.9'
+let g:python3_host_prog='/opt/homebrew/bin/python3.9'
+let g:python_host_prog='/opt/homebrew/bin/python3.9'
 
 """ Coloring
 syntax on
@@ -356,7 +357,7 @@ nmap <leader>e4 :call ColorZazen()<CR>
 nmap <leader>r :so ~/.config/nvim/init.vim<CR>
 nmap <leader>R :tabnew ~/.config/nvim/init.vim<CR>
 nmap <leader>t :call TrimWhitespace()<CR>
-nmap <leader>s <plug>(easymotion-s2)
+nmap <leader>s <plug>(easymotion-bd-f)
 nmap <leader>vs <C-w>v<C-w>l:terminal<CR>
 nmap <leader>d <Plug>(pydocstring)
 nmap <leader>f :Files<CR>
@@ -374,20 +375,61 @@ xmap <leader>l :Limelight!!<CR>
 autocmd FileType python nmap <leader>x :0,$!~/.config/nvim/env/bin/python -m yapf<CR>
 nmap <leader>n :RN<CR>J
 nmap <silent> <leader><leader> :noh<CR>
-nmap <Tab> :bnext<CR>
-nmap <S-Tab> :bprevious<CR>
+nmap gt :bnext<CR>
+nmap gT :bprevious<CR>
 nmap <C-s> :w<CR>
 nmap <leader>%  :vsplit<CR>
 nmap <leader>@  :split<CR>
 noremap <C-p> :GFiles<CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+nmap <leader>bc  :Codi<CR>
+nmap <leader>bC  :Codi!<CR>
 :set mouse=a
 :set scrolloff=8 " Start to scrolling down or up 8 lines before ord after
-:colorscheme spaceduck
+:colorscheme tomorrow
 :call RltvNmbr#RltvNmbrCtrl(1)
 " shortcuts
 " vimwiki <leader>ww
 " formater reals \==
 " GoTo code navigation.
 set pastetoggle=<F3>
+" Copilot Setup
+ imap <silent><script><expr> <C-j> copilot#Accept("\<CR>")
+        let g:copilot_no_tab_map = v:true
+
+
+" ===== Seeing Is Believing =====
+" " Assumes you have a Ruby with SiB available in the PATH
+" " If it doesn't work, you may need to `gem install seeing_is_believing -v
+" 3.0.0.beta.6`
+" " ...yeah, current release is a beta, which won't auto-install
+"
+" " Annotate every line
+"
+nmap <leader>br :%!seeing_is_believing --timeout 12 --line-length 500 --number-of-captures 300 --alignment-strategy chunk<CR>;
+"
+"  " Annotate marked lines
+"
+nmap <leader>n :%.!seeing_is_believing --timeout 12 --line-length 500 --number-of-captures 300 --alignment-strategy chunk --xmpfilter-style<CR>;
+"
+"  " Remove annotations
+"
+nmap <leader>c- :%.!seeing_is_believing --clean<CR>;
+"
+"  " Mark the current line for annotation
+"
+nnoremap <leader>m A # => <Esc>
+"
+"  " Mark the highlighted lines for annotation
+"
+vnoremap <leader>m :norm A # => <Esc>
+
+"new line from insert mode
+:imap \nn <C-O>
+"end of line insert mode 
+"map <C-e> <ESC>$
+imap <C-e> <ESC>A
+"begining of line insert mode
+"map <C-a> <ESC>^ "in normal mode no because is add a number "
+imap <C-a> <ESC>I
