@@ -113,6 +113,8 @@ Plug 'kien/ctrlp.vim'
 Plug 'luochen1990/rainbow'
 "Blockchain
 Plug 'tomlion/vim-solidity'
+"Docset
+Plug 'sunaku/vim-dasht'
 call plug#end()
 " EMMET CONFIG
 let g:user_emmet_leader_key=','
@@ -369,9 +371,13 @@ nmap <leader>gu :diffget //2<CR>
 nmap <leader>gc :GCheckout<CR>
 nmap <leader>h :RainbowParentheses!!<CR>
 nmap <leader>j :set filetype=journal<CR>
-nmap <leader>k :ColorToggle<CR>
-nmap <leader>l :Limelight!!<CR>
-xmap <leader>l :Limelight!!<CR>
+nmap <Leader>k :Dasht<Space>
+nmap <Leader><Leader>k :Dasht!<Space>
+nnoremap <silent> <Leader>K :call Dasht(dasht#cursor_search_terms())<Return>
+nnoremap <silent> <Leader><Leader>K :call Dasht(dasht#cursor_search_terms(), '!')<Return>
+vnoremap <silent> <Leader>K y:<C-U>call Dasht(getreg(0))<Return>
+vnoremap <silent> <Leader><Leader>K y:<C-U>call Dasht(getreg(0), '!')<Return>
+map <leader>l :Limelight!!<CR>
 autocmd FileType python nmap <leader>x :0,$!~/.config/nvim/env/bin/python -m yapf<CR>
 nmap <leader>n :RN<CR>J
 nmap <silent> <leader><leader> :noh<CR>
@@ -387,7 +393,7 @@ nmap <leader>bc  :Codi<CR>
 nmap <leader>bC  :Codi!<CR>
 :set mouse=a
 :set scrolloff=8 " Start to scrolling down or up 8 lines before ord after
-:colorscheme tomorrow
+:colorscheme xcodedark
 :call RltvNmbr#RltvNmbrCtrl(1)
 " shortcuts
 " vimwiki <leader>ww
@@ -433,3 +439,11 @@ imap <C-e> <ESC>A
 "begining of line insert mode
 "map <C-a> <ESC>^ "in normal mode no because is add a number "
 imap <C-a> <ESC>I
+
+let g:user_emmet_settings = {
+\  'html': {
+\    'snippets': {
+\      'html:5': '!!!+html>(head>(meta[charset=${charset}]+meta[name="viewport" content="width=device-width,initial-scale=1.0"]+meta[http-equiv="X-UA-Compatible" content="ie=edge"]+title +body'
+    \}
+	\} 
+\}

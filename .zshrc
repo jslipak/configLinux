@@ -128,3 +128,5 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 #tmux ls && read tmux_session && tmux attach -t ${tmux_session:-default} || tmux new -s ${tmux_session:-default}
 
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
