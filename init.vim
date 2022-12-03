@@ -97,6 +97,8 @@ Plug 'pgavlin/pulumi.vim'
 Plug 'arzg/vim-colors-xcode'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'arcticicestudio/nord-vim'
+Plug 'EdenEast/nightfox.nvim'
+Plug 'folke/tokyonight.nvim'
 Plug 'rakr/vim-one'
 Plug 'ayu-theme/ayu-vim' " or other package manager
 Plug 'relastle/bluewery.vim'
@@ -128,22 +130,6 @@ let g:coc_global_extensions = [
 \ 'coc-json', 
 \ 'coc-solargraph',
 \]
-
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-let mapleader=" "
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-inoremap <silent><expr> <C-Space> coc#select()
-xmap <leader>a :CocAction<CR>
-nmap <leader>a :CocAction<CR>
-
-" Apply AutoFix to problem on the current line.
-nmap <leader>cf  <Plug>(coc-fix-current)
 
 
 "RainbowParentheses
@@ -218,10 +204,6 @@ let g:UltiSnipsExpandTrigger="<C-Space>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<C-x>"
 
-" EasyAlign
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
-
 " indentLine
 let g:indentLine_char = '▏'
 let g:indentLine_color_gui = '#363949'
@@ -276,13 +258,6 @@ autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 """ Custom Functions
 
-" Trim Whitespaces
-function! TrimWhitespace()
-    let l:save = winsaveview()
-    %s/\\\@<!\s\+$//e
-    call winrestview(l:save)
-endfunction
-
 " Dracula Mode (Dark)
 function! ColorDracula()
     let g:airline_theme=''
@@ -327,6 +302,17 @@ function! ToggleSpellCheck()
   endif
 endfunction
 
+function! ToggleCopilot()
+  if exists('b:copilot')
+    unlet b:copilot
+    :Copilot disable
+    echo "Copilot OFF"
+  else
+    let b:copilot = 1
+    :Copilot enable 
+    echo "Copilot ON"
+  endif
+endfunction
 
 
 
@@ -342,103 +328,94 @@ if exists('g:started_by_firenvim') && g:started_by_firenvim
     augroup END
 endif
 
+:set mouse=a
+:set scrolloff=8 " Start to scrolling down or up 8 lines before ord after
+:colorscheme xcodedark
+
 
 """ Custom Mappings
+let mapleader=" "
 map gm :call cursor(0, virtcol('$')/3)<CR>  
+set pastetoggle=<F3>
 nmap <F5> :call ToggleSpellCheck()<CR>
+nmap <F6> :call ToggleCopilot()<CR>
+nmap <F8> :TagbarToggle<CR>
+
+"Files , Directories , Exit 
 nmap <leader>q :bd<CR>
 nmap <leader>Q :q<CR>
 nmap <leader>\ :NERDTree<CR>
-nmap <leader>w :TagbarToggle<CR>
+nmap <leader>F :Rg<CR>
+nmap <C-s> :w<CR>
+
+"Setup Vim
+nmap <leader>r :so ~/.config/nvim/init.vim<CR>
+nmap <leader>R :tabnew ~/.config/nvim/init.vim<CR>
+nmap <leader>f :Files<CR>
+nmap gt :bnext<CR>
+nmap gT :bprevious<CR>
+nmap <leader>t <C-w>v<C-w>l:terminal<CR>
+"Shorcuts for insert and visual mode 
+:imap \nn <C-O>o
+:imap \NN <C-O>O
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+"map <C-e> <ESC>$
+imap <C-e> <ESC>A
+"begining of line insert mode
+"map <C-a> <ESC>^ "in normal mode no because is add a number "
+imap <C-a> <ESC>I
+
+" Config for coc.nvim
+nmap <silent> cp <Plug>(coc-diagnostic-prev)
+nmap <silent> cn <Plug>(coc-diagnostic-next)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+inoremap <silent><expr> <C-Space> coc#select()
+xmap <silent>ca :CocAction<CR>
+nmap <silent>ca :CocAction<CR>
+nmap <silent>cf  <Plug>(coc-fix-current)
+
+"Colors and utils Colorl 
 nmap <leader>ee :Colors<CR>
 nmap <leader>ea :AirlineTheme 
 nmap <leader>e1 :call ColorDracula()<CR>
 nmap <leader>e2 :call ColorSeoul256()<CR>
 nmap <leader>e3 :call ColorForgotten()<CR>
 nmap <leader>e4 :call ColorZazen()<CR>
-nmap <leader>r :so ~/.config/nvim/init.vim<CR>
-nmap <leader>R :tabnew ~/.config/nvim/init.vim<CR>
-nmap <leader>t :call TrimWhitespace()<CR>
-nmap <leader>s <plug>(easymotion-bd-f)
-nmap <leader>vs <C-w>v<C-w>l:terminal<CR>
-nmap <leader>d <Plug>(pydocstring)
-nmap <leader>f :Files<CR>
-nmap <leader>F :Rg<CR>
-nmap <leader>G :Goyo<CR>
-nmap <leader>gs :G<CR>
-nmap <leader>gh :diffget //3<CR>
-nmap <leader>gu :diffget //2<CR>
-nmap <leader>gc :GCheckout<CR>
 nmap <leader>h :RainbowParentheses!!<CR>
-nmap <leader>j :set filetype=journal<CR>
+
+"Bufer and motion
+nmap <leader>z :Goyo<CR>
+nmap <leader>s <plug>(easymotion-bd-f)
+nmap <leader>n :set rnu!<CR>
+nmap <C-l> :noh<CR>
+imap <C-l>  <C-o>:noh<CR>
+
+"Git
+nmap <leader>gs :G<CR>
+noremap <C-p> :GFiles<CR>
+nmap <leader>gl :diffget //3<CR>
+nmap <leader>gh :diffget //2<CR>
+nmap <leader>gc :GCheckout<CR>
+
+"Docsets
+nmap <leader>d <Plug>(pydocstring)
 nmap <Leader>k :Dasht<Space>
 nmap <Leader><Leader>k :Dasht!<Space>
 nnoremap <silent> <Leader>K :call Dasht(dasht#cursor_search_terms())<Return>
 nnoremap <silent> <Leader><Leader>K :call Dasht(dasht#cursor_search_terms(), '!')<Return>
 vnoremap <silent> <Leader>K y:<C-U>call Dasht(getreg(0))<Return>
 vnoremap <silent> <Leader><Leader>K y:<C-U>call Dasht(getreg(0), '!')<Return>
-map <leader>l :Limelight!!<CR>
-autocmd FileType python nmap <leader>x :0,$!~/.config/nvim/env/bin/python -m yapf<CR>
-nmap <leader>n :RN<CR>J
-nmap <silent> <leader><leader> :noh<CR>
-nmap gt :bnext<CR>
-nmap gT :bprevious<CR>
-nmap <C-s> :w<CR>
-nmap <leader>%  :vsplit<CR>
-nmap <leader>@  :split<CR>
-noremap <C-p> :GFiles<CR>
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-nmap <leader>bc  :Codi<CR>
-nmap <leader>bC  :Codi!<CR>
-:set mouse=a
-:set scrolloff=8 " Start to scrolling down or up 8 lines before ord after
-:colorscheme xcodedark
-:call RltvNmbr#RltvNmbrCtrl(1)
-" shortcuts
+
 " vimwiki <leader>ww
 " formater reals \==
 " GoTo code navigation.
-set pastetoggle=<F3>
 " Copilot Setup
  imap <silent><script><expr> <C-j> copilot#Accept("\<CR>")
         let g:copilot_no_tab_map = v:true
-
-
-" ===== Seeing Is Believing =====
-" " Assumes you have a Ruby with SiB available in the PATH
-" " If it doesn't work, you may need to `gem install seeing_is_believing -v
-" 3.0.0.beta.6`
-" " ...yeah, current release is a beta, which won't auto-install
-"
-" " Annotate every line
-"
-nmap <leader>br :%!seeing_is_believing --timeout 12 --line-length 500 --number-of-captures 300 --alignment-strategy chunk<CR>;
-"
-"  " Annotate marked lines
-"
-nmap <leader>n :%.!seeing_is_believing --timeout 12 --line-length 500 --number-of-captures 300 --alignment-strategy chunk --xmpfilter-style<CR>;
-"
-"  " Remove annotations
-"
-nmap <leader>c- :%.!seeing_is_believing --clean<CR>;
-"
-"  " Mark the current line for annotation
-"
-nnoremap <leader>m A # => <Esc>
-"
-"  " Mark the highlighted lines for annotation
-"
-vnoremap <leader>m :norm A # => <Esc>
-
-"new line from insert mode
-:imap \nn <C-O>
-"end of line insert mode 
-"map <C-e> <ESC>$
-imap <C-e> <ESC>A
-"begining of line insert mode
-"map <C-a> <ESC>^ "in normal mode no because is add a number "
-imap <C-a> <ESC>I
 
 let g:user_emmet_settings = {
 \  'html': {
@@ -447,3 +424,4 @@ let g:user_emmet_settings = {
     \}
 	\} 
 \}
+
