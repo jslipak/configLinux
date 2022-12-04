@@ -15,12 +15,10 @@ Plug 'junegunn/limelight.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-journal'
 Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'nightsense/forgotten'
 Plug 'zaki/zazen'
 Plug 'tpope/vim-ragtag'
 
 " Aethetics - Additional
-Plug 'nightsense/nemo'
 Plug 'yuttie/hydrangea-vim'
 Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim' }
 Plug 'rhysd/vim-color-spring-night'
@@ -29,7 +27,7 @@ Plug 'rhysd/vim-color-spring-night'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
-Plug 'majutsushi/tagbar'
+Plug 'preservim/tagbar'
 Plug 'preservim/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -62,6 +60,9 @@ Plug 'easymotion/vim-easymotion'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'mhinz/vim-signify'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+" or                                , { 'branch': '0.1.x' }
 " Formater 
 Plug 'dense-analysis/ale'
 Plug 'splattael/rufo-vim'
@@ -272,15 +273,6 @@ function! ColorSeoul256()
     IndentLinesDisable
 endfunction
 
-" Forgotten Mode (Light)
-function! ColorForgotten()
-    " Light airline themes: tomorrow, silver, alduin
-    " Light colors: forgotten-light, nemo-light
-    let g:airline_theme='tomorrow'
-    color forgotten-light
-    IndentLinesDisable
-endfunction
-
 " Zazen Mode (Black & White)
 function! ColorZazen()
     let g:airline_theme='badcat'
@@ -362,9 +354,9 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 "map <C-e> <ESC>$
 imap <C-e> <ESC>A
-"begining of line insert mode
 "map <C-a> <ESC>^ "in normal mode no because is add a number "
 imap <C-a> <ESC>I
+
 
 " Config for coc.nvim
 nmap <silent> cp <Plug>(coc-diagnostic-prev)
@@ -383,8 +375,7 @@ nmap <leader>ee :Colors<CR>
 nmap <leader>ea :AirlineTheme 
 nmap <leader>e1 :call ColorDracula()<CR>
 nmap <leader>e2 :call ColorSeoul256()<CR>
-nmap <leader>e3 :call ColorForgotten()<CR>
-nmap <leader>e4 :call ColorZazen()<CR>
+nmap <leader>e3 :call ColorZazen()<CR>
 nmap <leader>h :RainbowParentheses!!<CR>
 
 "Bufer and motion
@@ -395,11 +386,16 @@ nmap <C-l> :noh<CR>
 imap <C-l>  <C-o>:noh<CR>
 
 "Git
-nmap <leader>gs :G<CR>
-noremap <C-p> :GFiles<CR>
+nmap <leader>g. :G<CR>
+nmap <leader>gf :GFiles<CR>
 nmap <leader>gl :diffget //3<CR>
 nmap <leader>gh :diffget //2<CR>
 nmap <leader>gc :GCheckout<CR>
+nmap <leader>gn <Plug>(GitGutterNextHunk)
+nmap <leader>gp <Plug>(GitGutterPrevHunk)
+nmap <leader>gs <Plug>(GitGutterStageHunk)
+nmap <leader>gu <Plug>(GitGutterUndoHunk)
+nmap <leader>gw <Plug>(GitGutterPreviewHunk)
 
 "Docsets
 nmap <leader>d <Plug>(pydocstring)
