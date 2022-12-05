@@ -352,15 +352,13 @@ nmap <leader>r :so ~/.config/nvim/init.vim<CR>
 nmap <leader>R :tabnew ~/.config/nvim/init.vim<CR>
 nmap gt :bnext<CR>
 nmap gT :bprevious<CR>
-nmap <leader>t <C-w>v<C-w>l:terminal<CR>
+nmap <leader>T <C-w>v<C-w>l:terminal<CR>
 "Shorcuts for insert and visual mode 
 :imap \nn <C-O>o
 :imap \NN <C-O>O
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-"map <C-e> <ESC>$
 imap <C-e> <ESC>A
-"map <C-a> <ESC>^ "in normal mode no because is add a number "
 imap <C-a> <ESC>I
 
 
@@ -420,5 +418,27 @@ nnoremap <silent> <Leader><Leader>K :call Dasht(dasht#cursor_search_terms(), '!'
 vnoremap <silent> <Leader>K y:<C-U>call Dasht(getreg(0))<Return>
 vnoremap <silent> <Leader><Leader>K y:<C-U>call Dasht(getreg(0), '!')<Return>
 
-
+"Telescop
+nmap <leader>tp :Telescope<CR>
+nmap <leader>tk :Telescope keymaps<CR>
+nmap <leader>tp :Telescope <CR>
+nmap <leader>tF :Telescope live_grep<CR>
+nmap <leader>tf :Telescope fd<CR>
+nmap <leader>tt :Telescope tags<CR>
+nmap <leader>tr :Telescope registers<CR>
+nmap <leader>th :Telescope help_tags<CR>
+nmap <leader>tH :Telescope man_pages<CR>
+nmap <leader>tb :Telescope buffers<CR>
+nmap <leader>tc :Telescope commands<CR>
+nmap <leader>tm :Telescope marks<CR>
+nmap <leader>ta :Telescope autocommands<CR>
+nmap <leader>tvo :Telescope vim_options<CR>
+nmap <leader>tG :Telescope git_status<CR>
+nmap <leader>tgs :Telescope git_stash<CR>
+nmap <leader>tgb :Telescope git_branches<CR>
+nmap <leader>tgc :Telescope git_commits<CR>
+nmap <leader>tgcb :Telescope git_bcommits<CR>
+nmap <leader>tgf :Telescope git_files<CR>
+nmap <leader>tz :Telescope spell_suggest<CR>
+nmap <leader>tj :Telescope jumplist<CR>
 
