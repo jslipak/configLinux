@@ -54,7 +54,6 @@ Plug 'mattn/emmet-vim'
 Plug 'sbdchd/neoformat'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'airblade/vim-gitgutter'
-Plug 'vimwiki/vimwiki'
 Plug 'vim-scripts/RltvNmbr.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'christoomey/vim-tmux-navigator'
@@ -119,8 +118,18 @@ Plug 'tomlion/vim-solidity'
 "Docset
 Plug 'sunaku/vim-dasht'
 call plug#end()
+
+""" Plugin Configurations
 " EMMET CONFIG
 let g:user_emmet_leader_key=','
+let g:user_emmet_settings = {
+\  'html': {
+\    'snippets': {
+\      'html:5': '!!!+html>(head>(meta[charset=${charset}]+meta[name="viewport" content="width=device-width,initial-scale=1.0"]+meta[http-equiv="X-UA-Compatible" content="ie=edge"]+title +body'
+    \}
+	\} 
+\}
+
 " coc config
 let g:coc_global_extensions = [
 \ 'coc-snippets',
@@ -154,23 +163,8 @@ set termguicolors
 highlight Normal guibg=NONE ctermbg=NONE
 highlight LineNr guibg=NONE ctermbg=NONE
 
-""" Other Configurations
-filetype plugin indent on
-"   set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
-set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
-set incsearch ignorecase smartcase hlsearch
-set ruler laststatus=2 showcmd showmode
-set list listchars=trail:»,tab:»-
-set fillchars+=vert:\ 
-set wrap breakindent
-set encoding=utf-8
-set number
-set title
-set clipboard+=unnamedplus
-set showmatch 
-set cursorcolumn
-set cursorline
-""" Plugin Configurations
+"Copilot 
+let g:copilot_no_tab_map = v:true
 
 " NERDTree
 let NERDTreeShowHidden=1
@@ -280,9 +274,6 @@ function! ColorZazen()
     IndentLinesEnable
 endfunction
 
-""" VimWiki
-let g:vimwiki_list = [{'path': '~/pCloudDrive/knowledge',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
 
 """ Toggle spellchecking
 function! ToggleSpellCheck()
@@ -320,30 +311,45 @@ if exists('g:started_by_firenvim') && g:started_by_firenvim
     augroup END
 endif
 
+""" Other Configurations
 :set mouse=a
 :set scrolloff=8 " Start to scrolling down or up 8 lines before ord after
 :colorscheme xcodedark
-
+filetype plugin indent on
+"   set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
+set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
+set incsearch ignorecase smartcase hlsearch
+set ruler laststatus=2 showcmd showmode
+set list listchars=trail:»,tab:»-
+set fillchars+=vert:\ 
+set wrap breakindent
+set encoding=utf-8
+set number
+set title
+set clipboard+=unnamedplus
+set showmatch 
+set cursorcolumn
+set cursorline
 
 """ Custom Mappings
 let mapleader=" "
-map gm :call cursor(0, virtcol('$')/3)<CR>  
 set pastetoggle=<F3>
 nmap <F5> :call ToggleSpellCheck()<CR>
 nmap <F6> :call ToggleCopilot()<CR>
 nmap <F8> :TagbarToggle<CR>
 
 "Files , Directories , Exit 
+nmap <leader>f :Files<CR>
 nmap <leader>q :bd<CR>
 nmap <leader>Q :q<CR>
 nmap <leader>\ :NERDTree<CR>
 nmap <leader>F :Rg<CR>
 nmap <C-s> :w<CR>
+nmap <C-s> :w<CR>
 
 "Setup Vim
 nmap <leader>r :so ~/.config/nvim/init.vim<CR>
 nmap <leader>R :tabnew ~/.config/nvim/init.vim<CR>
-nmap <leader>f :Files<CR>
 nmap gt :bnext<CR>
 nmap gT :bprevious<CR>
 nmap <leader>t <C-w>v<C-w>l:terminal<CR>
@@ -359,7 +365,8 @@ imap <C-a> <ESC>I
 
 
 " Config for coc.nvim
-nmap <silent> cp <Plug>(coc-diagnostic-prev)
+" Note previus and next origina keymap [c and ]c
+nmap <silent> cp <Plug>(coc-diagnostic-prev) 
 nmap <silent> cn <Plug>(coc-diagnostic-next)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -386,8 +393,9 @@ nmap <C-l> :noh<CR>
 imap <C-l>  <C-o>:noh<CR>
 
 "Git
-nmap <leader>g. :G<CR>
+nmap <leader>G :G<CR>
 nmap <leader>gf :GFiles<CR>
+nmap <leader>gd :Gdiffsplit<CR>
 nmap <leader>gl :diffget //3<CR>
 nmap <leader>gh :diffget //2<CR>
 nmap <leader>gc :GCheckout<CR>
@@ -396,6 +404,12 @@ nmap <leader>gp <Plug>(GitGutterPrevHunk)
 nmap <leader>gs <Plug>(GitGutterStageHunk)
 nmap <leader>gu <Plug>(GitGutterUndoHunk)
 nmap <leader>gw <Plug>(GitGutterPreviewHunk)
+
+"Copilot
+imap <silent><script><expr> <C-j> copilot#Accept("\<CR>")
+imap <silent> <C-,> <Plug>(copilot-previous)
+imap <silent> <C-.> <Plug>(copilot-next)
+imap <silent> <C-;> <Plug>(copilot-suggest)
 
 "Docsets
 nmap <leader>d <Plug>(pydocstring)
@@ -406,18 +420,5 @@ nnoremap <silent> <Leader><Leader>K :call Dasht(dasht#cursor_search_terms(), '!'
 vnoremap <silent> <Leader>K y:<C-U>call Dasht(getreg(0))<Return>
 vnoremap <silent> <Leader><Leader>K y:<C-U>call Dasht(getreg(0), '!')<Return>
 
-" vimwiki <leader>ww
-" formater reals \==
-" GoTo code navigation.
-" Copilot Setup
- imap <silent><script><expr> <C-j> copilot#Accept("\<CR>")
-        let g:copilot_no_tab_map = v:true
 
-let g:user_emmet_settings = {
-\  'html': {
-\    'snippets': {
-\      'html:5': '!!!+html>(head>(meta[charset=${charset}]+meta[name="viewport" content="width=device-width,initial-scale=1.0"]+meta[http-equiv="X-UA-Compatible" content="ie=edge"]+title +body'
-    \}
-	\} 
-\}
 
