@@ -385,10 +385,11 @@ nmap <leader>h :RainbowParentheses!!<CR>
 
 "Bufer and motion
 nmap <leader>z :Goyo<CR>
-nmap <leader>s <plug>(easymotion-bd-f)
+nmap <C-J> <plug>(easymotion-bd-f)
+imap <C-j> <ESC><plug>(easymotion-bd-f)
 nmap <leader>n :set rnu!<CR>
 nmap <C-l> :noh<CR>
-imap <C-l>  <C-o>:noh<CR>
+imap <C-l>  <C-o>:noh<CR>i
 
 "Git
 nmap <leader>G :G<CR>
@@ -404,10 +405,10 @@ nmap <leader>gu <Plug>(GitGutterUndoHunk)
 nmap <leader>gw <Plug>(GitGutterPreviewHunk)
 
 "Copilot
-imap <silent><script><expr> <C-j> copilot#Accept("\<CR>")
-imap <silent> <C-,> <Plug>(copilot-previous)
-imap <silent> <C-.> <Plug>(copilot-next)
-imap <silent> <C-;> <Plug>(copilot-suggest)
+imap <silent><script><expr> <M-j> copilot#Accept("\<CR>")
+imap <silent> <M-,> <Plug>(copilot-previous)
+imap <silent> <M-.> <Plug>(copilot-next)
+imap <silent> <M-;> <Plug>(copilot-suggest)
 
 "Docsets
 nmap <leader>d <Plug>(pydocstring)
