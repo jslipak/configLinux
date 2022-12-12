@@ -32,6 +32,7 @@ Plug 'preservim/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tpope/vim-repeat'
+Plug 'vim-scripts/restore_view.vim'
 "Plug 'davidhalter/jedi-vim'
 Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
@@ -251,7 +252,9 @@ autocmd FileType htmldjango inoremap {# {#  #}<left><left><left>
 autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
-""" Custom Functions
+" foldings
+
+"" Custom Functions
 
 " Dracula Mode (Dark)
 function! ColorDracula()
@@ -385,7 +388,7 @@ nmap <leader>h :RainbowParentheses!!<CR>
 
 "Bufer and motion
 nmap <leader>z :Goyo<CR>
-nmap <C-J> <plug>(easymotion-bd-f)
+nmap <leader>j <plug>(easymotion-bd-f)
 imap <C-j> <ESC><plug>(easymotion-bd-f)
 nmap <leader>n :set rnu!<CR>
 nmap <C-l> :noh<CR>
