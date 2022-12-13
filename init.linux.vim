@@ -388,7 +388,7 @@ nmap <leader>h :RainbowParentheses!!<CR>
 
 "Bufer and motion
 nmap <leader>z :Goyo<CR>
-nmap <C-J> <plug>(easymotion-bd-f)
+nmap <C-j> <plug>(easymotion-bd-f)
 imap <C-j> <ESC><plug>(easymotion-bd-f)
 nmap <leader>n :set rnu!<CR>
 nmap <C-l> :noh<CR>
