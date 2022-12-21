@@ -5,53 +5,37 @@ call plug#begin()
 
 " Aesthetics - Main
 Plug 'dracula/vim', { 'commit': '147f389f4275cec4ef43ebc25e2011c57b45cc00' }
-if !exists('g:started_by_firenvim')
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-endif
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
-Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-journal'
 Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'zaki/zazen'
-Plug 'tpope/vim-ragtag'
 
 " Aethetics - Additional
-Plug 'yuttie/hydrangea-vim'
-Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim' }
-Plug 'rhysd/vim-color-spring-night'
 
 " Functionalities
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'preservim/tagbar'
+Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-abolish'
 Plug 'preservim/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tpope/vim-repeat'
 Plug 'vim-scripts/restore_view.vim'
-"Plug 'davidhalter/jedi-vim'
-Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
 Plug 'alvan/vim-closetag'
-Plug 'tpope/vim-abolish'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'chrisbra/Colorizer'
-Plug 'heavenshell/vim-pydocstring'
 Plug 'vim-scripts/loremipsum'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'metakirby5/codi.vim'
 Plug 'dkarter/bullets.vim'
-Plug 'mattn/emmet-vim'
 Plug 'sbdchd/neoformat'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'airblade/vim-gitgutter'
@@ -61,33 +45,37 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'mhinz/vim-signify'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'kien/ctrlp.vim'
+Plug 'f-person/git-blame.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 " or                                , { 'branch': '0.1.x' }
-" Formater 
+
+"" Formater 
 Plug 'dense-analysis/ale'
 Plug 'splattael/rufo-vim'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plug 'kurtpreston/vim-autoformat-rails'
-Plug 'tpope/vim-rails'
+
 " Javascript plug-in
 Plug 'pangloss/vim-javascript'
+
 "" Python Plug-in
 Plug 'nvie/vim-flake8'
 Plug 'psf/black'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-" Chrome enxtension
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-"" "Markdown
+
+""Markdown
 Plug 'iamcco/markdown-preview.nvim' 
 "" React 
 Plug 'mxw/vim-jsx'
 Plug 'mlaursen/vim-react-snippets'
-" Entertainment
-"Plug 'ryanss/vim-hackernews'
+
 " Color Scheme
+Plug 'yuttie/hydrangea-vim'
+Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim' }
+Plug 'rhysd/vim-color-spring-night'
 Plug 'wadackel/vim-dogrun'
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
@@ -107,51 +95,60 @@ Plug 'gilgigilgil/anderson.vim'
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'mangeshrex/uwu.vim'
+Plug 'junegunn/seoul256.vim'
+
 " CoC Use release branch (Recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
+
+" Ruby
 Plug 'vim-ruby/vim-ruby' " For Facts, Ruby functions, and custom providers
-Plug 'kien/ctrlp.vim'
+Plug 'kurtpreston/vim-autoformat-rails'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-endwise'
+Plug 'ngmy/vim-rubocop'
+Plug 'tpope/vim-cucumber'
+Plug 'tpope/vim-bundler'
+Plug 'janko-m/vim-test'
+Plug 'gmarik/Vundle.vim'
+Plug 'slim-template/vim-slim'
+Plug 'metakirby5/codi.vim'
+Plug 'tpope/vim-rvm'
 "Backet Color
 Plug 'luochen1990/rainbow'
-"Blockchain
-Plug 'tomlion/vim-solidity'
 "Docset
+Plug 'heavenshell/vim-pydocstring'
 Plug 'sunaku/vim-dasht'
 call plug#end()
 
 """ Plugin Configurations
-" EMMET CONFIG
-let g:user_emmet_leader_key=','
-let g:user_emmet_settings = {
-\  'html': {
-\    'snippets': {
-\      'html:5': '!!!+html>(head>(meta[charset=${charset}]+meta[name="viewport" content="width=device-width,initial-scale=1.0"]+meta[http-equiv="X-UA-Compatible" content="ie=edge"]+title +body'
-    \}
-	\} 
-\}
-
 " coc config
 let g:coc_global_extensions = [
+\ 'coc-solargraph',
+\ 'coc-diagnostic',
+\ 'coc-css',
+\ 'coc-yaml',
 \ 'coc-snippets',
 \ 'coc-pairs',
 \ 'coc-tsserver',
 \ 'coc-eslint', 
 \ 'coc-prettier', 
 \ 'coc-json', 
-\ 'coc-solargraph',
 \]
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
 
 
 "RainbowParentheses
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+
 """ Python3 VirtunlEnv
 let g:python3_host_prog='/bin/python'
 let g:python_host_prog='/bin/python'
 
 """ Coloring
 syntax on
-color dracula
 highlight Pmenu guibg=white guifg=black gui=bold
 highlight Comment gui=bold
 highlight Normal gui=none
@@ -166,6 +163,22 @@ highlight LineNr guibg=NONE ctermbg=NONE
 
 "Copilot 
 let g:copilot_no_tab_map = v:true
+
+let g:copilot_filetypes = {
+\ '*': v:false,
+\ }
+
+"Codi
+let g:codi#virtual_text = 0
+let g:codi#width = 20
+let g:codi#rightsplit = 0
+let g:codi#rightalign = 0
+" Comment in the same buffer
+" let g:codi#virtual_text_prefix = '🎯➔'
+" let g:codi#virtual_text_pos = 60
+
+"Git Blame
+let g:gitblame_enabled = 1
 
 " NERDTree
 let NERDTreeShowHidden=1
@@ -191,14 +204,6 @@ autocmd BufLeave term://* stopinsert
 
 " Disable documentation window
 set completeopt=preview
-
-" Supertab
-let g:SuperTabDefaultCompletionType = "<C-n>"
-
-" Ultisnips
-let g:UltiSnipsExpandTrigger="<C-Space>"
-let g:UltiSnipsJumpForwardTrigger="<Tab>"
-let g:UltiSnipsJumpBackwardTrigger="<C-x>"
 
 " indentLine
 let g:indentLine_char = '▏'
@@ -229,30 +234,27 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5, 'highlight': 'Comment' } }
 let $FZF_DEFAULT_OPTS='--reverse'
+
 """ ALE
+let g:ale_linters = {
+      \   'ruby': ['standardrb', 'rubocop'],
+      \   'python': ['flake8', 'pylint'],
+      \   'javascript': ['eslint'],
+      \}
+
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'css': ['prettier'],
+\    'ruby': ['standardrb'],
 \}
 
 let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_options = '--single-quote --trailing-comma all'
-""" Filetype-Specific Configurations
-
-" HTML, XML, Jinja
-autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType xml setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType htmldjango inoremap {{ {{  }}<left><left><left>
-autocmd FileType htmldjango inoremap {% {%  %}<left><left><left>
-autocmd FileType htmldjango inoremap {# {#  #}<left><left><left>
 
 " Markdown and Journal
 autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
-" foldings
 
 "" Custom Functions
 
@@ -288,31 +290,6 @@ function! ToggleSpellCheck()
   endif
 endfunction
 
-function! ToggleCopilot()
-  if exists('b:copilot')
-    unlet b:copilot
-    :Copilot disable
-    echo "Copilot OFF"
-  else
-    let b:copilot = 1
-    :Copilot enable 
-    echo "Copilot ON"
-  endif
-endfunction
-
-
-
-if exists('g:started_by_firenvim') && g:started_by_firenvim
-    " general options
-    set laststatus=0 non
-		let g:airline#extensions#tabline#enabled = 0
-		let g:airline#extensions#fugitiveline#enabled = 0
-    let g:airline_exclude_filetypes = [] " see source for current list
-    augroup firenvim
-        autocmd!
-        autocmd BufEnter *.txt setlocal filetype=markdown.pandoc
-    augroup END
-endif
 
 """ Other Configurations
 :set mouse=a
@@ -337,8 +314,8 @@ set cursorline
 """ Custom Mappings
 let mapleader=" "
 set pastetoggle=<F3>
-nmap <F5> :call ToggleSpellCheck()<CR>
-nmap <F6> :call ToggleCopilot()<CR>
+nmap <F12> :Codi!!<CR>
+nmap <F7> :call ToggleSpellCheck()<CR>
 nmap <F8> :TagbarToggle<CR>
 
 "Files , Directories , Exit 
@@ -348,7 +325,7 @@ nmap <leader>Q :q<CR>
 nmap <leader>\ :NERDTree<CR>
 nmap <leader>F :Rg<CR>
 nmap <C-s> :w<CR>
-nmap <C-s> :w<CR>
+imap <C-s> <C-o>:w<CR>
 
 "Setup Vim
 nmap <leader>r :so ~/.config/nvim/init.vim<CR>
@@ -356,9 +333,11 @@ nmap <leader>R :tabnew ~/.config/nvim/init.vim<CR>
 nmap gt :bnext<CR>
 nmap gT :bprevious<CR>
 nmap <leader>T <C-w>v<C-w>l:terminal<CR>
+"
 "Shorcuts for insert and visual mode 
 :imap \nn <C-O>o
 :imap \NN <C-O>O
+:imap \cl  <C-o>:noh<CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 imap <C-e> <ESC>A
@@ -388,11 +367,9 @@ nmap <leader>h :RainbowParentheses!!<CR>
 
 "Bufer and motion
 nmap <leader>z :Goyo<CR>
-nmap <C-j> <plug>(easymotion-bd-f)
+nmap <leader>j <plug>(easymotion-bd-f)
 imap <C-j> <ESC><plug>(easymotion-bd-f)
 nmap <leader>n :set rnu!<CR>
-nmap <C-l> :noh<CR>
-imap <C-l>  <C-o>:noh<CR>i
 
 "Git
 nmap <leader>G :G<CR>
@@ -406,12 +383,15 @@ nmap <leader>gp <Plug>(GitGutterPrevHunk)
 nmap <leader>gs <Plug>(GitGutterStageHunk)
 nmap <leader>gu <Plug>(GitGutterUndoHunk)
 nmap <leader>gw <Plug>(GitGutterPreviewHunk)
+nmap <leader>gb :GitBlameToggle<CR>
 
 "Copilot
 imap <silent><script><expr> <M-j> copilot#Accept("\<CR>")
 imap <silent> <M-,> <Plug>(copilot-previous)
 imap <silent> <M-.> <Plug>(copilot-next)
 imap <silent> <M-;> <Plug>(copilot-suggest)
+imap <silent> <M-:> <C-o>:Copilot panel<CR>
+
 
 "Docsets
 nmap <leader>d <Plug>(pydocstring)
