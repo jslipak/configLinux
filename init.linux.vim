@@ -21,6 +21,9 @@ Plug 'tpope/vim-surround'
 Plug 'preservim/tagbar'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-abolish'
+Plug 'andrewradev/splitjoin.vim'
+Plug 'AndrewRadev/sideways.vim'
+Plug 'andrewradev/switch.vim'
 Plug 'preservim/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-repeat'
@@ -47,6 +50,8 @@ Plug 'mhinz/vim-signify'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'kien/ctrlp.vim'
 Plug 'f-person/git-blame.nvim'
+Plug 'https://github.com/adelarsq/vim-matchit'
+Plug 'kana/vim-textobj-user'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 " or                                , { 'branch': '0.1.x' }
 
@@ -113,6 +118,7 @@ Plug 'janko-m/vim-test'
 Plug 'gmarik/Vundle.vim'
 Plug 'slim-template/vim-slim'
 Plug 'metakirby5/codi.vim'
+Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'tpope/vim-rvm'
 "Backet Color
 Plug 'luochen1990/rainbow'
@@ -342,7 +348,15 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 imap <C-e> <ESC>A
 imap <C-a> <ESC>I
+nnoremap <M-h> :SidewaysLeft<cr>
+nnoremap <M-l> :SidewaysRight<cr>
+imap <M-h> <C-o>:SidewaysLeft<cr>
+imap <M-l> <C-o>:SidewaysRight<cr>
 
+"splitjoin in normal mode silent
+" gS to split a one-liner into multiple lines
+" gJ (with the cursor on the first line of a block) to join a block into a single-line statement.
+" gs switch true false
 
 " Config for coc.nvim
 " Note previus and next origina keymap [c and ]c
