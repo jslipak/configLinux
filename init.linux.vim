@@ -194,11 +194,12 @@ let NERDTreeQuitOnOpen = 1
 let g:NERDTreeWinPos = "right"
 
 " Airline
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline_section_z = ' %{strftime("%-I:%M %p")}'
-let g:airline_section_warning = ''
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#capslock#enabled = 1
 let g:airline#extensions#fugitiveline#enabled = 1
+let g:airline#extensions#ale#enabled = 1
 au User AirlineAfterInit  :let g:airline_section_z = airline#section#create(['windowswap', 'obsession', '%3p%%', 'maxlinenr', '->%3v'])
 
 "" Neovim :Terminal
