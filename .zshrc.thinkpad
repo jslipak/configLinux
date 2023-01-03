@@ -130,3 +130,8 @@ eval "$(rbenv init -)"
 if [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
 fi
+
+# add variables and protect to expose in git 
+if [ -f .env ]; then
+  export $(cat .env | xargs)
+fi

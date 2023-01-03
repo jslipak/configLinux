@@ -301,7 +301,7 @@ endfunction
 """ Other Configurations
 :set mouse=a
 :set scrolloff=8 " Start to scrolling down or up 8 lines before ord after
-:colorscheme xcodedark
+:colorscheme ayu 
 filetype plugin indent on
 "   set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
