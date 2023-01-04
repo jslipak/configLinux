@@ -2,7 +2,8 @@
 
 """ Vim-Plug
 call plug#begin()
-
+" Packer Lua
+Plug 'wbthomason/packer.nvim'
 " Aesthetics - Main
 Plug 'dracula/vim', { 'commit': '147f389f4275cec4ef43ebc25e2011c57b45cc00' }
 Plug 'vim-airline/vim-airline'
@@ -47,13 +48,10 @@ Plug 'easymotion/vim-easymotion'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'mhinz/vim-signify'
-Plug 'nvim-lua/plenary.nvim'
 Plug 'kien/ctrlp.vim'
 Plug 'f-person/git-blame.nvim'
 Plug 'https://github.com/adelarsq/vim-matchit'
 Plug 'kana/vim-textobj-user'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
-" or                                , { 'branch': '0.1.x' }
 
 "" Formater 
 Plug 'dense-analysis/ale'
@@ -125,6 +123,7 @@ Plug 'luochen1990/rainbow'
 "Docset
 Plug 'heavenshell/vim-pydocstring'
 Plug 'sunaku/vim-dasht'
+Plug 'MunifTanjim/nui.nvim'
 call plug#end()
 
 """ Plugin Configurations
@@ -262,7 +261,8 @@ let g:ale_javascript_prettier_options = '--single-quote --trailing-comma all'
 autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
-
+" Lua Setup Core plugin, configuration (lua)
+lua require('plugins')
 "" Custom Functions
 
 " Dracula Mode (Dark)
@@ -335,8 +335,9 @@ nmap <C-s> :w<CR>
 imap <C-s> <C-o>:w<CR>
 
 "Setup Vim
-nmap <leader>r :so ~/.config/nvim/init.vim<CR>
-nmap <leader>R :tabnew ~/.config/nvim/init.vim<CR>
+nmap <leader>R :so ~/.config/nvim/init.vim<CR>
+nmap <leader>rv :tabnew ~/.config/nvim/init.vim<CR>
+nmap <leader>rl :tabnew ~/.config/nvim/lua/plugins.lua<CR>
 nmap gt :bnext<CR>
 nmap gT :bprevious<CR>
 nmap <leader>T <C-w>v<C-w>l:terminal<CR>
