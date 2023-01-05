@@ -5,9 +5,9 @@ call plug#begin()
 " Packer Lua
 Plug 'wbthomason/packer.nvim'
 " Aesthetics - Main
-Plug 'dracula/vim', { 'commit': '147f389f4275cec4ef43ebc25e2011c57b45cc00' }
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'dracula/vim', { 'commit': '147f389f4275cec4ef43ebc25e2011c57b45cc00' }
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-journal'
@@ -261,8 +261,61 @@ let g:ale_javascript_prettier_options = '--single-quote --trailing-comma all'
 autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
-" Lua Setup Core plugin, configuration (lua)
+"""Lua Setup Core plugin, configuration (lua)
 lua require('plugins')
+""theme lualine
+"evil_lualine_theme ; newpaper_theme ; dharmx_theme 
+lua require('newpaper_theme') 
+lua << END
+require 'colorizer'.setup() 
+require("bufferline").setup{
+    highlights = {
+      background = {
+        fg = "#ff5fff",
+        bg = "#151e1e",
+      },
+      fill= {
+        fg = "#ff5fff",
+        bg = "#151e1e",
+      },
+             buffer_selected = {
+        fg =  "#ff331f",
+        bg = '#ffffff',
+        bold = true,
+        italic = true,
+      },
+        numbers_selected = {
+          fg =  "#ff331f",
+          bg =  '#ffffff',
+          bold = true,
+          italic = true,
+        },
+    },
+    options = {
+        always_show_bufferline = true,
+        offsets = {
+            {
+                filetype = "NvimTree",
+                text_align = "center",
+                separator = true
+            }
+        },
+        show_buffer_close_icons = false,
+        hover = {
+          enabled = true,
+          delay = 200,
+          reveal = {'close'}
+        },
+        numbers = "ordinal",
+        indicator = {
+        style = "icon"
+        },
+        color_icons = true,
+        separator_style = "tight",
+    }
+}
+
+END
 "" Custom Functions
 
 " Dracula Mode (Dark)
