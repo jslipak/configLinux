@@ -2,12 +2,7 @@
 
 """ Vim-Plug
 call plug#begin()
-" Packer Lua
 Plug 'wbthomason/packer.nvim'
-" Aesthetics - Main
-"Plug 'dracula/vim', { 'commit': '147f389f4275cec4ef43ebc25e2011c57b45cc00' }
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-journal'
@@ -25,8 +20,6 @@ Plug 'tpope/vim-abolish'
 Plug 'andrewradev/splitjoin.vim'
 Plug 'AndrewRadev/sideways.vim'
 Plug 'andrewradev/switch.vim'
-Plug 'preservim/nerdtree'
-Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-repeat'
 Plug 'vim-scripts/restore_view.vim'
 Plug 'jiangmiao/auto-pairs'
@@ -183,13 +176,6 @@ let g:codi#rightalign = 0
 "Git Blame
 let g:gitblame_enabled = 1
 
-" NERDTree
-let NERDTreeShowHidden=1
-let g:NERDTreeDirArrowExpandable = '↠'
-let g:NERDTreeDirArrowCollapsible = '↡'
-let NERDTreeQuitOnOpen = 1
-let g:NERDTreeWinPos = "right"
-
 " Airline
 let g:airline_powerline_fonts = 0
 let g:airline_section_z = ' %{strftime("%-I:%M %p")}'
@@ -261,9 +247,7 @@ autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 """Lua Setup Core plugin, configuration (lua)
 lua require('plugins')
-""theme lualine
-"evil_lualine_theme ; newpaper_theme ; dharmx_theme 
-lua require('dharmx_theme') 
+lua require('line_themes/dharmx_theme') 
 lua require('config')
 
 "" Custom Functions
@@ -277,7 +261,6 @@ function! ToggleSpellCheck()
     echo "Spellcheck OFF"
   endif
 endfunction
-
 
 """ Other Configurations
 :set mouse=a
@@ -307,20 +290,23 @@ nmap <F7> :call ToggleSpellCheck()<CR>
 nmap <F8> :TagbarToggle<CR>
 
 "Files , Directories , Exit 
-nmap <leader>f :Files<CR>
+nmap <leader>fe :Files<CR>
+nmap <leader>ft :NvimTreeToggle<CR>
+nmap <leader>fr :Rg<CR>
 nmap <leader>q :bd<CR>
 nmap <leader>Q :q<CR>
-nmap <leader>\ :NERDTree<CR>
-nmap <leader>F :Rg<CR>
 nmap <C-s> :w<CR>
 imap <C-s> <C-o>:w<CR>
 
-"Setup Vim
-nmap <leader>R :so ~/.config/nvim/init.vim<CR>
-nmap <leader>rv :tabnew ~/.config/nvim/init.vim<CR>
-nmap <leader>rl :tabnew ~/.config/nvim/lua/plugins.lua<CR>
+"Tab
 nmap gt :bnext<CR>
 nmap gT :bprevious<CR>
+"
+"Setup Vim
+nmap <leader>ra :so ~/.config/nvim/init.vim<CR>
+nmap <leader>rv :tabnew ~/.config/nvim/init.vim<CR>
+nmap <leader>rl :tabnew ~/.config/nvim/lua/plugins.lua<CR>
+
 nmap <leader>T <C-w>v<C-w>l:terminal<CR>
 "
 "Shorcuts for insert and visual mode 
@@ -352,7 +338,6 @@ nmap <silent>cf  <Plug>(coc-fix-current)
 "Colors and utils Colorl 
 nmap <leader>ee :Colors<CR>
 nmap <leader>ea :AirlineTheme 
-nmap <leader>h :RainbowParentheses!!<CR>
 
 "Bufer and motion
 nmap <leader>z :Goyo<CR>
@@ -362,7 +347,7 @@ nmap <leader>n :set rnu!<CR>
 nmap <leader>m :Marks<CR>
 
 "Git
-nmap <leader>G :G<CR>
+nmap <leader>g.:G<CR>
 nmap <leader>gf :GFiles<CR>
 nmap <leader>gd :Gdiffsplit<CR>
 nmap <leader>gl :diffget //3<CR>
@@ -391,11 +376,10 @@ nnoremap <silent> <Leader>K :call Dasht(dasht#cursor_search_terms())<Return>
 nnoremap <silent> <Leader><Leader>K :call Dasht(dasht#cursor_search_terms(), '!')<Return>
 vnoremap <silent> <Leader>K y:<C-U>call Dasht(getreg(0))<Return>
 vnoremap <silent> <Leader><Leader>K y:<C-U>call Dasht(getreg(0), '!')<Return>
-
 "Telescop
 nmap <leader>tk :Telescope keymaps<CR>
 nmap <leader>tel :Telescope <CR>
-nmap <leader>tp :Telescope persisted <CR>
+nmap <leader>tp :Telescope persistld <CR>
 nmap <leader>tF :Telescope live_grep<CR>
 nmap <leader>tf :Telescope fd<CR>
 nmap <leader>tt :Telescope tags<CR>
@@ -445,3 +429,36 @@ nmap <leader>tj :Telescope jumplist<CR>
 "    m{              Move to the previous bookmark having the same type as the bookmark under
 "                    the cursor. Works across buffers.
 "    dm=             Delete the bookmark under the cursor.
+
+" NvimTree
+" g? get all helps when it's open
+
+" COMMENT 
+" Normal Mode
+" `gco` - Insert comment to the next line and enters INSERT mode
+" `gcO` - Insert comment to the previous line and enters INSERT mode
+" `gcA` - Insert comment to end of the current line and enters INSERT mode
+" Visual Mode
+" `gc` - Toggles the region using linewise comment
+" `gb` - Toggles the region using blockwise comment
+" " NORMAL mode
+" `gco` - Insert comment to the next line and enters INSERT mode
+" `gcO` - Insert comment to the previous line and enters INSERT mode
+" `gcA` - Insert comment to end of the current line and enters INSERT mode
+" Examples
+" # Linewise
+"
+" `gcw` - Toggle from the current cursor position to the next word
+" `gc$` - Toggle from the current cursor position to the end of line
+" `gc}` - Toggle until the next blank line
+" `gc5j` - Toggle 5 lines after the current cursor position
+" `gc8k` - Toggle 8 lines before the current cursor position
+" `gcip` - Toggle inside of paragraph
+" `gca}` - Toggle around curly brackets
+"
+" # Blockwise
+"
+" `gb2}` - Toggle until the 2 next blank line
+" `gbaf` - Toggle comment around a function (w/ LSP/treesitter support)
+" `gbac` - Toggle comment around a class (w/ LSP/treesitter support)
+

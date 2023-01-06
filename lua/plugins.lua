@@ -24,13 +24,22 @@ return require('packer').startup(function()
         "nvim-telescope/telescope.nvim"
       }
   })
-
+  use {'nvim-treesitter/nvim-treesitter'}
   -- colors and icons
   use 'kyazdani42/nvim-web-devicons'
   use 'norcalli/nvim-colorizer.lua'
   use 'uga-rosa/ccc.nvim'
-
+  
+  -- explorer file
+  use { --nvim-tree explorer
+  'nvim-tree/nvim-tree.lua',
+  requires = {
+    'nvim-tree/nvim-web-devicons', -- optional, for file icons
+  },
+  tag = 'nightly' -- optional, updated every week. (see issue #1193)
+  } 
   -- git
+  use 'github/copilot.vim'
   use 'lewis6991/gitsigns.nvim' 
 
    --status bar
@@ -53,9 +62,14 @@ return require('packer').startup(function()
   use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
 
   --UI
+  use({ 'bennypowers/nvim-regexplainer',
+      config = function() require'regexplainer'.setup() end,
+      requires = {
+        'nvim-treesitter/nvim-treesitter',
+        'MunifTanjim/nui.nvim',
+    }})
   use 'winston0410/cmd-parser.nvim'
   use 'winston0410/range-highlight.nvim'
-  use 'sunjon/shade.nvim'
   use 'yamatsum/nvim-cursorline'
   use ({ 'anuvyklack/fold-preview.nvim',
       requires = 'anuvyklack/keymap-amend.nvim',
@@ -65,11 +79,31 @@ return require('packer').startup(function()
     })
   use ({ "tversteeg/registers.nvim", config = function() require("registers").setup() end, }) 
   use 'chentoast/marks.nvim'
-  use({
-	'mvllow/modes.nvim',
+  use { 'numToStr/Comment.nvim',
+      config = function()
+          require('Comment').setup()
+      end
+  }
+  use { "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+
+  use 'goolord/alpha-nvim'
+
+ --to fix
+use 'sunjon/shade.nvim'
+use({ 'mvllow/modes.nvim',
 	tag = 'v0.2.0',
 	config = function()
 		require('modes').setup()
 	end
   })
+
 end)
+
