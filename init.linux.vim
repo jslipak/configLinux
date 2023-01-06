@@ -123,10 +123,10 @@ Plug 'luochen1990/rainbow'
 "Docset
 Plug 'heavenshell/vim-pydocstring'
 Plug 'sunaku/vim-dasht'
-Plug 'MunifTanjim/nui.nvim'
 call plug#end()
 
 """ Plugin Configurations
+
 " coc config
 let g:coc_global_extensions = [
 \ 'coc-solargraph',
@@ -142,8 +142,6 @@ let g:coc_global_extensions = [
 \]
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
-
-
 
 "RainbowParentheses
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
@@ -257,7 +255,7 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_options = '--single-quote --trailing-comma all'
 
-" Markdown and Journal
+" Mlrkdown and Journal
 autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
@@ -265,81 +263,11 @@ autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
 lua require('plugins')
 ""theme lualine
 "evil_lualine_theme ; newpaper_theme ; dharmx_theme 
-lua require('newpaper_theme') 
-lua << END
-require 'colorizer'.setup() 
-require("bufferline").setup{
-    highlights = {
-      background = {
-        fg = "#ff5fff",
-        bg = "#151e1e",
-      },
-      fill= {
-        fg = "#ff5fff",
-        bg = "#151e1e",
-      },
-             buffer_selected = {
-        fg =  "#ff331f",
-        bg = '#ffffff',
-        bold = true,
-        italic = true,
-      },
-        numbers_selected = {
-          fg =  "#ff331f",
-          bg =  '#ffffff',
-          bold = true,
-          italic = true,
-        },
-    },
-    options = {
-        always_show_bufferline = true,
-        offsets = {
-            {
-                filetype = "NvimTree",
-                text_align = "center",
-                separator = true
-            }
-        },
-        show_buffer_close_icons = false,
-        hover = {
-          enabled = true,
-          delay = 200,
-          reveal = {'close'}
-        },
-        numbers = "ordinal",
-        indicator = {
-        style = "icon"
-        },
-        color_icons = true,
-        separator_style = "tight",
-    }
-}
+lua require('dharmx_theme') 
+lua require('config')
 
-END
 "" Custom Functions
-
-" Dracula Mode (Dark)
-function! ColorDracula()
-    let g:airline_theme=''
-    color dracula
-    IndentLinesEnable
-endfunction
-
-" Seoul256 Mode (Dark & Light)
-function! ColorSeoul256()
-    let g:airline_theme='silver'
-    color seoul256
-    IndentLinesDisable
-endfunction
-
-" Zazen Mode (Black & White)
-function! ColorZazen()
-    let g:airline_theme='badcat'
-    color zazen
-    IndentLinesEnable
-endfunction
-
-
+" Save and restore manual folds when we exit a file
 """ Toggle spellchecking
 function! ToggleSpellCheck()
   set spell!
@@ -408,11 +336,6 @@ nnoremap <M-l> :SidewaysRight<cr>
 imap <M-h> <C-o>:SidewaysLeft<cr>
 imap <M-l> <C-o>:SidewaysRight<cr>
 
-"splitjoin in normal mode silent
-" gS to split a one-liner into multiple lines
-" gJ (with the cursor on the first line of a block) to join a block into a single-line statement.
-" gs switch true false
-
 " Config for coc.nvim
 " Note previus and next origina keymap [c and ]c
 nmap <silent> cp <Plug>(coc-diagnostic-prev) 
@@ -429,9 +352,6 @@ nmap <silent>cf  <Plug>(coc-fix-current)
 "Colors and utils Colorl 
 nmap <leader>ee :Colors<CR>
 nmap <leader>ea :AirlineTheme 
-nmap <leader>e1 :call ColorDracula()<CR>
-nmap <leader>e2 :call ColorSeoul256()<CR>
-nmap <leader>e3 :call ColorZazen()<CR>
 nmap <leader>h :RainbowParentheses!!<CR>
 
 "Bufer and motion
@@ -439,6 +359,7 @@ nmap <leader>z :Goyo<CR>
 nmap <leader>j <plug>(easymotion-bd-f)
 imap <C-j> <ESC><plug>(easymotion-bd-f)
 nmap <leader>n :set rnu!<CR>
+nmap <leader>m :Marks<CR>
 
 "Git
 nmap <leader>G :G<CR>
@@ -472,9 +393,9 @@ vnoremap <silent> <Leader>K y:<C-U>call Dasht(getreg(0))<Return>
 vnoremap <silent> <Leader><Leader>K y:<C-U>call Dasht(getreg(0), '!')<Return>
 
 "Telescop
-nmap <leader>tp :Telescope<CR>
 nmap <leader>tk :Telescope keymaps<CR>
-nmap <leader>tp :Telescope <CR>
+nmap <leader>tel :Telescope <CR>
+nmap <leader>tp :Telescope persisted <CR>
 nmap <leader>tF :Telescope live_grep<CR>
 nmap <leader>tf :Telescope fd<CR>
 nmap <leader>tt :Telescope tags<CR>
@@ -495,3 +416,32 @@ nmap <leader>tgf :Telescope git_files<CR>
 nmap <leader>tz :Telescope spell_suggest<CR>
 nmap <leader>tj :Telescope jumplist<CR>
 
+"Register
+"Call :Registers
+"Press " in normal or visual mode
+"Press CtrlR in insert mode
+
+"splitjoin in normal mode silent
+" gS to split a one-liner into multiple lines
+" gJ (with the cursor on the first line of a block) to join a block into a single-line statement.
+" gs switch true false
+
+"Marks
+" mx              Set mark x
+"    m,              Set the next available alphabetical (lowercase) mark
+"    m;              Toggle the next available mark at the current line
+"    dmx             Delete mark x
+"    dm-             Delete all marks on the current line
+"    dm<space>       Delete all marks in the current buffer
+"    m]              Move to next mark
+"    m[              Move to previous mark
+"    m:              Preview mark. This will prompt you for a specific mark to
+"                    preview; press <cr> to preview the next mark.
+"                    
+"    m[0-9]          Add a bookmark from bookmark group[0-9].
+"    dm[0-9]         Delete all bookmarks from bookmark group[0-9].
+"    m}              Move to the next bookmark having the same type as the bookmark under
+"                    the cursor. Works across buffers.
+"    m{              Move to the previous bookmark having the same type as the bookmark under
+"                    the cursor. Works across buffers.
+"    dm=             Delete the bookmark under the cursor.
