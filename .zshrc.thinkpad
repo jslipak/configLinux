@@ -115,10 +115,6 @@ alias v='nvim'
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-#  256 colors
-TERM='rxvt-256color'
-COLORTERM='rxvt-unicode-256color'
-tmux="TERM=xterm-256color tmux";
 
 # rbenv add 
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -135,3 +131,9 @@ fi
 if [ -f .env ]; then
   export $(cat .env | xargs)
 fi
+
+PATH="/home/jona/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/jona/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/jona/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/jona/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/jona/perl5"; export PERL_MM_OPT;

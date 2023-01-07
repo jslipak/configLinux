@@ -52,7 +52,6 @@ require'ccc'.setup()
 require("persisted").setup()
 require("telescope").load_extension("persisted")
 require('fold-preview').setup()
-require("registers").setup()
 require('marks').setup()
 require('nvim-cursorline').setup({
       cursorline = {
@@ -66,7 +65,7 @@ require('nvim-cursorline').setup({
         hl = { underline = true },
       }
     })
-require'regexplainer'.setup( {
+require'regexplainer'.setup({
     -- 'narrative'
     mode = 'narrative', -- TODO: 'ascii', 'graphical'
 
@@ -128,7 +127,7 @@ require("nvim-tree").setup({
     dotfiles = true,
   },
 })
-require("which-key").setup( { plugins = { marks = false,  registers = false}})
+require("which-key").setup()
 require('Comment').setup()
 require("nvim-surround").setup()
 require'nvim-treesitter.configs'.setup {
@@ -174,6 +173,7 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 require("alpha").setup(require("alpha_themes/theta").config)
+require("registers").setup()
 -- FIX: shades ,MODES
 require('modes').setup({
 	colors = {

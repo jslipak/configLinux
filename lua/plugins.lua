@@ -92,13 +92,11 @@ return require('packer').startup(function()
           require('Comment').setup()
       end
   }
-  use { "folke/which-key.nvim",
-    config = function()
-      require("which-key").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
+  use { "folke/which-key.nvim", config = function() require("which-key").setup({
+  plugins = {
+    marks = false, -- shows a list of your marks on ' and `
+    registers = false, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+  }}) 
     end
   }
 

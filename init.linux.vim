@@ -13,7 +13,6 @@ Plug 'junegunn/rainbow_parentheses.vim'
 " Functionalities
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-surround'
 Plug 'preservim/tagbar'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-abolish'
@@ -53,21 +52,12 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-
 " Javascript plug-in
 Plug 'pangloss/vim-javascript'
-
 "" Python Plug-in
 Plug 'nvie/vim-flake8'
 Plug 'psf/black'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-
-""Markdown
-Plug 'iamcco/markdown-preview.nvim' 
-"" React 
-Plug 'mxw/vim-jsx'
-Plug 'mlaursen/vim-react-snippets'
-
 " Color Scheme
 Plug 'yuttie/hydrangea-vim'
 Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim' }
@@ -92,11 +82,9 @@ Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'mangeshrex/uwu.vim'
 Plug 'junegunn/seoul256.vim'
-
 " CoC Use release branch (Recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
-
 " Ruby
 Plug 'vim-ruby/vim-ruby' " For Facts, Ruby functions, and custom providers
 Plug 'kurtpreston/vim-autoformat-rails'
@@ -133,29 +121,12 @@ let g:coc_global_extensions = [
 \ 'coc-prettier', 
 \ 'coc-json', 
 \]
-" Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
-
-"RainbowParentheses
-let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
-
 """ Python3 VirtunlEnv
 let g:python3_host_prog='/bin/python'
 let g:python_host_prog='/bin/python'
+ highlight NonText guibg=none
 
-""" Coloring
-syntax on
-highlight Pmenu guibg=white guifg=black gui=bold
-highlight Comment gui=bold
-highlight Normal gui=none
-highlight NonText guibg=none
-
-" Opaque Background (Comment out to use terminal's profile)
-set termguicolors
-
-" Transparent Background (For i3 and compton)
-highlight Normal guibg=NONE ctermbg=NONE
-highlight LineNr guibg=NONE ctermbg=NONE
 
 "Copilot 
 let g:copilot_no_tab_map = v:true
@@ -176,15 +147,6 @@ let g:codi#rightalign = 0
 "Git Blame
 let g:gitblame_enabled = 1
 
-" Airline
-let g:airline_powerline_fonts = 0
-let g:airline_section_z = ' %{strftime("%-I:%M %p")}'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#capslock#enabled = 1
-let g:airline#extensions#fugitiveline#enabled = 1
-let g:airline#extensions#ale#enabled = 1
-au User AirlineAfterInit  :let g:airline_section_z = airline#section#create(['windowswap', 'obsession', '%3p%%', 'maxlinenr', '->%3v'])
-
 "" Neovim :Terminal
 tmap <Esc> <C-\><C-n>
 tmap <C-w> <Esc><C-w>
@@ -195,7 +157,7 @@ autocmd BufLeave term://* stopinsert
 " Disable documentation window
 set completeopt=preview
 
-" indentLine
+"indentLine
 let g:indentLine_char = '▏'
 let g:indentLine_color_gui = '#363949'
 
@@ -245,13 +207,6 @@ let g:ale_javascript_prettier_options = '--single-quote --trailing-comma all'
 autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
-"""Lua Setup Core plugin, configuration (lua)
-lua require('plugins')
-lua require('line_themes/dharmx_theme') 
-lua require('config')
-
-"" Custom Functions
-" Save and restore manual folds when we exit a file
 """ Toggle spellchecking
 function! ToggleSpellCheck()
   set spell!
@@ -263,9 +218,11 @@ function! ToggleSpellCheck()
 endfunction
 
 """ Other Configurations
+:set termguicolors
 :set mouse=a
 :set scrolloff=8 " Start to scrolling down or up 8 lines before ord after
 :colorscheme ayu
+let g:perl_enabled = 1
 filetype plugin indent on
 "   set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
@@ -281,6 +238,12 @@ set clipboard+=unnamedplus
 set showmatch 
 set cursorcolumn
 set cursorline
+
+"""Lua Setup Core plugin, configuration (lua)
+lua require('plugins')
+lua require('line_themes/dharmx_theme') 
+lua require('config')
+
 
 """ Custom Mappings
 let mapleader=" "
@@ -305,6 +268,7 @@ nmap gT :bprevious<CR>
 "Setup Vim
 nmap <leader>ra :so ~/.config/nvim/init.vim<CR>
 nmap <leader>rv :tabnew ~/.config/nvim/init.vim<CR>
+nmap <leader>rc :tabnew ~/.config/nvim/lua/config.lua<CR>
 nmap <leader>rl :tabnew ~/.config/nvim/lua/plugins.lua<CR>
 
 nmap <leader>T <C-w>v<C-w>l:terminal<CR>

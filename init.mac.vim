@@ -13,7 +13,6 @@ Plug 'junegunn/rainbow_parentheses.vim'
 " Functionalities
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
-" Plug 'tpope/vim-surround'
 Plug 'preservim/tagbar'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-abolish'
@@ -251,7 +250,6 @@ lua require('line_themes/dharmx_theme')
 lua require('config')
 
 "" Custom Functions
-" Save and restore manual folds when we exit a file
 """ Toggle spellchecking
 function! ToggleSpellCheck()
   set spell!
@@ -295,8 +293,6 @@ nmap <leader>ft :NvimTreeToggle<CR>
 nmap <leader>fr :Rg<CR>
 nmap <leader>q :bd<CR>
 nmap <leader>Q :q<CR>
-nmap <leader>\ :NERDTree<CR>
-nmap <leader>F :Rg<CR>
 nmap <C-s> :w<CR>
 imap <C-s> <C-o>:w<CR>
 
@@ -308,6 +304,7 @@ nmap gT :bprevious<CR>
 nmap <leader>ra :so ~/.config/nvim/init.vim<CR>
 nmap <leader>rv :tabnew ~/.config/nvim/init.vim<CR>
 nmap <leader>rc :tabnew ~/.config/nvim/lua/config.lua<CR>
+nmap <leader>rl :tabnew ~/.config/nvim/lua/plugins.lua<CR>
 
 nmap <leader>T <C-w>v<C-w>l:terminal<CR>
 "
