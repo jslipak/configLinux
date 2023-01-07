@@ -128,8 +128,9 @@ require("nvim-tree").setup({
     dotfiles = true,
   },
 })
-require("which-key").setup() 
+require("which-key").setup( { plugins = { marks = false,  registers = false}})
 require('Comment').setup()
+require("nvim-surround").setup()
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
   ensure_installed = { "c", "lua", "rust", "bash", "css","diff", "dockerfile","html", "javascript","python", "regex", "ruby", "typescript" },

@@ -2,11 +2,7 @@
 
 """ Vim-Plug
 call plug#begin()
-
-" Aesthetics - Main
-Plug 'dracula/vim', { 'commit': '147f389f4275cec4ef43ebc25e2011c57b45cc00' }
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'wbthomason/packer.nvim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-journal'
@@ -17,15 +13,13 @@ Plug 'junegunn/rainbow_parentheses.vim'
 " Functionalities
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-surround'
 Plug 'preservim/tagbar'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-abolish'
 Plug 'andrewradev/splitjoin.vim'
 Plug 'AndrewRadev/sideways.vim'
 Plug 'andrewradev/switch.vim'
-Plug 'preservim/nerdtree'
-Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-repeat'
 Plug 'vim-scripts/restore_view.vim'
 Plug 'jiangmiao/auto-pairs'
@@ -47,13 +41,10 @@ Plug 'easymotion/vim-easymotion'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'mhinz/vim-signify'
-Plug 'nvim-lua/plenary.nvim'
 Plug 'kien/ctrlp.vim'
 Plug 'f-person/git-blame.nvim'
 Plug 'https://github.com/adelarsq/vim-matchit'
 Plug 'kana/vim-textobj-user'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
-" or                                , { 'branch': '0.1.x' }
 
 "" Formater 
 Plug 'dense-analysis/ale'
@@ -128,6 +119,7 @@ Plug 'sunaku/vim-dasht'
 call plug#end()
 
 """ Plugin Configurations
+
 " coc config
 let g:coc_global_extensions = [
 \ 'coc-solargraph',
@@ -143,8 +135,6 @@ let g:coc_global_extensions = [
 \]
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
-
-
 
 "RainbowParentheses
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
@@ -185,13 +175,6 @@ let g:codi#rightalign = 0
 
 "Git Blame
 let g:gitblame_enabled = 1
-
-" NERDTree
-let NERDTreeShowHidden=1
-let g:NERDTreeDirArrowExpandable = '↠'
-let g:NERDTreeDirArrowCollapsible = '↡'
-let NERDTreeQuitOnOpen = 1
-let g:NERDTreeWinPos = "right"
 
 " Airline
 let g:airline_powerline_fonts = 0
@@ -262,31 +245,13 @@ let g:ale_javascript_prettier_options = '--single-quote --trailing-comma all'
 autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
+"""Lua Setup Core plugin, configuration (lua)
+lua require('plugins')
+lua require('line_themes/dharmx_theme') 
+lua require('config')
 
 "" Custom Functions
-
-" Dracula Mode (Dark)
-function! ColorDracula()
-    let g:airline_theme=''
-    color dracula
-    IndentLinesEnable
-endfunction
-
-" Seoul256 Mode (Dark & Light)
-function! ColorSeoul256()
-    let g:airline_theme='silver'
-    color seoul256
-    IndentLinesDisable
-endfunction
-
-" Zazen Mode (Black & White)
-function! ColorZazen()
-    let g:airline_theme='badcat'
-    color zazen
-    IndentLinesEnable
-endfunction
-
-
+" Save and restore manual folds when we exit a file
 """ Toggle spellchecking
 function! ToggleSpellCheck()
   set spell!
@@ -296,7 +261,6 @@ function! ToggleSpellCheck()
     echo "Spellcheck OFF"
   endif
 endfunction
-
 
 """ Other Configurations
 :set mouse=a
@@ -326,7 +290,9 @@ nmap <F7> :call ToggleSpellCheck()<CR>
 nmap <F8> :TagbarToggle<CR>
 
 "Files , Directories , Exit 
-nmap <leader>f :Files<CR>
+nmap <leader>fe :Files<CR>
+nmap <leader>ft :NvimTreeToggle<CR>
+nmap <leader>fr :Rg<CR>
 nmap <leader>q :bd<CR>
 nmap <leader>Q :q<CR>
 nmap <leader>\ :NERDTree<CR>
@@ -334,11 +300,15 @@ nmap <leader>F :Rg<CR>
 nmap <C-s> :w<CR>
 imap <C-s> <C-o>:w<CR>
 
-"Setup Vim
-nmap <leader>r :so ~/.config/nvim/init.vim<CR>
-nmap <leader>R :tabnew ~/.config/nvim/init.vim<CR>
+"Tab
 nmap gt :bnext<CR>
 nmap gT :bprevious<CR>
+"
+"Setup Vim
+nmap <leader>ra :so ~/.config/nvim/init.vim<CR>
+nmap <leader>rv :tabnew ~/.config/nvim/init.vim<CR>
+nmap <leader>rc :tabnew ~/.config/nvim/lua/config.lua<CR>
+
 nmap <leader>T <C-w>v<C-w>l:terminal<CR>
 "
 "Shorcuts for insert and visual mode 
@@ -353,11 +323,6 @@ nnoremap <M-h> :SidewaysLeft<cr>
 nnoremap <M-l> :SidewaysRight<cr>
 imap <M-h> <C-o>:SidewaysLeft<cr>
 imap <M-l> <C-o>:SidewaysRight<cr>
-
-"splitjoin in normal mode silent
-" gS to split a one-liner into multiple lines
-" gJ (with the cursor on the first line of a block) to join a block into a single-line statement.
-" gs switch true false
 
 " Config for coc.nvim
 " Note previus and next origina keymap [c and ]c
@@ -375,19 +340,16 @@ nmap <silent>cf  <Plug>(coc-fix-current)
 "Colors and utils Colorl 
 nmap <leader>ee :Colors<CR>
 nmap <leader>ea :AirlineTheme 
-nmap <leader>e1 :call ColorDracula()<CR>
-nmap <leader>e2 :call ColorSeoul256()<CR>
-nmap <leader>e3 :call ColorZazen()<CR>
-nmap <leader>h :RainbowParentheses!!<CR>
 
 "Bufer and motion
 nmap <leader>z :Goyo<CR>
 nmap <leader>j <plug>(easymotion-bd-f)
 imap <C-j> <ESC><plug>(easymotion-bd-f)
 nmap <leader>n :set rnu!<CR>
+nmap <leader>m :Marks<CR>
 
 "Git
-nmap <leader>G :G<CR>
+nmap <leader>g. :G<CR>
 nmap <leader>gf :GFiles<CR>
 nmap <leader>gd :Gdiffsplit<CR>
 nmap <leader>gl :diffget //3<CR>
@@ -416,11 +378,10 @@ nnoremap <silent> <Leader>K :call Dasht(dasht#cursor_search_terms())<Return>
 nnoremap <silent> <Leader><Leader>K :call Dasht(dasht#cursor_search_terms(), '!')<Return>
 vnoremap <silent> <Leader>K y:<C-U>call Dasht(getreg(0))<Return>
 vnoremap <silent> <Leader><Leader>K y:<C-U>call Dasht(getreg(0), '!')<Return>
-
 "Telescop
-nmap <leader>tp :Telescope<CR>
 nmap <leader>tk :Telescope keymaps<CR>
-nmap <leader>tp :Telescope <CR>
+nmap <leader>tel :Telescope <CR>
+nmap <leader>tp :Telescope persistld <CR>
 nmap <leader>tF :Telescope live_grep<CR>
 nmap <leader>tf :Telescope fd<CR>
 nmap <leader>tt :Telescope tags<CR>
@@ -440,4 +401,66 @@ nmap <leader>tgcb :Telescope git_bcommits<CR>
 nmap <leader>tgf :Telescope git_files<CR>
 nmap <leader>tz :Telescope spell_suggest<CR>
 nmap <leader>tj :Telescope jumplist<CR>
+
+"Register
+"Call :Registers
+"Press " in normal or visual mode
+"Press CtrlR in insert mode
+
+"splitjoin in normal mode silent
+" gS to split a one-liner into multiple lines
+" gJ (with the cursor on the first line of a block) to join a block into a single-line statement.
+" gs switch true false
+
+"Marks
+" mx              Set mark x
+"    m,              Set the next available alphabetical (lowercase) mark
+"    m;              Toggle the next available mark at the current line
+"    dmx             Delete mark x
+"    dm-             Delete all marks on the current line
+"    dm<space>       Delete all marks in the current buffer
+"    m]              Move to next mark
+"    m[              Move to previous mark
+"    m:              Preview mark. This will prompt you for a specific mark to
+"                    preview; press <cr> to preview the next mark.
+"                    
+"    m[0-9]          Add a bookmark from bookmark group[0-9].
+"    dm[0-9]         Delete all bookmarks from bookmark group[0-9].
+"    m}              Move to the next bookmark having the same type as the bookmark under
+"                    the cursor. Works across buffers.
+"    m{              Move to the previous bookmark having the same type as the bookmark under
+"                    the cursor. Works across buffers.
+"    dm=             Delete the bookmark under the cursor.
+
+" NvimTree
+" g? get all helps when it's open
+
+" COMMENT 
+" Normal Mode
+" `gco` - Insert comment to the next line and enters INSERT mode
+" `gcO` - Insert comment to the previous line and enters INSERT mode
+" `gcA` - Insert comment to end of the current line and enters INSERT mode
+" Visual Mode
+" `gc` - Toggles the region using linewise comment
+" `gb` - Toggles the region using blockwise comment
+" " NORMAL mode
+" `gco` - Insert comment to the next line and enters INSERT mode
+" `gcO` - Insert comment to the previous line and enters INSERT mode
+" `gcA` - Insert comment to end of the current line and enters INSERT mode
+" Examples
+" # Linewise
+"
+" `gcw` - Toggle from the current cursor position to the next word
+" `gc$` - Toggle from the current cursor position to the end of line
+" `gc}` - Toggle until the next blank line
+" `gc5j` - Toggle 5 lines after the current cursor position
+" `gc8k` - Toggle 8 lines before the current cursor position
+" `gcip` - Toggle inside of paragraph
+" `gca}` - Toggle around curly brackets
+"
+" # Blockwise
+"
+" `gb2}` - Toggle until the 2 next blank line
+" `gbaf` - Toggle comment around a function (w/ LSP/treesitter support)
+" `gbac` - Toggle comment around a class (w/ LSP/treesitter support)
 
