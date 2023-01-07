@@ -1,8 +1,9 @@
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/jonathanslipak/.oh-my-zsh"
+export ZSH="/home/jona/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -71,11 +72,11 @@ POWERLEVEL9K_DISABLE_RPROMPT=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git node tmux macos docker vagrant dotenv rails ruby alias-finder zsh-autosuggestions fzf-zsh-plugin)
+plugins=(git tmux rails ruby vagrant alias-finder docker node  zsh-autosuggestions fzf heroku)
 ZSH_ALIAS_FINDER_AUTOMATIC=true
 bindkey '^ ' autosuggest-accept
-source $ZSH/oh-my-zsh.sh
 
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -104,28 +105,33 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias vim='nvim'
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+alias v='nvim'
 
 #add NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-#  256 colors
-TERM='rxvt-256color'
-COLORTERM='rxvt-unicode-256color'
-tmux="TERM=xterm-256color tmux";
-
-# Variable to project
-#export STRIPE_TEST_PUBLISHABLE_KEY=pk_test_51H1VQmBQqZAt1xOwKljd9ZtZQooApP06kVcl0GLX2AslKWlSm64jDhat1EMFbxFik6wKE0V1JJWSjvRWNe0cdySd00WFBZ3xVq
-#export STRIPE_TEST_SECRET_KEY=sk_test_51H1VQmBQqZAt1xOw19VM1r2gXEvs4O0nY3fXaXCL3BJ9tds1AQPZHobPlYa58tOAvZq2Iu5E25NmN7mzFfemXzUD003Pu1VEuV
-#export TWILIO_SID=AC1b5365ca59580469ee1bca9c0a235aa7
-#export TWILIO_AUTH_TOKEN=201c8751ee5f1c692ad5649fb1337ffd
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-#tmux ls && read tmux_session && tmux attach -t ${tmux_session:-default} || tmux new -s ${tmux_session:-default}
-
-
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# RVM can encounter errors if it's not the last thing in .bash_profile
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to path for scripting (to manage Ruby versions)
+export PATH="$GEM_HOME/bin:$PATH"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # Load RVM into a shell session *as a function*
+
+if [ -z "$TMUX" ]; then
+    tmux attach -t default || tmux new -s default
+fi
+
+
+# add variables and protect to expose in git 
+if [ -f .env ]; then
+  export $(cat .env | xargs)
+fi
+
+
+
+PATH="/home/jona/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/jona/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/jona/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/jona/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/jona/perl5"; export PERL_MM_OPT;
