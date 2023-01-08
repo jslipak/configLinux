@@ -37,7 +37,6 @@ Plug 'maksimr/vim-jsbeautify'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/RltvNmbr.vim'
 Plug 'easymotion/vim-easymotion'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'mhinz/vim-signify'
 Plug 'kien/ctrlp.vim'
@@ -203,9 +202,6 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_options = '--single-quote --trailing-comma all'
 
-" Mlrkdown and Journal
-autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 """ Toggle spellchecking
 function! ToggleSpellCheck()
@@ -243,36 +239,16 @@ set cursorline
 lua require('plugins')
 lua require('line_themes/dharmx_theme') 
 lua require('config')
-
+lua require('keymaps')
 
 """ Custom Mappings
-let mapleader=" "
-set pastetoggle=<F3>
-nmap <F12> :Codi!!<CR>
-nmap <F7> :call ToggleSpellCheck()<CR>
-nmap <F8> :TagbarToggle<CR>
-
 "Files , Directories , Exit 
-nmap <leader>fe :Files<CR>
-nmap <leader>ft :NvimTreeToggle<CR>
-nmap <leader>fr :Rg<CR>
 nmap <leader>q :bd<CR>
 nmap <leader>Q :q<CR>
 nmap <C-s> :w<CR>
 imap <C-s> <C-o>:w<CR>
 
-"Tab
-nmap gt :bnext<CR>
-nmap gT :bprevious<CR>
-"
-"Setup Vim
-nmap <leader>ra :so ~/.config/nvim/init.vim<CR>
-nmap <leader>rv :tabnew ~/.config/nvim/init.vim<CR>
-nmap <leader>rc :tabnew ~/.config/nvim/lua/config.lua<CR>
-nmap <leader>rl :tabnew ~/.config/nvim/lua/plugins.lua<CR>
 
-nmap <leader>T <C-w>v<C-w>l:terminal<CR>
-"
 "Shorcuts for insert and visual mode 
 :imap \nn <C-O>o
 :imap \NN <C-O>O
@@ -299,16 +275,11 @@ xmap <silent>ca :CocAction<CR>
 nmap <silent>ca :CocAction<CR>
 nmap <silent>cf  <Plug>(coc-fix-current)
 
-"Colors and utils Colorl 
-nmap <leader>ee :Colors<CR>
-nmap <leader>ea :AirlineTheme 
 
 "Bufer and motion
 nmap <leader>z :Goyo<CR>
 nmap <leader>j <plug>(easymotion-bd-f)
 imap <C-j> <ESC><plug>(easymotion-bd-f)
-nmap <leader>n :set rnu!<CR>
-nmap <leader>m :Marks<CR>
 
 "Git
 nmap <leader>g.:G<CR>
@@ -340,21 +311,14 @@ nnoremap <silent> <Leader>K :call Dasht(dasht#cursor_search_terms())<Return>
 nnoremap <silent> <Leader><Leader>K :call Dasht(dasht#cursor_search_terms(), '!')<Return>
 vnoremap <silent> <Leader>K y:<C-U>call Dasht(getreg(0))<Return>
 vnoremap <silent> <Leader><Leader>K y:<C-U>call Dasht(getreg(0), '!')<Return>
-"Telescop
-nmap <leader>tk :Telescope keymaps<CR>
+"Telescope
 nmap <leader>tel :Telescope <CR>
-nmap <leader>tp :Telescope persistld <CR>
 nmap <leader>tF :Telescope live_grep<CR>
 nmap <leader>tf :Telescope fd<CR>
-nmap <leader>tt :Telescope tags<CR>
-nmap <leader>tr :Telescope registers<CR>
 nmap <leader>th :Telescope help_tags<CR>
 nmap <leader>tH :Telescope man_pages<CR>
-nmap <leader>tb :Telescope buffers<CR>
 nmap <leader>tc :Telescope commands<CR>
-nmap <leader>tm :Telescope marks<CR>
 nmap <leader>ta :Telescope autocommands<CR>
-nmap <leader>tvo :Telescope vim_options<CR>
 nmap <leader>tG :Telescope git_status<CR>
 nmap <leader>tgs :Telescope git_stash<CR>
 nmap <leader>tgb :Telescope git_branches<CR>
@@ -362,7 +326,6 @@ nmap <leader>tgc :Telescope git_commits<CR>
 nmap <leader>tgcb :Telescope git_bcommits<CR>
 nmap <leader>tgf :Telescope git_files<CR>
 nmap <leader>tz :Telescope spell_suggest<CR>
-nmap <leader>tj :Telescope jumplist<CR>
 
 "Register
 "Call :Registers

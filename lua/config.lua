@@ -70,7 +70,7 @@ require'regexplainer'.setup({
     mode = 'narrative', -- TODO: 'ascii', 'graphical'
 
     -- automatically show the explainer when the cursor enters a regexp
-    auto = false,
+    auto = true,
 
     -- filetypes (i.e. extensions) in which to run the autocommand
     filetypes = {
@@ -91,7 +91,7 @@ require'regexplainer'.setup({
     debug = false, 
 
     -- 'split', 'popup'
-    display = 'popup',
+    display = 'split',
 
     mappings = {
       toggle = 'gR',
