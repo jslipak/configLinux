@@ -172,6 +172,7 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
 require("alpha").setup(require("alpha_themes/theta").config)
 require("registers").setup()
 -- FIX: shades ,MODES
@@ -200,3 +201,4 @@ require('modes').setup({
 	-- Please PR commonly ignored filetypes
 	ignore_filetypes = { 'NvimTree', 'TelescopePrompt' }
 })
+

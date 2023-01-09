@@ -57,6 +57,14 @@ return require('packer').startup(function()
   use 'feline-nvim/feline.nvim'
   use "yorik1984/lualine-theme.nvim" -- newpaper-[dark, light], theme 
 
+  --Motion
+  use { 'phaazon/hop.nvim',
+  branch = 'v2', -- optional but strongly recommended
+  config = function()
+    -- you can configure Hop the way you like here; see :h hop-config
+    require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+    end
+  }
   --Sessions
   use({ "olimorris/persisted.nvim",
   --module = "persisted", -- For lazy loading
@@ -99,12 +107,11 @@ return require('packer').startup(function()
   }}) 
     end
   }
-
   use 'goolord/alpha-nvim'
 
  --to fix
-use 'sunjon/shade.nvim'
-use({ 'mvllow/modes.nvim',
+  use 'sunjon/shade.nvim'
+  use({ 'mvllow/modes.nvim',
 	tag = 'v0.2.0',
 	config = function()
 		require('modes').setup()

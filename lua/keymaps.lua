@@ -13,15 +13,6 @@ end
 -- Change leader to a comma
 vim.g.mapleader = ' '
 
--- Toggle auto-indenting for code paste
-map('n', '<F3>', ':set invpaste paste?<CR>')
-vim.opt.pastetoggle = '<F3>'
-
--- Move around splits using Ctrl + {h,j,k,l}
- map('n', '<c-h>', '<c-w>h')
- map('n', '<c-j>', '<c-w>j')
- map('n', '<c-k>', '<c-w>k')
- map('n', '<c-l>', '<c-w>l')
 
 -- COC.Nvim
 map('n', 'cp', '<Plug>(coc-diagnostic-prev)')
@@ -42,12 +33,14 @@ map('i', '<M-.>', '<Plug>(copilot-next)')
 map('i', '<M-;>', '<Plug>(copilot-suggest)')
 map('i', '<M-:>', '<Plug>(copilot-previous)')
 -- F 
+map('n', '<F3>', ':set invpaste paste?<CR>')
+vim.opt.pastetoggle = '<F3>'
 map('n', '<F12>', ':Codi!!<CR>')
 map('n', '<F7>', ':call ToggleSpellCheck()<CR>')
 map('n', '<F8>', ':TagbarToggle<CR>')
 map('n', '<F6>', ':NvimTreeToggle<CR>')
 
---Git
+-- Git
 map('n', '<leader>g.' , ':G<CR>')
 map('n', '<leader>gf', ':GFiles<CR>')
 map('n', '<leader>gd', ':Gdiffsplit<CR>')
@@ -67,6 +60,34 @@ map('n', '<leader>gtco', ':Telescope git_commits<CR>')
 map('n', '<leader>gtcb', ':Telescope git_bcommits<CR>')
 map('n', '<leader>gtf', ':Telescope git_files<CR>')
 
+-- Insert mode
+map('i', '<C-e>', '<ESC>A')
+map('i', '<C-a>', '<ESC>I')
+map('i', '<M-h>', '<C-O>:SidewaysLeft<CR>')
+map('i', '<M-l>', '<C-O>:SidewaysRight<CR>')
+map('i', '<C-s>', '<C-O>w<CR>')
+
+
+-- Movement
+ -- map('n', '<c-h>', '<c-w>h')
+ -- map('n', '<c-j>', '<c-w>j')
+ -- map('n', '<c-k>', '<c-w>k')
+ -- map('n', '<c-l>', '<c-w>l')
+map('n', '<leader>ma', ':HopAnywhere<CR>')
+map('n', '<leader>m1', ':HopChar1<CR>')
+map('n', '<leader>m2', ':HopChar2<CR>')
+map('n', '<leader>ml', ':HopLine<CR>')
+map('n', '<leader>ms', ':HopLineStart<CR>')
+map('n', '<leader>mv', ':HopVertical<CR>')
+map('n', '<leader>mp', ':HopPattern<CR>')
+map('n', '<leader>mw', ':HopWord<CR>')
+map('i', '<C-j>', '<C-o>:HopChar1<CR>')
+
+-- Nomal mode
+map('n', '<M-h>', ':SidewaysLeft<CR>')
+map('n', '<M-l>', ':SidewaysRight<CR>')
+map('n', '<C-s>', ':w<CR>')
+
 -- Panels
 map('n', '<leader>pe', ':Files<CR>')
 map('n', '<leader>pr', ':Rg<CR>')
@@ -82,10 +103,19 @@ map('n', '<leader>pj', ':Telescope jumplist<CR>')
 
 
 -- Tab
-map('n', '>', ':bnext<CR>')
-map('n', '<', ':bprevious<CR>')
-map('n', '<C-I>', ':BufferLinePick<CR>')
-map('n', '<C-X>', ':BufferLinePickClose<CR>')
+map('n', 'gt', ':bnext<CR>')
+map('n', 'gT', ':bprevious<CR>')
+map('n', '<Tab>', ':BufferLinePick<CR>')
+map('n', '<F4>', ':BufferLinePickClose<CR>')
+map('n', '<leader>1', '<Cmd>BufferLineGoToBuffer 1<CR>')
+map('n', '<leader>2', '<Cmd>BufferLineGoToBuffer 2<CR>')
+map('n', '<leader>3', '<Cmd>BufferLineGoToBuffer 3<CR>')
+map('n', '<leader>4', '<Cmd>BufferLineGoToBuffer 4<CR>')
+map('n', '<leader>5', '<Cmd>BufferLineGoToBuffer 5<CR>')
+map('n', '<leader>6', '<Cmd>BufferLineGoToBuffer 6<CR>')
+map('n', '<leader>7', '<Cmd>BufferLineGoToBuffer 7<CR>')
+map('n', '<leader>8', '<Cmd>BufferLineGoToBuffer 8<CR>')
+map('n', '<leader>9', '<Cmd>BufferLineGoToBuffer 9<CR>')
 
 -- Vim Config
 map('n', '<leader>sr', ':so ~/.config/nvim/init.vim<CR>') 
@@ -96,7 +126,9 @@ map('n', '<leader>sk', ':tabnew ~/.config/nvim/lua/keymaps.lua<CR>')
 map('n', '<leader>sn', ':set rnu!<CR>')
 map('n', '<leader>so', ':Telescope vim_options<CR>')
 
--- Helps
+-- Visual Mode
+-- map('v', 'J', ":m '>+1<CR>gv=gv'")
+-- map('v', 'K', ":m '<-2<CR>gv=gv'")
 
 -- Quit, Exit and Save
 

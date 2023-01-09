@@ -31,7 +31,7 @@ Plug 'stsewd/fzf-checkout.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'chrisbra/Colorizer'
 Plug 'vim-scripts/loremipsum'
-Plug 'dRkarter/bullets.vim'
+Plug 'dkarter/bullets.vim'
 Plug 'sbdchd/neoformat'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'airblade/vim-gitgutter'
@@ -124,14 +124,6 @@ inoremap <silent><expr> <c-space> coc#refresh()
 """ Python3 VirtunlEnv
 let g:python3_host_prog='/opt/homebrew/bin/python3.9'
 let g:python_host_prog='/opt/homebrew/bin/python3.9'
-
-""" Coloring
-syntax on
-highlight Pmenu guibg=white guifg=black gui=bold
-highlight Comment gui=bold
-highlight Normal gui=none
-highlight NonText guibg=none
-
 
 "Copilot 
 let g:copilot_no_tab_map = v:true
@@ -279,11 +271,6 @@ imap <C-j> <ESC><plug>(easymotion-bd-f)
 
 "Copilot
 imap <silent><script><expr> <M-j> copilot#Accept("\<CR>")
-" imap <silent> <M-,> <Plug>(copilot-previous)
-" imap <silent> <M-.> <Plug>(copilot-next)
-" imap <silent> <M-;> <Plug>(copilot-suggest)
-" imap <silent> <M-:> <C-o>:Copilot panel<CR>
-
 
 "Docsets
 nmap <leader>d <Plug>(pydocstring)

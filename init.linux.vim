@@ -35,8 +35,6 @@ Plug 'dkarter/bullets.vim'
 Plug 'sbdchd/neoformat'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'airblade/vim-gitgutter'
-Plug 'vim-scripts/RltvNmbr.vim'
-Plug 'easymotion/vim-easymotion'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'mhinz/vim-signify'
 Plug 'kien/ctrlp.vim'
@@ -105,7 +103,15 @@ Plug 'heavenshell/vim-pydocstring'
 Plug 'sunaku/vim-dasht'
 call plug#end()
 
+"""Lua Setup Core plugin, configuration (lua)
+lua require('generals')
+lua require('plugins')
+lua require('line_themes/dharmx_theme') 
+lua require('config')
+lua require('keymaps')
+
 """ Plugin Configurations
+call nvim_input('<tab>')
 
 " coc config
 let g:coc_global_extensions = [
@@ -120,19 +126,21 @@ let g:coc_global_extensions = [
 \ 'coc-prettier', 
 \ 'coc-json', 
 \]
-inoremap <silent><expr> <c-space> coc#refresh()
+
 """ Python3 VirtunlEnv
 let g:python3_host_prog='/bin/python'
 let g:python_host_prog='/bin/python'
- highlight NonText guibg=none
 
 
 "Copilot 
 let g:copilot_no_tab_map = v:true
-
 let g:copilot_filetypes = {
 \ '*': v:false,
 \ }
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <C-Space> coc#select()
+imap <silent><script><expr> <M-j> copilot#Accept("\<CR>")
+
 
 "Codi
 let g:codi#virtual_text = 0
@@ -152,9 +160,6 @@ tmap <C-w> <Esc><C-w>
 "tmap <C-d> <Esc>:q<CR>
 autocmd BufWinEnter,WinEnter term://* startinsert
 autocmd BufLeave term://* stopinsert
-
-" Disable documentation window
-set completeopt=preview
 
 "indentLine
 let g:indentLine_char = '▏'
@@ -214,94 +219,22 @@ function! ToggleSpellCheck()
 endfunction
 
 """ Other Configurations
-:set termguicolors
-:set mouse=a
-:set scrolloff=8 " Start to scrolling down or up 8 lines before ord after
-:colorscheme ayu
 let g:perl_enabled = 1
-filetype plugin indent on
-"   set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
-set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
-set incsearch ignorecase smartcase hlsearch
-set ruler laststatus=2 showcmd showmode
-set list listchars=trail:»,tab:»-
-set fillchars+=vert:\ 
 set wrap breakindent
-set encoding=utf-8
-set number
-set title
-set clipboard+=unnamedplus
-set showmatch 
-set cursorcolumn
-set cursorline
-
-"""Lua Setup Core plugin, configuration (lua)
-lua require('plugins')
-lua require('line_themes/dharmx_theme') 
-lua require('config')
-lua require('keymaps')
-
-""" Custom Mappings
-"Files , Directories , Exit 
-nmap <leader>q :bd<CR>
-nmap <leader>Q :q<CR>
-nmap <C-s> :w<CR>
-imap <C-s> <C-o>:w<CR>
 
 
 "Shorcuts for insert and visual mode 
 :imap \nn <C-O>o
 :imap \NN <C-O>O
 :imap \cl  <C-o>:noh<CR>
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-imap <C-e> <ESC>A
-imap <C-a> <ESC>I
-nnoremap <M-h> :SidewaysLeft<cr>
-nnoremap <M-l> :SidewaysRight<cr>
-imap <M-h> <C-o>:SidewaysLeft<cr>
-imap <M-l> <C-o>:SidewaysRight<cr>
 
-" Config for coc.nvim
-" Note previus and next origina keymap [c and ]c
-nmap <silent> cp <Plug>(coc-diagnostic-prev) 
-nmap <silent> cn <Plug>(coc-diagnostic-next)
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-inoremap <silent><expr> <C-Space> coc#select()
-xmap <silent>ca :CocAction<CR>
-nmap <silent>ca :CocAction<CR>
-nmap <silent>cf  <Plug>(coc-fix-current)
+
 
 
 "Bufer and motion
 nmap <leader>z :Goyo<CR>
-nmap <leader>j <plug>(easymotion-bd-f)
-imap <C-j> <ESC><plug>(easymotion-bd-f)
-
-"Git
-nmap <leader>g.:G<CR>
-nmap <leader>gf :GFiles<CR>
-nmap <leader>gd :Gdiffsplit<CR>
-nmap <leader>gl :diffget //3<CR>
-nmap <leader>gh :diffget //2<CR>
-nmap <leader>gc :GCheckout<CR>
-nmap <leader>gn <Plug>(GitGutterNextHunk)
-nmap <leader>gp <Plug>(GitGutterPrevHunk)
-nmap <leader>gs <Plug>(GitGutterStageHunk)
-nmap <leader>gu <Plug>(GitGutterUndoHunk)
-nmap <leader>gw <Plug>(GitGutterPreviewHunk)
-nmap <leader>gb :GitBlameToggle<CR>
 
 "Copilot
-imap <silent><script><expr> <M-j> copilot#Accept("\<CR>")
-imap <silent> <M-,> <Plug>(copilot-previous)
-imap <silent> <M-.> <Plug>(copilot-next)
-imap <silent> <M-;> <Plug>(copilot-suggest)
-imap <silent> <M-:> <C-o>:Copilot panel<CR>
-
 
 "Docsets
 nmap <leader>d <Plug>(pydocstring)
@@ -319,12 +252,6 @@ nmap <leader>th :Telescope help_tags<CR>
 nmap <leader>tH :Telescope man_pages<CR>
 nmap <leader>tc :Telescope commands<CR>
 nmap <leader>ta :Telescope autocommands<CR>
-nmap <leader>tG :Telescope git_status<CR>
-nmap <leader>tgs :Telescope git_stash<CR>
-nmap <leader>tgb :Telescope git_branches<CR>
-nmap <leader>tgc :Telescope git_commits<CR>
-nmap <leader>tgcb :Telescope git_bcommits<CR>
-nmap <leader>tgf :Telescope git_files<CR>
 nmap <leader>tz :Telescope spell_suggest<CR>
 
 "Register
