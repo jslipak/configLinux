@@ -23,6 +23,24 @@ vim.opt.pastetoggle = '<F3>'
  map('n', '<c-k>', '<c-w>k')
  map('n', '<c-l>', '<c-w>l')
 
+-- COC.Nvim
+map('n', 'cp', '<Plug>(coc-diagnostic-prev)')
+map('n', 'cn', '<Plug>(coc-diagnostic-next)')
+map('n', 'gd', '<Plug>(coc-definition)')
+map('n', 'gy', '<Plug>(coc-type-definition)')
+map('n', 'gi', '<Plug>(coc-implementation)')
+map('n', 'gr', '<Plug>(coc-references)')
+map('n', 'ca', ':CocAction<CR>')
+map('x', 'ca', ':CocAction<CR>')
+map('n', 'cf', '<Plug>(coc-fix-current)')
+-- TODO add: inoremap <silent><expr> <C-Space> coc#select()
+
+-- Copilot
+-- TODO: imap <silent><script><expr> <M-j> copilot#Accept("\<CR>")
+map('i', '<M-,>', '<Plug>(copilot-previous)')
+map('i', '<M-.>', '<Plug>(copilot-next)')
+map('i', '<M-;>', '<Plug>(copilot-suggest)')
+map('i', '<M-:>', '<Plug>(copilot-previous)')
 -- F 
 map('n', '<F12>', ':Codi!!<CR>')
 map('n', '<F7>', ':call ToggleSpellCheck()<CR>')
@@ -31,6 +49,23 @@ map('n', '<F6>', ':NvimTreeToggle<CR>')
 
 --Git
 map('n', '<leader>g.' , ':G<CR>')
+map('n', '<leader>gf', ':GFiles<CR>')
+map('n', '<leader>gd', ':Gdiffsplit<CR>')
+map('n', '<leader>gl', ':diffget //3<CR>')
+map('n', '<leader>gh', ':difffet //2<CR>')
+map('n', '<leader>gc', ':GCheckout<CR>')
+map('n', '<leader>gn', '<Plug>(GitGutterNextHunk)')
+map('n', '<leader>gp', '<Plug>(GitGutterPrevHunk)')
+map('n', '<leader>gs', '<Plug>(GitGutterStageHunk)')
+map('n', '<leader>gu', '<Plug>(GitGutterUndoHunk)')
+map('n', '<leader>gw', '<Plug>(GitGutterPreviewHunk)')
+map('n', '<leader>gb', ':GitBlameToggle<CR>')
+map('n', '<leader>gt.', ':Telescope git_satus<CR>')
+map('n', '<leader>gts', ':Telescope git_stash<CR>')
+map('n', '<leader>gtb', ':Telescope git_branches<CR>')
+map('n', '<leader>gtco', ':Telescope git_commits<CR>')
+map('n', '<leader>gtcb', ':Telescope git_bcommits<CR>')
+map('n', '<leader>gtf', ':Telescope git_files<CR>')
 
 -- Panels
 map('n', '<leader>pe', ':Files<CR>')

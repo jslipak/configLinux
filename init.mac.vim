@@ -31,7 +31,7 @@ Plug 'stsewd/fzf-checkout.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'chrisbra/Colorizer'
 Plug 'vim-scripts/loremipsum'
-Plug 'dkarter/bullets.vim'
+Plug 'dRkarter/bullets.vim'
 Plug 'sbdchd/neoformat'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'airblade/vim-gitgutter'
@@ -268,18 +268,8 @@ nnoremap <M-l> :SidewaysRight<cr>
 imap <M-h> <C-o>:SidewaysLeft<cr>
 imap <M-l> <C-o>:SidewaysRight<cr>
 
-" Config for coc.nvim
-" Note previus and next origina keymap [c and ]c
-nmap <silent> cp <Plug>(coc-diagnostic-prev) 
-nmap <silent> cn <Plug>(coc-diagnostic-next)
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+
 inoremap <silent><expr> <C-Space> coc#select()
-xmap <silent>ca :CocAction<CR>
-nmap <silent>ca :CocAction<CR>
-nmap <silent>cf  <Plug>(coc-fix-current)
 
 
 "Bufer and motion
@@ -287,26 +277,12 @@ nmap <leader>z :Goyo<CR>
 nmap <leader>j <plug>(easymotion-bd-f)
 imap <C-j> <ESC><plug>(easymotion-bd-f)
 
-"Git
-nmap <leader>g.:G<CR>
-nmap <leader>gf :GFiles<CR>
-nmap <leader>gd :Gdiffsplit<CR>
-nmap <leader>gl :diffget //3<CR>
-nmap <leader>gh :diffget //2<CR>
-nmap <leader>gc :GCheckout<CR>
-nmap <leader>gn <Plug>(GitGutterNextHunk)
-nmap <leader>gp <Plug>(GitGutterPrevHunk)
-nmap <leader>gs <Plug>(GitGutterStageHunk)
-nmap <leader>gu <Plug>(GitGutterUndoHunk)
-nmap <leader>gw <Plug>(GitGutterPreviewHunk)
-nmap <leader>gb :GitBlameToggle<CR>
-
 "Copilot
 imap <silent><script><expr> <M-j> copilot#Accept("\<CR>")
-imap <silent> <M-,> <Plug>(copilot-previous)
-imap <silent> <M-.> <Plug>(copilot-next)
-imap <silent> <M-;> <Plug>(copilot-suggest)
-imap <silent> <M-:> <C-o>:Copilot panel<CR>
+" imap <silent> <M-,> <Plug>(copilot-previous)
+" imap <silent> <M-.> <Plug>(copilot-next)
+" imap <silent> <M-;> <Plug>(copilot-suggest)
+" imap <silent> <M-:> <C-o>:Copilot panel<CR>
 
 
 "Docsets
@@ -325,12 +301,6 @@ nmap <leader>th :Telescope help_tags<CR>
 nmap <leader>tH :Telescope man_pages<CR>
 nmap <leader>tc :Telescope commands<CR>
 nmap <leader>ta :Telescope autocommands<CR>
-nmap <leader>tG :Telescope git_status<CR>
-nmap <leader>tgs :Telescope git_stash<CR>
-nmap <leader>tgb :Telescope git_branches<CR>
-nmap <leader>tgc :Telescope git_commits<CR>
-nmap <leader>tgcb :Telescope git_bcommits<CR>
-nmap <leader>tgf :Telescope git_files<CR>
 nmap <leader>tz :Telescope spell_suggest<CR>
 
 "Register
