@@ -37,6 +37,7 @@ Plug 'maksimr/vim-jsbeautify'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/RltvNmbr.vim'
 Plug 'easymotion/vim-easymotion'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'mhinz/vim-signify'
 Plug 'kien/ctrlp.vim'
@@ -51,12 +52,21 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+
 " Javascript plug-in
 Plug 'pangloss/vim-javascript'
+
 "" Python Plug-in
 Plug 'nvie/vim-flake8'
 Plug 'psf/black'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+
+""Markdown
+Plug 'iamcco/markdown-preview.nvim' 
+"" React 
+Plug 'mxw/vim-jsx'
+Plug 'mlaursen/vim-react-snippets'
+
 " Color Scheme
 Plug 'yuttie/hydrangea-vim'
 Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim' }
@@ -81,9 +91,11 @@ Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'mangeshrex/uwu.vim'
 Plug 'junegunn/seoul256.vim'
+
 " CoC Use release branch (Recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
+
 " Ruby
 Plug 'vim-ruby/vim-ruby' " For Facts, Ruby functions, and custom providers
 Plug 'kurtpreston/vim-autoformat-rails'
@@ -120,7 +132,12 @@ let g:coc_global_extensions = [
 \ 'coc-prettier', 
 \ 'coc-json', 
 \]
+" Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
+
+"RainbowParentheses
+let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+
 """ Python3 VirtunlEnv
 let g:python3_host_prog='/opt/homebrew/bin/python3.9'
 let g:python_host_prog='/opt/homebrew/bin/python3.9'
@@ -132,6 +149,12 @@ highlight Comment gui=bold
 highlight Normal gui=none
 highlight NonText guibg=none
 
+" Opaque Background (Comment out to use terminal's profile)
+set termguicolors
+
+" Transparent Background (For i3 and compton)
+highlight Normal guibg=NONE ctermbg=NONE
+highlight LineNr guibg=NONE ctermbg=NONE
 
 "Copilot 
 let g:copilot_no_tab_map = v:true
@@ -152,6 +175,15 @@ let g:codi#rightalign = 0
 "Git Blame
 let g:gitblame_enabled = 1
 
+" Airline
+let g:airline_powerline_fonts = 0
+let g:airline_section_z = ' %{strftime("%-I:%M %p")}'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#capslock#enabled = 1
+let g:airline#extensions#fugitiveline#enabled = 1
+let g:airline#extensions#ale#enabled = 1
+au User AirlineAfterInit  :let g:airline_section_z = airline#section#create(['windowswap', 'obsession', '%3p%%', 'maxlinenr', '->%3v'])
+
 "" Neovim :Terminal
 tmap <Esc> <C-\><C-n>
 tmap <C-w> <Esc><C-w>
@@ -162,7 +194,7 @@ autocmd BufLeave term://* stopinsert
 " Disable documentation window
 set completeopt=preview
 
-"indentLine
+" indentLine
 let g:indentLine_char = '▏'
 let g:indentLine_color_gui = '#363949'
 
@@ -208,7 +240,16 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_options = '--single-quote --trailing-comma all'
 
+" Markdown and Journal
+autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
+"""Lua Setup Core plugin, configuration (lua)
+lua require('plugins')
+lua require('line_themes/dharmx_theme') 
+lua require('config')
+
+"" Custom Functions
 """ Toggle spellchecking
 function! ToggleSpellCheck()
   set spell!
@@ -220,11 +261,9 @@ function! ToggleSpellCheck()
 endfunction
 
 """ Other Configurations
-:set termguicolors
 :set mouse=a
 :set scrolloff=8 " Start to scrolling down or up 8 lines before ord after
-:colorscheme ayu
-let g:perl_enabled = 1
+:colorscheme ayu 
 filetype plugin indent on
 "   set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
@@ -241,20 +280,34 @@ set showmatch
 set cursorcolumn
 set cursorline
 
-"""Lua Setup Core plugin, configuration (lua)
-lua require('plugins')
-lua require('line_themes/dharmx_theme') 
-lua require('config')
-lua require('keymaps')
-
 """ Custom Mappings
+let mapleader=" "
+set pastetoggle=<F3>
+nmap <F12> :Codi!!<CR>
+nmap <F7> :call ToggleSpellCheck()<CR>
+nmap <F8> :TagbarToggle<CR>
+
 "Files , Directories , Exit 
+nmap <leader>fe :Files<CR>
+nmap <leader>ft :NvimTreeToggle<CR>
+nmap <leader>fr :Rg<CR>
 nmap <leader>q :bd<CR>
 nmap <leader>Q :q<CR>
 nmap <C-s> :w<CR>
 imap <C-s> <C-o>:w<CR>
 
+"Tab
+nmap gt :bnext<CR>
+nmap gT :bprevious<CR>
+"
+"Setup Vim
+nmap <leader>ra :so ~/.config/nvim/init.vim<CR>
+nmap <leader>rv :tabnew ~/.config/nvim/init.vim<CR>
+nmap <leader>rc :tabnew ~/.config/nvim/lua/config.lua<CR>
+nmap <leader>rl :tabnew ~/.config/nvim/lua/plugins.lua<CR>
 
+nmap <leader>T <C-w>v<C-w>l:terminal<CR>
+"
 "Shorcuts for insert and visual mode 
 :imap \nn <C-O>o
 :imap \NN <C-O>O
@@ -281,14 +334,19 @@ xmap <silent>ca :CocAction<CR>
 nmap <silent>ca :CocAction<CR>
 nmap <silent>cf  <Plug>(coc-fix-current)
 
+"Colors and utils Colorl 
+nmap <leader>ee :Colors<CR>
+nmap <leader>ea :AirlineTheme 
 
 "Bufer and motion
 nmap <leader>z :Goyo<CR>
 nmap <leader>j <plug>(easymotion-bd-f)
 imap <C-j> <ESC><plug>(easymotion-bd-f)
+nmap <leader>n :set rnu!<CR>
+nmap <leader>m :Marks<CR>
 
 "Git
-nmap <leader>g.:G<CR>
+nmap <leader>g. :G<CR>
 nmap <leader>gf :GFiles<CR>
 nmap <leader>gd :Gdiffsplit<CR>
 nmap <leader>gl :diffget //3<CR>
@@ -317,14 +375,21 @@ nnoremap <silent> <Leader>K :call Dasht(dasht#cursor_search_terms())<Return>
 nnoremap <silent> <Leader><Leader>K :call Dasht(dasht#cursor_search_terms(), '!')<Return>
 vnoremap <silent> <Leader>K y:<C-U>call Dasht(getreg(0))<Return>
 vnoremap <silent> <Leader><Leader>K y:<C-U>call Dasht(getreg(0), '!')<Return>
-"Telescope
+"Telescop
+nmap <leader>tk :Telescope keymaps<CR>
 nmap <leader>tel :Telescope <CR>
+nmap <leader>tp :Telescope persistld <CR>
 nmap <leader>tF :Telescope live_grep<CR>
 nmap <leader>tf :Telescope fd<CR>
+nmap <leader>tt :Telescope tags<CR>
+nmap <leader>tr :Telescope registers<CR>
 nmap <leader>th :Telescope help_tags<CR>
 nmap <leader>tH :Telescope man_pages<CR>
+nmap <leader>tb :Telescope buffers<CR>
 nmap <leader>tc :Telescope commands<CR>
+nmap <leader>tm :Telescope marks<CR>
 nmap <leader>ta :Telescope autocommands<CR>
+nmap <leader>tvo :Telescope vim_options<CR>
 nmap <leader>tG :Telescope git_status<CR>
 nmap <leader>tgs :Telescope git_stash<CR>
 nmap <leader>tgb :Telescope git_branches<CR>
@@ -332,6 +397,7 @@ nmap <leader>tgc :Telescope git_commits<CR>
 nmap <leader>tgcb :Telescope git_bcommits<CR>
 nmap <leader>tgf :Telescope git_files<CR>
 nmap <leader>tz :Telescope spell_suggest<CR>
+nmap <leader>tj :Telescope jumplist<CR>
 
 "Register
 "Call :Registers
