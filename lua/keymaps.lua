@@ -31,7 +31,7 @@ map('n', 'cf', '<Plug>(coc-fix-current)')
 map('i', '<M-,>', '<Plug>(copilot-previous)')
 map('i', '<M-.>', '<Plug>(copilot-next)')
 map('i', '<M-;>', '<Plug>(copilot-suggest)')
-map('i', '<M-:>', '<Plug>(copilot-previous)')
+map('i', '<M-:>', '<C-O>:Copilot Panel<CR>')
 -- F 
 map('n', '<F3>', ':set invpaste paste?<CR>')
 vim.opt.pastetoggle = '<F3>'
@@ -60,12 +60,21 @@ map('n', '<leader>gtco', ':Telescope git_commits<CR>')
 map('n', '<leader>gtcb', ':Telescope git_bcommits<CR>')
 map('n', '<leader>gtf', ':Telescope git_files<CR>')
 
+--Help
+map('n', '<leader>hm', ':Telescope man_pages')
+map('n', '<leader>hv', ':Telescope help_tags')
+map('n', '<leader>hz', ':Telescope spell_suggest')
+map('n', '<leader>hd', ':Dasht<space>')
+map('n', '<leader>hD', ':Dasht!<space>')
+
+
 -- Insert mode
 map('i', '<C-e>', '<ESC>A')
 map('i', '<C-a>', '<ESC>I')
 map('i', '<M-h>', '<C-O>:SidewaysLeft<CR>')
 map('i', '<M-l>', '<C-O>:SidewaysRight<CR>')
 map('i', '<C-s>', '<C-O>w<CR>')
+
 
 
 -- Movement
@@ -89,23 +98,21 @@ map('n', '<M-l>', ':SidewaysRight<CR>')
 map('n', '<C-s>', ':w<CR>')
 
 -- Panels
-map('n', '<leader>pe', ':Files<CR>')
-map('n', '<leader>pr', ':Rg<CR>')
+map('n', '<leader>pf', ':Files<CR>')
+map('n', '<leader>pF', ':Rg<CR>')
 map('n', '<leader>pm', ':Marks<CR>')
 map('n', '<leader>pk', ':Telescope keymaps<CR>')
 map('n', '<leader>ps', ':Telescope persisted<CR>') 
-
---Sessions
 map('n', '<leader>pt', ':Telescope tags<CR>')
 map('n', '<leader>pr', ':Telescope registers<CR>')
 map('n', '<leader>pb', ':Telescope buffers<CR>')
 map('n', '<leader>pj', ':Telescope jumplist<CR>')
-
+map('n', '<leader>pT', ':Telescope<CR>')
 
 -- Tab
 map('n', 'gt', ':bnext<CR>')
 map('n', 'gT', ':bprevious<CR>')
-map('n', '<Tab>', ':BufferLinePick<CR>')
+map('n', '<leader>mt', ':BufferLinePick<CR>')
 map('n', '<F4>', ':BufferLinePickClose<CR>')
 map('n', '<leader>1', '<Cmd>BufferLineGoToBuffer 1<CR>')
 map('n', '<leader>2', '<Cmd>BufferLineGoToBuffer 2<CR>')
@@ -131,5 +138,11 @@ map('n', '<leader>so', ':Telescope vim_options<CR>')
 -- map('v', 'K', ":m '<-2<CR>gv=gv'")
 
 -- Quit, Exit and Save
+map('n', '<leader>qt', ':bd<CR>')
+map('n', '<leader>qv', ':qa<CR>')
+map('n', '<leader>q!', ':qa!<CR>')
+map('n', '<leader>qw', ':wq<CR>')
 
+-- Zen Mode
+map('n', '<leaden>z', ':Goyo 120<CR>')
 

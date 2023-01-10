@@ -137,10 +137,6 @@ let g:copilot_no_tab_map = v:true
 let g:copilot_filetypes = {
 \ '*': v:false,
 \ }
-inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <silent><expr> <C-Space> coc#select()
-imap <silent><script><expr> <M-j> copilot#Accept("\<CR>")
-
 
 "Codi
 let g:codi#virtual_text = 0
@@ -222,97 +218,7 @@ endfunction
 let g:perl_enabled = 1
 set wrap breakindent
 
-
-"Shorcuts for insert and visual mode 
-:imap \nn <C-O>o
-:imap \NN <C-O>O
-:imap \cl  <C-o>:noh<CR>
-
-
-
-
-"Bufer and motion
-nmap <leader>z :Goyo<CR>
-
-"Copilot
-
-"Docsets
-nmap <leader>d <Plug>(pydocstring)
-nmap <Leader>k :Dasht<Space>
-nmap <Leader><Leader>k :Dasht!<Space>
-nnoremap <silent> <Leader>K :call Dasht(dasht#cursor_search_terms())<Return>
-nnoremap <silent> <Leader><Leader>K :call Dasht(dasht#cursor_search_terms(), '!')<Return>
-vnoremap <silent> <Leader>K y:<C-U>call Dasht(getreg(0))<Return>
-vnoremap <silent> <Leader><Leader>K y:<C-U>call Dasht(getreg(0), '!')<Return>
-"Telescope
-nmap <leader>tel :Telescope <CR>
-nmap <leader>tF :Telescope live_grep<CR>
-nmap <leader>tf :Telescope fd<CR>
-nmap <leader>th :Telescope help_tags<CR>
-nmap <leader>tH :Telescope man_pages<CR>
-nmap <leader>tc :Telescope commands<CR>
-nmap <leader>ta :Telescope autocommands<CR>
-nmap <leader>tz :Telescope spell_suggest<CR>
-
-"Register
-"Call :Registers
-"Press " in normal or visual mode
-"Press CtrlR in insert mode
-
-"splitjoin in normal mode silent
-" gS to split a one-liner into multiple lines
-" gJ (with the cursor on the first line of a block) to join a block into a single-line statement.
-" gs switch true false
-
-"Marks
-" mx              Set mark x
-"    m,              Set the next available alphabetical (lowercase) mark
-"    m;              Toggle the next available mark at the current line
-"    dmx             Delete mark x
-"    dm-             Delete all marks on the current line
-"    dm<space>       Delete all marks in the current buffer
-"    m]              Move to next mark
-"    m[              Move to previous mark
-"    m:              Preview mark. This will prompt you for a specific mark to
-"                    preview; press <cr> to preview the next mark.
-"                    
-"    m[0-9]          Add a bookmark from bookmark group[0-9].
-"    dm[0-9]         Delete all bookmarks from bookmark group[0-9].
-"    m}              Move to the next bookmark having the same type as the bookmark under
-"                    the cursor. Works across buffers.
-"    m{              Move to the previous bookmark having the same type as the bookmark under
-"                    the cursor. Works across buffers.
-"    dm=             Delete the bookmark under the cursor.
-
-" NvimTree
-" g? get all helps when it's open
-
-" COMMENT 
-" Normal Mode
-" `gco` - Insert comment to the next line and enters INSERT mode
-" `gcO` - Insert comment to the previous line and enters INSERT mode
-" `gcA` - Insert comment to end of the current line and enters INSERT mode
-" Visual Mode
-" `gc` - Toggles the region using linewise comment
-" `gb` - Toggles the region using blockwise comment
-" " NORMAL mode
-" `gco` - Insert comment to the next line and enters INSERT mode
-" `gcO` - Insert comment to the previous line and enters INSERT mode
-" `gcA` - Insert comment to end of the current line and enters INSERT mode
-" Examples
-" # Linewise
-"
-" `gcw` - Toggle from the current cursor position to the next word
-" `gc$` - Toggle from the current cursor position to the end of line
-" `gc}` - Toggle until the next blank line
-" `gc5j` - Toggle 5 lines after the current cursor position
-" `gc8k` - Toggle 8 lines before the current cursor position
-" `gcip` - Toggle inside of paragraph
-" `gca}` - Toggle around curly brackets
-"
-" # Blockwise
-"
-" `gb2}` - Toggle until the 2 next blank line
-" `gbaf` - Toggle comment around a function (w/ LSP/treesitter support)
-" `gbac` - Toggle comment around a class (w/ LSP/treesitter support)
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <C-Space> coc#select()
+imap <silent><script><expr> <M-j> copilot#Accept("\<CR>")
 
