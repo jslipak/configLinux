@@ -114,17 +114,14 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 #  256 colors
-TERM='rxvt-256color'
-COLORTERM='rxvt-unicode-256color'
-tmux="TERM=xterm-256color tmux";
 
 # Variable to project
 #export STRIPE_TEST_PUBLISHABLE_KEY=pk_test_51H1VQmBQqZAt1xOwKljd9ZtZQooApP06kVcl0GLX2AslKWlSm64jDhat1EMFbxFik6wKE0V1JJWSjvRWNe0cdySd00WFBZ3xVq
 #export STRIPE_TEST_SECRET_KEY=sk_test_51H1VQmBQqZAt1xOw19VM1r2gXEvs4O0nY3fXaXCL3BJ9tds1AQPZHobPlYa58tOAvZq2Iu5E25NmN7mzFfemXzUD003Pu1VEuV
 #export TWILIO_SID=AC1b5365ca59580469ee1bca9c0a235aa7
 #export TWILIO_AUTH_TOKEN=201c8751ee5f1c692ad5649fb1337ffd
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 #tmux ls && read tmux_session && tmux attach -t ${tmux_session:-default} || tmux new -s ${tmux_session:-default}
 
 
