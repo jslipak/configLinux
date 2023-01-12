@@ -127,7 +127,14 @@ require("nvim-tree").setup({
     dotfiles = true,
   },
 })
-require("which-key").setup()
+
+require('which-key').setup({
+	plugins = {
+		presets = {
+			operators = false,
+		},
+	},
+})
 require('Comment').setup()
 require("nvim-surround").setup()
 require'nvim-treesitter.configs'.setup {
@@ -175,17 +182,19 @@ require'nvim-treesitter.configs'.setup {
 require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
 require("alpha").setup(require("alpha_themes/theta").config)
 require("registers").setup()
--- FIX: shades ,MODES
+require("todo-comments").setup {}
+
+-- TODO: shades ,MODES
 require('modes').setup({
 	colors = {
-		copy = "#f5c359",
+  copy = "#f5c359",
 		delete = "#c75c6a",
 		insert = "#78ccc5",
 		visual = "#9745be",
 	},
 
 	-- Set opacity for cursorline and number background
-	line_opacity = 0.15,
+	line_opacity = 0.55,
 
 	-- Enable cursor highlights
 	set_cursor = true,
