@@ -73,7 +73,7 @@ map('i', '<C-e>', '<ESC>A')
 map('i', '<C-a>', '<ESC>I')
 map('i', '<M-h>', '<C-O>:SidewaysLeft<CR>')
 map('i', '<M-l>', '<C-O>:SidewaysRight<CR>')
-map('i', '<C-s>', '<C-O>w<CR>')
+map('i', '<C-l>', '<C-O>w<CR>')
 
 
 
@@ -95,7 +95,7 @@ map('i', '<C-j>', '<C-o>:HopChar1<CR>')
 -- Nomal mode
 map('n', '<M-h>', ':SidewaysLeft<CR>')
 map('n', '<M-l>', ':SidewaysRight<CR>')
-map('n', '<C-s>', ':w<CR>')
+map('n', '<C-l>', ':w<CR>')
 
 -- Panels
 map('n', '<leader>pf', ':Files<CR>')
