@@ -88,7 +88,7 @@ Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build'
 Plug 'vim-ruby/vim-ruby' " For Facts, Ruby functions, and custom providers
 Plug 'kurtpreston/vim-autoformat-rails'
 Plug 'tpope/vim-rails'
-" Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-endwise'
 Plug 'ngmy/vim-rubocop'
 Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-bundler'
@@ -150,7 +150,7 @@ let g:codi#rightalign = 0
 " let g:codi#virtual_text_pos = 60
 
 " EMMET CONFIG
-let g:user_emmet_leader_key=',,'
+let g:user_emmet_leader_key=','
 let g:user_emmet_settings = {
 \  'html': {
 \    'snippets': {
