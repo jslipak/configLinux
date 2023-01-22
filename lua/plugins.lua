@@ -18,7 +18,11 @@ return require('packer').startup(function()
         })
     end
   })
-   -- ChatGPT, Autocomplete 
+  use {
+    "windwp/nvim-autopairs",
+      config = function() require("nvim-autopairs").setup {} end
+  }
+  -- ChatGPT, Autocomplete 
   use({
     "jackMort/ChatGPT.nvim",
       config = function()
@@ -33,6 +37,7 @@ return require('packer').startup(function()
       }
   })
   use {'nvim-treesitter/nvim-treesitter'}
+  use 'rrethy/nvim-treesitter-endwise'
   -- colors and icons
   use 'kyazdani42/nvim-web-devicons'
   use 'norcalli/nvim-colorizer.lua'

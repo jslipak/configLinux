@@ -136,11 +136,12 @@ require('which-key').setup({
 	},
 })
 require('Comment').setup()
-require("nvim-surround").setup()
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
   ensure_installed = { "c", "lua", "rust", "bash", "css","diff", "dockerfile","html", "javascript","python", "regex", "ruby", "typescript" },
-
+   endwise = {
+        enable = true,
+    },
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
 
@@ -178,6 +179,9 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
+  endwise = {
+        enable = true,
+    },
 }
 require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
 require("alpha").setup(require("alpha_themes/theta").config)
