@@ -16,12 +16,13 @@ Plug 'tpope/vim-sensible'
 Plug 'preservim/tagbar'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-surround'
 Plug 'andrewradev/splitjoin.vim'
 Plug 'AndrewRadev/sideways.vim'
 Plug 'andrewradev/switch.vim'
 Plug 'tpope/vim-repeat'
 Plug 'vim-scripts/restore_view.vim'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
 Plug 'alvan/vim-closetag'
 Plug 'Yggdroot/indentLine'
@@ -41,6 +42,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'f-person/git-blame.nvim'
 Plug 'https://github.com/adelarsq/vim-matchit'
 Plug 'kana/vim-textobj-user'
+Plug 'mattn/emmet-vim'
 
 "" Formater 
 Plug 'dense-analysis/ale'
@@ -86,7 +88,7 @@ Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build'
 Plug 'vim-ruby/vim-ruby' " For Facts, Ruby functions, and custom providers
 Plug 'kurtpreston/vim-autoformat-rails'
 Plug 'tpope/vim-rails'
-Plug 'tpope/vim-endwise'
+" Plug 'tpope/vim-endwise'
 Plug 'ngmy/vim-rubocop'
 Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-bundler'
@@ -147,15 +149,20 @@ let g:codi#rightalign = 0
 " let g:codi#virtual_text_prefix = '🎯➔'
 " let g:codi#virtual_text_pos = 60
 
+" EMMET CONFIG
+let g:user_emmet_leader_key=',,'
+let g:user_emmet_settings = {
+\  'html': {
+\    'snippets': {
+\      'html:5': '!!!+html>(head>(meta[charset=${charset}]+meta[name="viewport" content="width=device-width,initial-scale=1.0"]+meta[http-equiv="X-UA-Compatible" content="ie=edge"]+title +body'
+    \}
+	\} 
+  \}
+autocmd FileType html,css,erb EmmetInstall
+
+
 "Git Blame
 let g:gitblame_enabled = 1
-
-"" Neovim :Terminal
-tmap <Esc> <C-\><C-n>
-tmap <C-w> <Esc><C-w>
-"tmap <C-d> <Esc>:q<CR>
-autocmd BufWinEnter,WinEnter term://* startinsert
-autocmd BufLeave term://* stopinsert
 
 "indentLine
 let g:indentLine_char = '▏'

@@ -73,7 +73,7 @@ map('i', '<C-e>', '<ESC>A')
 map('i', '<C-a>', '<ESC>I')
 map('i', '<M-h>', '<C-O>:SidewaysLeft<CR>')
 map('i', '<M-l>', '<C-O>:SidewaysRight<CR>')
-map('i', '<C-s>', '<C-O>w<CR>')
+map('i', '<C-l>', '<C-O>:w<CR>')
 
 
 
@@ -95,7 +95,8 @@ map('i', '<C-j>', '<C-o>:HopChar1<CR>')
 -- Nomal mode
 map('n', '<M-h>', ':SidewaysLeft<CR>')
 map('n', '<M-l>', ':SidewaysRight<CR>')
-map('n', '<C-s>', ':w<CR>')
+map('n', '<C-l>', ':w<CR>')
+map('n', '<C-j>', ':HopChar1<CR>')
 
 -- Panels
 map('n', '<leader>pf', ':Files<CR>')
@@ -128,6 +129,7 @@ map('n', '<leader>9', '<Cmd>BufferLineGoToBuffer 9<CR>')
 map('n', '<leader>sr', ':so ~/.config/nvim/init.vim<CR>') 
 map('n', '<leader>si', ':tabnew ~/.config/nvim/init.vim<CR>') 
 map('n', '<leader>sc', ':tabnew ~/.config/nvim/lua/config.lua<CR>') 
+map('n', '<leader>sg', ':tabnew ~/.config/nvim/lua/generals.lua<CR>') 
 map('n', '<leader>sp', ':tabnew ~/.config/nvim/lua/plugins.lua<CR>') 
 map('n', '<leader>sk', ':tabnew ~/.config/nvim/lua/keymaps.lua<CR>') 
 map('n', '<leader>sn', ':set rnu!<CR>')
@@ -144,5 +146,5 @@ map('n', '<leader>q!', ':qa!<CR>')
 map('n', '<leader>qw', ':wq<CR>')
 
 -- Zen Mode
-map('n', '<leaden>z', ':Goyo 120<CR>')
+map('n', '<leader>z', ':Goyo<CR>')
 
