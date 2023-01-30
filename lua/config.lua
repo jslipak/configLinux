@@ -52,7 +52,14 @@ require'ccc'.setup()
 require("persisted").setup()
 require("telescope").load_extension("persisted")
 require('fold-preview').setup()
-require('marks').setup()
+require('marks').setup(
+  {  
+    mappings={
+    set_next = "<C-m>",
+    next = "nm",
+    prev = "pm"
+  }
+})
 require('nvim-cursorline').setup({
       cursorline = {
         enable = true,
@@ -187,6 +194,7 @@ require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
 require("alpha").setup(require("alpha_themes/theta").config)
 require("registers").setup()
 require("todo-comments").setup {}
+-- require("nvim-autopairs").setup {}
 
 -- TODO: shades ,MODES
 require('modes').setup({
@@ -214,4 +222,3 @@ require('modes').setup({
 	-- Please PR commonly ignored filetypes
 	ignore_filetypes = { 'NvimTree', 'TelescopePrompt' }
 })
-

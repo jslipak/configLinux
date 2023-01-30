@@ -22,7 +22,7 @@ Plug 'AndrewRadev/sideways.vim'
 Plug 'andrewradev/switch.vim'
 Plug 'tpope/vim-repeat'
 Plug 'vim-scripts/restore_view.vim'
-" Plug 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
 Plug 'alvan/vim-closetag'
 Plug 'Yggdroot/indentLine'
@@ -150,7 +150,7 @@ let g:codi#rightalign = 0
 " let g:codi#virtual_text_pos = 60
 
 " EMMET CONFIG
-let g:user_emmet_leader_key=','
+let g:user_emmet_leader_key='<F2>'
 let g:user_emmet_settings = {
 \  'html': {
 \    'snippets': {
