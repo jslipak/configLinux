@@ -16,6 +16,7 @@ Plug 'tpope/vim-sensible'
 Plug 'preservim/tagbar'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-surround'
 Plug 'andrewradev/splitjoin.vim'
 Plug 'AndrewRadev/sideways.vim'
 Plug 'andrewradev/switch.vim'
@@ -41,6 +42,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'f-person/git-blame.nvim'
 Plug 'https://github.com/adelarsq/vim-matchit'
 Plug 'kana/vim-textobj-user'
+Plug 'mattn/emmet-vim'
 
 "" Formater 
 Plug 'dense-analysis/ale'
@@ -145,6 +147,18 @@ let g:codi#rightalign = 0
 " Comment in the same buffer
 " let g:codi#virtual_text_prefix = '🎯➔'
 " let g:codi#virtual_text_pos = 60
+
+" EMMET CONFIG
+let g:user_emmet_leader_key=','
+let g:user_emmet_settings = {
+\  'html': {
+\    'snippets': {
+\      'html:5': '!!!+html>(head>(meta[charset=${charset}]+meta[name="viewport" content="width=device-width,initial-scale=1.0"]+meta[http-equiv="X-UA-Compatible" content="ie=edge"]+title +body'
+    \}
+	\} 
+  \}
+autocmd FileType html,css,erb EmmetInstall
+
 
 "Git Blame
 let g:gitblame_enabled = 1
