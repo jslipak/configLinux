@@ -51,6 +51,7 @@ return require('packer').startup(function()
   },
   tag = 'nightly' -- optional, updated every week. (see issue #1193)
   } 
+  use 'ThePrimeagen/harpoon'
   -- git
   use 'github/copilot.vim'
   use 'lewis6991/gitsigns.nvim' 

@@ -60,6 +60,23 @@ map('n', '<leader>gtco', ':Telescope git_commits<CR>')
 map('n', '<leader>gtcb', ':Telescope git_bcommits<CR>')
 map('n', '<leader>gtf', ':Telescope git_files<CR>')
 
+--Harpoon
+
+map('n', '<leader>fm', ':lua require("harpoon.ui").toggle_quick_menu()<CR>')
+map('n', '<leader>ft', ':Telescope harpoon marks<CR>')
+map('n', '<leader>fa', ':lua require("harpoon.mark").add_file()<CR>')
+map('n', '<leader>fn', ':lua require("harpoon.ui").nav_next()<CR>')
+map('n', '<leader>fp', ':lua require("harpoon.ui").nav_prev()<CR>')
+map('n', '<leader>f1', ':lua require("harpoon.ui").nav_file(1)<CR>')
+map('n', '<leader>f2', ':lua require("harpoon.ui").nav_file(2)<CR>')
+map('n', '<leader>f3', ':lua require("harpoon.ui").nav_file(3)<CR>')
+map('n', '<leader>f4', ':lua require("harpoon.ui").nav_file(4)<CR>')
+map('n', '<leader>f5', ':lua require("harpoon.ui").nav_file(5)<CR>')
+map('n', '<leader>f6', ':lua require("harpoon.ui").nav_file(6)<CR>')
+map('n', '<leader>f7', ':lua require("harpoon.ui").nav_file(7)<CR>')
+map('n', '<leader>f8', ':lua require("harpoon.ui").nav_file(8)<CR>')
+map('n', '<leader>f9', ':lua require("harpoon.ui").nav_file(9)<CR>')
+
 --Help
 map('n', '<leader>hm', ':Telescope man_pages')
 map('n', '<leader>hv', ':Telescope help_tags')
@@ -125,6 +142,9 @@ map('n', '<leader>7', '<Cmd>BufferLineGoToBuffer 7<CR>')
 map('n', '<leader>8', '<Cmd>BufferLineGoToBuffer 8<CR>')
 map('n', '<leader>9', '<Cmd>BufferLineGoToBuffer 9<CR>')
 
+-- Todos 
+map('n','<leader>t', ':TodoTelescope<CR>')
+
 -- Vim Config
 map('n', '<leader>sr', ':so ~/.config/nvim/init.vim<CR>') 
 map('n', '<leader>si', ':tabnew ~/.config/nvim/init.vim<CR>') 
@@ -136,6 +156,7 @@ map('n', '<leader>sn', ':set rnu!<CR>')
 map('n', '<leader>so', ':Telescope vim_options<CR>')
 
 -- Visual Mode
+-- NOTE: make this map in keymaps in LUA
 -- map('v', 'J', ":m '>+1<CR>gv=gv'")
 -- map('v', 'K', ":m '<-2<CR>gv=gv'")
 

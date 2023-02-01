@@ -214,4 +214,6 @@ require('modes').setup({
 	-- Please PR commonly ignored filetypes
 	ignore_filetypes = { 'NvimTree', 'TelescopePrompt' }
 })
+require("harpoon").setup()
+require("telescope").load_extension('harpoon')
 
