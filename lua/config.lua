@@ -56,8 +56,6 @@ require('marks').setup(
   {  
     mappings={
     set_next = "<C-m>",
-    next = "nm",
-    prev = "pm"
   }
 })
 require('nvim-cursorline').setup({
