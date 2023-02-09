@@ -114,6 +114,8 @@ map('n', '<M-h>', ':SidewaysLeft<CR>')
 map('n', '<M-l>', ':SidewaysRight<CR>')
 map('n', '<C-l>', ':w<CR>')
 map('n', '<C-j>', ':HopChar1<CR>')
+map('n', '<leader>o', 'o<Esc>0"_D')
+map('n', '<leader>O', 'O<Esc>0"_D')
 
 -- Panels
 map('n', '<leader>pf', ':Files<CR>')
