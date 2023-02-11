@@ -24,7 +24,36 @@ vim.g.mapleader = ' '
 -- map('x', 'ca', ':CocAction<CR>')
 -- map('n', 'cf', '<Plug>(coc-fix-current)')
 -- TODO add: inoremap <silent><expr> <C-Space> coc#select()
+-- LSP  
+local opts = { noremap=true, silent=true }
+vim.keymap.set('n', '<leader>lw', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<leader>lp', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', '<leader>ln', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<leader>le', vim.diagnostic.setloclist, opts)
 
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+  -- Mappings.
+  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set('n', '<leader>wl', function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, bufopts)
+  vim.keymap.set('n', '<leader>lD', vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set('n', '<leader>lrn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<leader>lca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  vim.keymap.set('n', '<leader>lf', function() vim.lsp.buf.format { async = true } end, bufopts)
+
+-- Enable completion triggered by <c-x><c-o>
 -- Copilot
 -- TODO: imap <silent><script><expr> <M-j> copilot#Accept("\<CR>")
 map('i', '<M-,>', '<Plug>(copilot-previous)')
