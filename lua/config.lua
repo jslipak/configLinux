@@ -1,4 +1,3 @@
-require('gitsigns').setup()
 require 'colorizer'.setup() 
 require("bufferline").setup({
     highlights = {
@@ -310,3 +309,4 @@ cmp.setup({
       { name = 'cmdline' }
     })
   })
+  

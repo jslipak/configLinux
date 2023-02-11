@@ -11,9 +11,9 @@ return require('packer').startup(function()
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/nvim-cmp'
+  --
   use 'hrsh7th/cmp-vsnip'
   use 'hrsh7th/vim-vsnip'
-  --
   -- LSP 
   use {
     "williamboman/mason.nvim",
@@ -71,8 +71,9 @@ return require('packer').startup(function()
   use 'ThePrimeagen/harpoon'
   -- git
   use 'github/copilot.vim'
-  use 'lewis6991/gitsigns.nvim' 
-
+  use 'tpope/vim-fugitive'
+  use 'airblade/vim-gitgutter'
+  use 'mhinz/vim-signify'
    --status bar
    use ({ 'nvim-lualine/lualine.nvim',
        requires = { 'kyazdani42/nvim-web-devicons', opt = true }

@@ -10,7 +10,6 @@ Plug 'junegunn/rainbow_parentheses.vim'
 " Aethetics - Additional
 
 " Functionalities
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'preservim/tagbar'
 Plug 'tpope/vim-ragtag'
@@ -34,9 +33,7 @@ Plug 'vim-scripts/loremipsum'
 Plug 'dkarter/bullets.vim'
 Plug 'sbdchd/neoformat'
 Plug 'maksimr/vim-jsbeautify'
-Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'mhinz/vim-signify'
 Plug 'kien/ctrlp.vim'
 Plug 'f-person/git-blame.nvim'
 Plug 'https://github.com/adelarsq/vim-matchit'
