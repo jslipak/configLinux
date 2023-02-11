@@ -13,17 +13,16 @@ end
 -- Change leader to a comma
 vim.g.mapleader = ' '
 
-
 -- COC.Nvim
-map('n', 'cp', '<Plug>(coc-diagnostic-prev)')
-map('n', 'cn', '<Plug>(coc-diagnostic-next)')
-map('n', 'gd', '<Plug>(coc-definition)')
-map('n', 'gy', '<Plug>(coc-type-definition)')
-map('n', 'gi', '<Plug>(coc-implementation)')
-map('n', 'gr', '<Plug>(coc-references)')
-map('n', 'ca', ':CocAction<CR>')
-map('x', 'ca', ':CocAction<CR>')
-map('n', 'cf', '<Plug>(coc-fix-current)')
+-- map('n', 'cp', '<Plug>(coc-diagnostic-prev)')
+-- map('n', 'cn', '<Plug>(coc-diagnostic-next)')
+-- map('n', 'gd', '<Plug>(coc-definition)')
+-- map('n', 'gy', '<Plug>(coc-type-definition)')
+-- map('n', 'gi', '<Plug>(coc-implementation)')
+-- map('n', 'gr', '<Plug>(coc-references)')
+-- map('n', 'ca', ':CocAction<CR>')
+-- map('x', 'ca', ':CocAction<CR>')
+-- map('n', 'cf', '<Plug>(coc-fix-current)')
 -- TODO add: inoremap <silent><expr> <C-Space> coc#select()
 
 -- Copilot
@@ -118,8 +117,8 @@ map('n', '<leader>o', 'o<Esc>0"_D')
 map('n', '<leader>O', 'O<Esc>0"_D')
 
 -- Panels
-map('n', '<leader>pf', ':Files<CR>')
-map('n', '<leader>pF', ':Rg<CR>')
+map('n', '<leader>pf', ':Telescope fd<CR>')
+map('n', '<leader>pF', ':Telescope live_grep<CR>')
 map('n', '<leader>pm', ':Marks<CR>')
 map('n', '<leader>pk', ':Telescope keymaps<CR>')
 map('n', '<leader>ps', ':Telescope persisted<CR>') 

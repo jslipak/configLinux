@@ -1,4 +1,3 @@
-""" Optixal's Neovim Init.vim
 
 """ Vim-Plug
 call plug#begin()
@@ -51,39 +50,16 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+
 " Javascript plug-in
 Plug 'pangloss/vim-javascript'
+
 "" Python Plug-in
 Plug 'nvie/vim-flake8'
 Plug 'psf/black'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-" Color Scheme
-Plug 'yuttie/hydrangea-vim'
-Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim' }
-Plug 'rhysd/vim-color-spring-night'
-Plug 'wadackel/vim-dogrun'
-Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
-Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
-Plug 'jacoborus/tender.vim'
-Plug 'morhetz/gruvbox'
-Plug 'franbach/miramare'
-Plug 'pgavlin/pulumi.vim'
-Plug 'arzg/vim-colors-xcode'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'arcticicestudio/nord-vim'
-Plug 'EdenEast/nightfox.nvim'
-Plug 'folke/tokyonight.nvim'
-Plug 'rakr/vim-one'
-Plug 'ayu-theme/ayu-vim' " or other package manager
-Plug 'relastle/bluewery.vim'
-Plug 'gilgigilgil/anderson.vim'
-Plug 'christianchiarulli/nvcode-color-schemes.vim'
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'mangeshrex/uwu.vim'
-Plug 'junegunn/seoul256.vim'
-" CoC Use release branch (Recommend)
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
+
+
 " Ruby
 Plug 'vim-ruby/vim-ruby' " For Facts, Ruby functions, and custom providers
 Plug 'kurtpreston/vim-autoformat-rails'
@@ -98,12 +74,13 @@ Plug 'slim-template/vim-slim'
 Plug 'metakirby5/codi.vim'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'tpope/vim-rvm'
+
 "Backet Color
 Plug 'luochen1990/rainbow'
+
 "Docset
 Plug 'heavenshell/vim-pydocstring'
 Plug 'sunaku/vim-dasht'
-call plug#end()
 
 """Lua Setup Core plugin, configuration (lua)
 lua require('generals')
@@ -114,20 +91,6 @@ lua require('keymaps')
 
 """ Plugin Configurations
 call nvim_input('<tab>')
-
-" coc config
-let g:coc_global_extensions = [
-\ 'coc-solargraph',
-\ 'coc-diagnostic',
-\ 'coc-css',
-\ 'coc-yaml',
-\ 'coc-snippets',
-\ 'coc-pairs',
-\ 'coc-tsserver',
-\ 'coc-eslint', 
-\ 'coc-prettier', 
-\ 'coc-json', 
-\]
 
 """ Python3 VirtunlEnv
 let g:python3_host_prog='/bin/python'

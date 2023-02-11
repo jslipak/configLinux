@@ -41,4 +41,5 @@ vim.opt.scrolloff = 8 -- cambia la cantidad de líneas del scroll
 vim.opt.sidescrolloff = 8
 vim.opt.showmatch = true
 vim.cmd.colorscheme('ayu')
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 

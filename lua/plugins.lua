@@ -5,6 +5,22 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   -- You add plugins here  
+ --auto complete
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-vsnip'
+  use 'hrsh7th/vim-vsnip'
+  --
+  -- LSP 
+  use {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "williamboman/nvim-lsp-installer",
+    "neovim/nvim-lspconfig",
+  }
   -- Packer
   -- base
   use "nvim-lua/plenary.nvim"
@@ -39,6 +55,7 @@ return require('packer').startup(function()
   use {'nvim-treesitter/nvim-treesitter'}
   use 'rrethy/nvim-treesitter-endwise'
   -- colors and icons
+  use 'ayu-theme/ayu-vim'
   use 'kyazdani42/nvim-web-devicons'
   use 'norcalli/nvim-colorizer.lua'
   use 'uga-rosa/ccc.nvim'
