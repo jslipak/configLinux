@@ -35,33 +35,24 @@ call plug#begin()
   Plug 'maksimr/vim-jsbeautify'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'kien/ctrlp.vim'
-  Plug 'f-person/git-blame.nvim'
   Plug 'https://github.com/adelarsq/vim-matchit'
   Plug 'kana/vim-textobj-user'
-
-
   "" Python Plug-in
   Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-
-
-
   "Backet Color
   Plug 'luochen1990/rainbow'
-
   "Docset
   Plug 'heavenshell/vim-pydocstring'
   Plug 'sunaku/vim-dasht'
-end
-"""Lua Setup Core plugin, configuration (lua)
+
+  """Lua Setup Core plugin, configuration (lua)
+
 lua require('generals')
 lua require('plugins')
 lua require('line_themes/dharmx_theme') 
 lua require('config')
 lua require('lsp')
 lua require('keymaps')
-
-""" Plugin Configurations
-call nvim_input('<tab>')
 
 """ Python3 VirtunlEnv
 let g:python3_host_prog='/bin/python'
@@ -83,8 +74,6 @@ let g:codi#rightalign = 0
 " let g:codi#virtual_text_prefix = '🎯➔'
 " let g:codi#virtual_text_pos = 60
 
-"Git Blame
-let g:gitblame_enabled = 1
 
 "indentLine
 let g:indentLine_char = '▏'
