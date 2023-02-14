@@ -1,84 +1,57 @@
 
 """ Vim-Plug
 call plug#begin()
-Plug 'wbthomason/packer.nvim'
-Plug 'ryanoasis/vim-devicons'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/vim-journal'
-Plug 'junegunn/rainbow_parentheses.vim'
+  Plug 'wbthomason/packer.nvim'
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'junegunn/goyo.vim'
+  Plug 'junegunn/vim-journal'
+  Plug 'junegunn/rainbow_parentheses.vim'
 
-" Aethetics - Additional
+  " Aethetics - Additional
 
-" Functionalities
-Plug 'tpope/vim-sensible'
-Plug 'preservim/tagbar'
-Plug 'tpope/vim-ragtag'
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-surround'
-Plug 'andrewradev/splitjoin.vim'
-Plug 'AndrewRadev/sideways.vim'
-Plug 'andrewradev/switch.vim'
-Plug 'tpope/vim-repeat'
-Plug 'vim-scripts/restore_view.vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/vim-easy-align'
-Plug 'alvan/vim-closetag'
-Plug 'Yggdroot/indentLine'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'stsewd/fzf-checkout.vim'
-Plug 'sheerun/vim-polyglot'
-Plug 'chrisbra/Colorizer'
-Plug 'vim-scripts/loremipsum'
-Plug 'dkarter/bullets.vim'
-Plug 'sbdchd/neoformat'
-Plug 'maksimr/vim-jsbeautify'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'kien/ctrlp.vim'
-Plug 'f-person/git-blame.nvim'
-Plug 'https://github.com/adelarsq/vim-matchit'
-Plug 'kana/vim-textobj-user'
-Plug 'mattn/emmet-vim'
-
-"" Formater 
-Plug 'dense-analysis/ale'
-Plug 'splattael/rufo-vim'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-
-" Javascript plug-in
-Plug 'pangloss/vim-javascript'
-
-"" Python Plug-in
-Plug 'nvie/vim-flake8'
-Plug 'psf/black'
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+  " Functionalities
+  Plug 'tpope/vim-sensible'
+  Plug 'preservim/tagbar'
+  Plug 'tpope/vim-ragtag'
+  Plug 'tpope/vim-abolish'
+  Plug 'tpope/vim-surround'
+  Plug 'andrewradev/splitjoin.vim'
+  Plug 'AndrewRadev/sideways.vim'
+  Plug 'andrewradev/switch.vim'
+  Plug 'tpope/vim-repeat'
+  Plug 'vim-scripts/restore_view.vim'
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'junegunn/vim-easy-align'
+  Plug 'alvan/vim-closetag'
+  Plug 'Yggdroot/indentLine'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
+  Plug 'stsewd/fzf-checkout.vim'
+  Plug 'sheerun/vim-polyglot'
+  Plug 'chrisbra/Colorizer'
+  Plug 'vim-scripts/loremipsum'
+  Plug 'dkarter/bullets.vim'
+  Plug 'sbdchd/neoformat'
+  Plug 'maksimr/vim-jsbeautify'
+  Plug 'terryma/vim-multiple-cursors'
+  Plug 'kien/ctrlp.vim'
+  Plug 'f-person/git-blame.nvim'
+  Plug 'https://github.com/adelarsq/vim-matchit'
+  Plug 'kana/vim-textobj-user'
 
 
-" Ruby
-Plug 'vim-ruby/vim-ruby' " For Facts, Ruby functions, and custom providers
-Plug 'kurtpreston/vim-autoformat-rails'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-endwise'
-Plug 'ngmy/vim-rubocop'
-Plug 'tpope/vim-cucumber'
-Plug 'tpope/vim-bundler'
-Plug 'janko-m/vim-test'
-Plug 'gmarik/Vundle.vim'
-Plug 'slim-template/vim-slim'
-Plug 'metakirby5/codi.vim'
-Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'tpope/vim-rvm'
+  "" Python Plug-in
+  Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
-"Backet Color
-Plug 'luochen1990/rainbow'
 
-"Docset
-Plug 'heavenshell/vim-pydocstring'
-Plug 'sunaku/vim-dasht'
 
+  "Backet Color
+  Plug 'luochen1990/rainbow'
+
+  "Docset
+  Plug 'heavenshell/vim-pydocstring'
+  Plug 'sunaku/vim-dasht'
+end
 """Lua Setup Core plugin, configuration (lua)
 lua require('generals')
 lua require('plugins')
@@ -109,18 +82,6 @@ let g:codi#rightalign = 0
 " Comment in the same buffer
 " let g:codi#virtual_text_prefix = '🎯➔'
 " let g:codi#virtual_text_pos = 60
-
-" EMMET CONFIG
-let g:user_emmet_leader_key='<F2>'
-let g:user_emmet_settings = {
-\  'html': {
-\    'snippets': {
-\      'html:5': '!!!+html>(head>(meta[charset=${charset}]+meta[name="viewport" content="width=device-width,initial-scale=1.0"]+meta[http-equiv="X-UA-Compatible" content="ie=edge"]+title +body'
-    \}
-	\} 
-  \}
-autocmd FileType html,css,erb EmmetInstall
-
 
 "Git Blame
 let g:gitblame_enabled = 1
@@ -154,23 +115,6 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5, 'highlight': 'Comment' } }
 let $FZF_DEFAULT_OPTS='--reverse'
-
-""" ALE
-let g:ale_linters = {
-      \   'ruby': ['standardrb', 'rubocop'],
-      \   'python': ['flake8', 'pylint'],
-      \   'javascript': ['eslint'],
-      \}
-
-let g:ale_fixers = {
-\   'javascript': ['prettier'],
-\   'css': ['prettier'],
-\    'ruby': ['standardrb'],
-\}
-
-let g:ale_fix_on_save = 1
-let g:ale_javascript_prettier_options = '--single-quote --trailing-comma all'
-
 
 """ Toggle spellchecking
 function! ToggleSpellCheck()

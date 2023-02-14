@@ -89,6 +89,22 @@ return require('packer').startup(function()
     require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
     end
   }
+
+  -- RUBY
+use 'vim-ruby/vim-ruby'
+use 'kurtpreston/vim-autoformat-rails'
+use 'tpope/vim-rails'
+use 'tpope/vim-endwise'
+use 'ngmy/vim-rubocop'
+use 'tpope/vim-cucumber'
+use 'tpope/vim-bundler'
+use 'janko-m/vim-test'
+use 'gmarik/Vundle.vim'
+use 'slim-template/vim-slim'
+use 'metakirby5/codi.vim'
+use 'tpope/vim-rvm'
+
+
   --Sessions
   use({ "olimorris/persisted.nvim",
   --module = "persisted", -- For lazy loading
@@ -144,7 +160,6 @@ return require('packer').startup(function()
   }
   use 'goolord/alpha-nvim'
 
- --to fix
   use 'sunjon/shade.nvim'
   use({ 'mvllow/modes.nvim',
 	tag = 'v0.2.0',
@@ -152,6 +167,5 @@ return require('packer').startup(function()
 		require('modes').setup()
 	end
   })
-
 end)
 

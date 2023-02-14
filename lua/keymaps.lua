@@ -39,7 +39,7 @@ map('n', '<leader>gp', '<Plug>(GitGutterPrevHunk)')
 map('n', '<leader>gs', '<Plug>(GitGutterStageHunk)')
 map('n', '<leader>gu', '<Plug>(GitGutterUndoHunk)')
 map('n', '<leader>gw', '<Plug>(GitGutterPreviewHunk)')
-map('n', '<leader>gb', ':GitBlameToggle<CR>')
+map('n', '<leader>gb', ':G blame<CR>')
 map('n', '<leader>gt.', ':Telescope git_satus<CR>')
 map('n', '<leader>gts', ':Telescope git_stash<CR>')
 map('n', '<leader>gtb', ':Telescope git_branches<CR>')
@@ -116,6 +116,56 @@ map('n', '<leader>pb', ':Telescope buffers<CR>')
 map('n', '<leader>pj', ':Telescope jumplist<CR>')
 map('n', '<leader>pT', ':Telescope<CR>')
 map('n', '<leader>t', ':TodoTelescope<CR>')
+
+--LSP information
+map( 'n', '<leader>li', '<cmd>LspInfo<CR>', opts)
+-- Displays hover information about the symbol under the cursor
+map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
+map('n', '<leader>lk', '<cmd>lua vim.lsp.buf.hover()<cr>')
+-- Jump to the definition
+map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
+map('n', '<leader>lgd', '<cmd>lua vim.lsp.buf.definition()<cr>')
+-- Jump to declaration
+map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
+map('n', '<leader>lgD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
+-- Lists all the implementations for the symbol under the cursor
+map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
+map('n', '<leader>lgi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
+-- Jumps to the definition of the type symbol
+map('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
+map('n', '<leader>lgo', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
+-- Lists all the references 
+map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
+map('n', '<leader>lgr', '<cmd>lua vim.lsp.buf.references()<cr>')
+-- Displays a function's signature information
+map('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
+map('n', '<leader>lsh', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
+-- Renames all references to the symbol under the cursor
+map('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>')
+map('n', '<leader>lr', '<cmd>lua vim.lsp.buf.rename()<cr>')
+-- Selects a code action available at the current cursor position
+map('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>')
+map('x', '<F4>', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
+map('n', '<leader>lc', '<cmd>lua vim.lsp.buf.code_action()<cr>')
+map('x', '<leader>lc', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
+-- Show diagnostics in a floating window
+map('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+-- Move to the previous diagnostic
+map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+map('n', '<leader>lp', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+-- Move to the next diagnostic
+map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+map('n', '<leader>n', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+-- Show all the symbol, Symbols are special keywords in your code such as variables, functions, etc. To get a list of the symbols, execute the command
+map('n', '<leader>ls', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts) 
+-- workspace 
+map('n', '<leader>lwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+map('n', '<leader>lwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+map('n', '<leader>lwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+-- formating
+map('n', '<leader>lf', '<cmd>lua vim.lsp.buf.format { async = true }<CR>', opts)
+
+
 
 -- Tab
 map('n', 'gt', ':bnext<CR>')
