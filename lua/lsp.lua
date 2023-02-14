@@ -20,41 +20,55 @@ vim.api.nvim_create_autocmd('LspAttach', {
       local opts = {buffer = true}
       vim.keymap.set(mode, lhs, rhs, opts)
     end
+    --LSP information
+    bufmap( 'n', '<leader>li', '<cmd>LspInfo<CR>', opts)
     -- Displays hover information about the symbol under the cursor
     bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
+    bufmap('n', '<leader>lk', '<cmd>lua vim.lsp.buf.hover()<cr>')
     -- Jump to the definition
     bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
+    bufmap('n', '<leader>ld', '<cmd>lua vim.lsp.buf.definition()<cr>')
     -- Jump to declaration
     bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
+    bufmap('n', '<leader>lD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
     -- Lists all the implementations for the symbol under the cursor
     bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
+    bufmap('n', '<leader>li', '<cmd>lua vim.lsp.buf.implementation()<cr>')
     -- Jumps to the definition of the type symbol
     bufmap('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
+    bufmap('n', '<leader>lg', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
     -- Lists all the references 
     bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
+    bufmap('n', '<leader>lR', '<cmd>lua vim.lsp.buf.references()<cr>')
     -- Displays a function's signature information
     bufmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
+    bufmap('n', '<leader>lsh', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
     -- Renames all references to the symbol under the cursor
     bufmap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>')
+    bufmap('n', '<leader>lr', '<cmd>lua vim.lsp.buf.rename()<cr>')
     -- Selects a code action available at the current cursor position
     bufmap('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>')
     bufmap('x', '<F4>', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
+    bufmap('n', '<leader>lc', '<cmd>lua vim.lsp.buf.code_action()<cr>')
+    bufmap('x', '<leader>lc', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
     -- Show diagnostics in a floating window
     bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
     -- Move to the previous diagnostic
     bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+    bufmap('n', '<leader>lp', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
     -- Move to the next diagnostic
     bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+    bufmap('n', '<leader>n', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+    -- Show all the symbol, Symbols are special keywords in your code such as variables, functions, etc. To get a list of the symbols, execute the command
+    bufmap('n', '<leader>ls', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts) 
+    -- workspace 
+    bufmap('n', '<leader>lwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+    bufmap('n', '<leader>lwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+    bufmap('n', '<leader>lwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+    -- formating
+    bufmap('n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   end
 })
-
-local bufopts = { noremap = true, silent = true, buffer = bufnr }
-vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-vim.keymap.set('n', '<leader>wl', function()
-	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-end, bufopts)
-vim.keymap.set('n', '<leader>lf', function() vim.lsp.buf.format { async = true } end, bufopts)
 
 
 
@@ -113,11 +127,10 @@ cmp.setup({
   cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-      { name = 'path' }
+      -- { name = 'path' }
     }, {
       { name = 'cmdline' }
     })
   })
- 
 
 
