@@ -130,7 +130,6 @@ return require('packer').startup(function()
       end
     })
   use ({ "tversteeg/registers.nvim", config = function() require("registers").setup() end, }) 
-  use 'chentoast/marks.nvim'
   use { 'numToStr/Comment.nvim',
       config = function()
           require('Comment').setup()

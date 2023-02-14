@@ -84,6 +84,7 @@ lua require('generals')
 lua require('plugins')
 lua require('line_themes/dharmx_theme') 
 lua require('config')
+lua require('lsp')
 lua require('keymaps')
 
 """ Plugin Configurations

@@ -3,64 +3,23 @@
 -----------------------------------------------------------
 
 local function map(mode, lhs, rhs, opts)
-  local options = { noremap=true, silent=true }
-  if opts then
-    options = vim.tbl_extend('force', options, opts)
-  end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+	local options = { noremap = true, silent = true }
+	if opts then
+		options = vim.tbl_extend('force', options, opts)
+	end
+	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 -- Change leader to a comma
 vim.g.mapleader = ' '
 
--- COC.Nvim
--- map('n', 'cp', '<Plug>(coc-diagnostic-prev)')
--- map('n', 'cn', '<Plug>(coc-diagnostic-next)')
--- map('n', 'gd', '<Plug>(coc-definition)')
--- map('n', 'gy', '<Plug>(coc-type-definition)')
--- map('n', 'gi', '<Plug>(coc-implementation)')
--- map('n', 'gr', '<Plug>(coc-references)')
--- map('n', 'ca', ':CocAction<CR>')
--- map('x', 'ca', ':CocAction<CR>')
--- map('n', 'cf', '<Plug>(coc-fix-current)')
--- TODO add: inoremap <silent><expr> <C-Space> coc#select()
--- LSP  
-local opts = { noremap=true, silent=true }
-vim.keymap.set('n', '<leader>lw', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<leader>lp', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', '<leader>ln', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<leader>le', vim.diagnostic.setloclist, opts)
-
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-  -- Mappings.
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-  vim.keymap.set('n', '<leader>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, bufopts)
-  vim.keymap.set('n', '<leader>lD', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<leader>lrn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<leader>lca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<leader>lf', function() vim.lsp.buf.format { async = true } end, bufopts)
-
--- Enable completion triggered by <c-x><c-o>
 -- Copilot
 -- TODO: imap <silent><script><expr> <M-j> copilot#Accept("\<CR>")
 map('i', '<M-,>', '<Plug>(copilot-previous)')
 map('i', '<M-.>', '<Plug>(copilot-next)')
 map('i', '<M-;>', '<Plug>(copilot-suggest)')
 map('i', '<M-:>', '<C-O>:Copilot Panel<CR>')
--- F 
+-- F
 map('n', '<F3>', ':set invpaste paste?<CR>')
 vim.opt.pastetoggle = '<F3>'
 map('n', '<F12>', ':Codi!!<CR>')
@@ -69,7 +28,7 @@ map('n', '<F8>', ':TagbarToggle<CR>')
 map('n', '<F6>', ':NvimTreeToggle<CR>')
 
 -- Git
-map('n', '<leader>g.' , ':G<CR>')
+map('n', '<leader>g.', ':G<CR>')
 map('n', '<leader>gf', ':GFiles<CR>')
 map('n', '<leader>gd', ':Gdiffsplit<CR>')
 map('n', '<leader>gl', ':diffget //3<CR>')
@@ -123,10 +82,10 @@ map('i', '<C-l>', '<C-O>:w<CR>')
 
 
 -- Movement
- -- map('n', '<c-h>', '<c-w>h')
- -- map('n', '<c-j>', '<c-w>j')
- -- map('n', '<c-k>', '<c-w>k')
- -- map('n', '<c-l>', '<c-w>l')
+-- map('n', '<c-h>', '<c-w>h')
+-- map('n', '<c-j>', '<c-w>j')
+-- map('n', '<c-k>', '<c-w>k')
+-- map('n', '<c-l>', '<c-w>l')
 map('n', '<leader>ma', ':HopAnywhere<CR>')
 map('n', '<leader>m1', ':HopChar1<CR>')
 map('n', '<leader>m2', ':HopChar2<CR>')
@@ -150,7 +109,7 @@ map('n', '<leader>pf', ':Telescope fd<CR>')
 map('n', '<leader>pF', ':Telescope live_grep<CR>')
 map('n', '<leader>pm', ':Marks<CR>')
 map('n', '<leader>pk', ':Telescope keymaps<CR>')
-map('n', '<leader>ps', ':Telescope persisted<CR>') 
+map('n', '<leader>ps', ':Telescope persisted<CR>')
 map('n', '<leader>pt', ':Telescope tags<CR>')
 map('n', '<leader>pr', ':Telescope registers<CR>')
 map('n', '<leader>pb', ':Telescope buffers<CR>')
@@ -173,16 +132,17 @@ map('n', '<leader>7', '<Cmd>BufferLineGoToBuffer 7<CR>')
 map('n', '<leader>8', '<Cmd>BufferLineGoToBuffer 8<CR>')
 map('n', '<leader>9', '<Cmd>BufferLineGoToBuffer 9<CR>')
 
--- Todos 
-map('n','<leader>t', ':TodoTelescope<CR>')
+-- Todos
+map('n', '<leader>t', ':TodoTelescope<CR>')
 
 -- Vim Config
-map('n', '<leader>sr', ':so ~/.config/nvim/init.vim<CR>') 
-map('n', '<leader>si', ':tabnew ~/.config/nvim/init.vim<CR>') 
-map('n', '<leader>sc', ':tabnew ~/.config/nvim/lua/config.lua<CR>') 
-map('n', '<leader>sg', ':tabnew ~/.config/nvim/lua/generals.lua<CR>') 
-map('n', '<leader>sp', ':tabnew ~/.config/nvim/lua/plugins.lua<CR>') 
-map('n', '<leader>sk', ':tabnew ~/.config/nvim/lua/keymaps.lua<CR>') 
+map('n', '<leader>sr', ':so ~/.config/nvim/init.vim<CR>')
+map('n', '<leader>si', ':tabnew ~/.config/nvim/init.vim<CR>')
+map('n', '<leader>sc', ':tabnew ~/.config/nvim/lua/config.lua<CR>')
+map('n', '<leader>sg', ':tabnew ~/.config/nvim/lua/generals.lua<CR>')
+map('n', '<leader>sp', ':tabnew ~/.config/nvim/lua/plugins.lua<CR>')
+map('n', '<leader>sk', ':tabnew ~/.config/nvim/lua/keymaps.lua<CR>')
+map('n', '<leader>sl', ':tabnew ~/.config/nvim/lua/lsp.lua<CR>')
 map('n', '<leader>sn', ':set rnu!<CR>')
 map('n', '<leader>so', ':Telescope vim_options<CR>')
 
@@ -199,4 +159,3 @@ map('n', '<leader>qw', ':wq<CR>')
 
 -- Zen Mode
 map('n', '<leader>z', ':Goyo<CR>')
-

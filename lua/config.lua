@@ -51,12 +51,12 @@ require'ccc'.setup()
 require("persisted").setup()
 require("telescope").load_extension("persisted")
 require('fold-preview').setup()
-require('marks').setup(
-  {  
-    mappings={
-    set_next = "<C-m>",
-  }
-})
+-- require('marks').setup(
+--   {  
+--     mappings={
+--     set_next = "<C-m>",
+--   }
+-- })
 require('nvim-cursorline').setup({
       cursorline = {
         enable = true,
@@ -193,120 +193,27 @@ require("registers").setup()
 require("todo-comments").setup {}
 -- require("nvim-autopairs").setup {}
 
--- TODO: shades ,MODES
 require('modes').setup({
 	colors = {
-  copy = "#f5c359",
+    copy = "#f5c359",
 		delete = "#c75c6a",
-		insert = "#78ccc5",
+		insert = "#3581B8",
 		visual = "#9745be",
 	},
-
 	-- Set opacity for cursorline and number background
 	line_opacity = 0.55,
-
 	-- Enable cursor highlights
 	set_cursor = true,
-
 	-- Enable cursorline initially, and disable cursorline for inactive windows
 	-- or ignored filetypes
 	set_cursorline = true,
-
 	-- Enable line number highlights to match cursorline
 	set_number = true,
-
 	-- Disable modes highlights in specified filetypes
 	-- Please PR commonly ignored filetypes
 	ignore_filetypes = { 'NvimTree', 'TelescopePrompt' }
 })
+
 require("harpoon").setup()
 require("telescope").load_extension('harpoon')
-require("mason").setup()
-require("mason-lspconfig").setup()
-require("nvim-lsp-installer").setup {}
-require('lspconfig')['solargraph'].setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
-require('lspconfig')['ruby_ls'].setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
-require('lspconfig')['sorbet'].setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
-
-require('lspconfig')['eslint'].setup({
-  --- ...
-  on_attach = function(client, bufnr)
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      command = "EslintFixAll",
-    })
-  end,
-})
-
-local cmp = require'cmp'
-cmp.setup({
-    snippet = {
-      -- REQUIRED - you must specify a snippet engine
-      expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-      end,
-    },
-    window = {
-      -- completion = cmp.config.window.bordered(),
-      -- documentation = cmp.config.window.bordered(),
-    },
-    mapping = cmp.mapping.preset.insert({
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.abort(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    }),
-    sources = cmp.config.sources({
-      { name = 'nvim_lsp' },
-      { name = 'vsnip' }, -- For vsnip users.
-      -- { name = 'luasnip' }, -- For luasnip users.
-      -- { name = 'ultisnips' }, -- For ultisnips users.
-      -- { name = 'snippy' }, -- For snippy users.
-    }, {
-      { name = 'buffer' },
-    })
-  })
-
-  -- Set configuration for specific filetype.
-  cmp.setup.filetype('gitcommit', {
-    sources = cmp.config.sources({
-      { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-    }, {
-      { name = 'buffer' },
-    })
-  })
-
-  -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline({ '/', '?' }, {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-      { name = 'buffer' }
-    }
-  })
-
-  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-      { name = 'path' }
-    }, {
-      { name = 'cmdline' }
-    })
-  })
-  
+ 
