@@ -37,13 +37,11 @@ call plug#begin()
   Plug 'kien/ctrlp.vim'
   Plug 'https://github.com/adelarsq/vim-matchit'
   Plug 'kana/vim-textobj-user'
-  "" Python Plug-in
-  Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-  "Backet Color
   Plug 'luochen1990/rainbow'
-  "Docset
   Plug 'heavenshell/vim-pydocstring'
   Plug 'sunaku/vim-dasht'
+
+call plug#end()
 
   """Lua Setup Core plugin, configuration (lua)
 
