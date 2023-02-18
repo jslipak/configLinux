@@ -51,12 +51,6 @@ require'ccc'.setup()
 require("persisted").setup()
 require("telescope").load_extension("persisted")
 require('fold-preview').setup()
--- require('marks').setup(
---   {  
---     mappings={
---     set_next = "<C-m>",
---   }
--- })
 require('nvim-cursorline').setup({
       cursorline = {
         enable = true,
