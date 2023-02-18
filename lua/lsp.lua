@@ -2,7 +2,7 @@ require("mason").setup()
 require("mason-lspconfig").setup()
 require("nvim-lsp-installer").setup({})
 
-local servers = { "pyright", "solargraph", "bashls", "eslint", "tsserver", "lua_ls", "emmet_ls" }
+local servers = { "pyright", "solargraph", "bashls", "eslint", "tsserver", "emmet_ls", "sumneko_lua" }
 for _, server in ipairs(servers) do
 	require("lspconfig")[server].setup({
 		capabilities = capabilities,
@@ -105,7 +105,7 @@ require("null-ls").setup({
 })
 
 require("mason-null-ls").setup({
-    ensure_installed = nil,
-    automatic_installation = true,
-    automatic_setup = false,
+	ensure_installed = nil,
+	automatic_installation = true,
+	automatic_setup = false,
 })
