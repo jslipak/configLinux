@@ -54,9 +54,8 @@ lua require('lsp')
 lua require('keymaps')
 
 """ Python3 VirtunlEnv
-let g:python3_host_prog='/bin/python'
-let g:python_host_prog='/bin/python'
-
+let g:python3_host_prog='/opt/homebrew/bin/python3.9'
+let g:python_host_prog='/opt/homebrew/bin/python3.9'
 
 "Copilot 
 let g:copilot_no_tab_map = v:true
