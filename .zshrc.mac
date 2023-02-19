@@ -124,6 +124,11 @@ export NVM_DIR="$HOME/.nvm"
 #export TWILIO_AUTH_TOKEN=201c8751ee5f1c692ad5649fb1337ffd
 #tmux ls && read tmux_session && tmux attach -t ${tmux_session:-default} || tmux new -s ${tmux_session:-default}
 
+# add variables and protect to expose in git 
+if [ -f .env ]; then
+  export $(cat .env | xargs)
+fi
+
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
