@@ -111,7 +111,9 @@ map("n", "<leader>pT", ":Telescope<CR>")
 map("n", "<leader>t", ":TodoTelescope<CR>")
 
 --LSP information
-map("n", "<leader>li", "<cmd>LspInfo<CR>", opts)
+map("n", "<leader>li", "<cmd>LspInfo<CR>")
+map('n', '<space>ld', "<cmd>lua vim.diagnostic.open_float()<cr>")
+map('n', '<space>ll', "<cmd>lua vim.diagnostic.setloclist()<cr>")
 -- Displays hover information about the symbol under the cursor
 map("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>")
 map("n", "<leader>lk", "<cmd>lua vim.lsp.buf.hover()<cr>")

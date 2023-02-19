@@ -2,25 +2,29 @@ require("mason").setup()
 require("mason-lspconfig").setup()
 require("nvim-lsp-installer").setup({})
 
-local servers = { "pyright", "solargraph", "bashls", "eslint", "tsserver", "emmet_ls", "sumneko_lua" }
+local servers = { "pyright", "solargraph", "ruby_ls", "bashls", "eslint", "tsserver", "emmet_ls", "lua_ls" }
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 for _, server in ipairs(servers) do
 	require("lspconfig")[server].setup({
+		root_dir = function()
+			return vim.fn.getcwd()
+		end,
 		capabilities = capabilities,
 		on_attach = on_attach,
 		flags = lsp_flags,
 	})
 end
 
+-- luasnip setup
+local luasnip = require("luasnip")
+
 -- CMP --> autocomplete
 local cmp = require("cmp")
 cmp.setup({
 	snippet = {
-		-- REQUIRED - you must specify a snippet engine
 		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-			-- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-			-- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-			-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+			luasnip.lsp_expand(args.body)
 		end,
 	},
 	window = {
@@ -37,7 +41,7 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
 		{ name = "vsnip" }, -- For vsnip users.
-		-- { name = 'luasnip' }, -- For luasnip users.
+		{ name = "luasnip" }, -- For luasnip users.
 		-- { name = 'ultisnips' }, -- For ultisnips users.
 		-- { name = 'snippy' }, -- For snippy users.
 	}, {
