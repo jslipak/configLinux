@@ -20,7 +20,6 @@ return require('packer').startup(function()
       use {
           "williamboman/mason.nvim",
           "williamboman/mason-lspconfig.nvim",
-          "williamboman/nvim-lsp-installer",
           "neovim/nvim-lspconfig",
           "jose-elias-alvarez/null-ls.nvim",
           "jay-babu/mason-null-ls.nvim"
