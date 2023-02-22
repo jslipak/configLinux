@@ -108,6 +108,7 @@ map("n", "<leader>pr", ":Telescope registers<CR>")
 map("n", "<leader>pb", ":Telescope buffers<CR>")
 map("n", "<leader>pj", ":Telescope jumplist<CR>")
 map("n", "<leader>pT", ":Telescope<CR>")
+map("n", "<leader>pp", ":Telescope projects<CR>")
 map("n", "<leader>t", ":TodoTelescope<CR>")
 
 --LSP information

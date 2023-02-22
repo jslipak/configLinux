@@ -167,6 +167,7 @@ local buttons = {
         { type = "text", val = "Quick links", opts = { hl = "SpecialComment", position = "center" } },
         { type = "padding", val = 1 },
         dashboard.button("e", "  New file", "<cmd>ene<CR>"),
+        dashboard.button("SPC P p", "  Projects"),
         dashboard.button("SPC P f", "  Find file"),
         dashboard.button("SPC p F", "  Live grep"),
     },
