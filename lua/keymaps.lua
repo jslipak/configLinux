@@ -113,8 +113,8 @@ map("n", "<leader>t", ":TodoTelescope<CR>")
 
 --LSP information
 map("n", "<leader>li", "<cmd>LspInfo<CR>")
-map('n', '<space>ld', "<cmd>lua vim.diagnostic.open_float()<cr>")
-map('n', '<space>ll', "<cmd>lua vim.diagnostic.setloclist()<cr>")
+map("n", "<space>ld", "<cmd>lua vim.diagnostic.open_float()<cr>")
+map("n", "<space>ll", "<cmd>lua vim.diagnostic.setloclist()<cr>")
 -- Displays hover information about the symbol under the cursor
 map("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>")
 map("n", "<leader>lk", "<cmd>lua vim.lsp.buf.hover()<cr>")
@@ -164,7 +164,7 @@ map("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format { async = true }<CR>", opts)
 map("n", "<leader>lF", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 -- Format selected text using LSP client
 --FIX: problem shortcut
-map("v", "<leader>lF", "<cmd>lua vim.lsp.buf.format(vim.fn.getpos(\"'<\"), vim.fn.getpos(\"'>\")", opts)
+map("v", "<leader>lF", '<cmd>lua vim.lsp.buf.format(vim.fn.getpos("\'<"), vim.fn.getpos("\'>")', opts)
 
 map("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
 map("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", { silent = true, noremap = true })
@@ -173,6 +173,10 @@ map("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", { silent = true, norema
 map("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { silent = true, noremap = true })
 map("n", "<leader>xR", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, noremap = true })
 
+vim.api.nvim_set_keymap("i", "<M-n>", "<Plug>luasnip-next-choice", {})
+vim.api.nvim_set_keymap("s", "<M-n>", "<Plug>luasnip-next-choice", {})
+vim.api.nvim_set_keymap("i", "<M-p>", "<Plug>luasnip-prev-choice", {})
+vim.api.nvim_set_keymap("s", "<M-p>", "<Plug>luasnip-prev-choice", {})
 -- Tab
 map("n", "gt", ":bnext<CR>")
 map("n", "gT", ":bprevious<CR>")
@@ -198,7 +202,9 @@ map("n", "<leader>sc", ":tabnew ~/.config/nvim/lua/config.lua<CR>")
 map("n", "<leader>sg", ":tabnew ~/.config/nvim/lua/generals.lua<CR>")
 map("n", "<leader>sp", ":tabnew ~/.config/nvim/lua/plugins.lua<CR>")
 map("n", "<leader>sk", ":tabnew ~/.config/nvim/lua/keymaps.lua<CR>")
-map("n", "<leader>sl", ":tabnew ~/.config/nvim/lua/lsp.lua<CR>")
+map("n", "<leader>sl", ":tabnew ~/.config/nvim/lua/lsp_config.lua<CR>")
+map("n", "<leader>sa", ":tabnew ~/.config/nvim/lua/cmp_config.lua<CR>")
+map("n", "<leader>ss", ":tabnew ~/.config/nvim/lua/snippet_config.lua<CR>")
 map("n", "<leader>sn", ":set rnu!<CR>")
 map("n", "<leader>so", ":Telescope vim_options<CR>")
 

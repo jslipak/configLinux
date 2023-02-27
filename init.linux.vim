@@ -49,7 +49,9 @@ lua require('generals')
 lua require('plugins')
 lua require('line_themes/dharmx_theme') 
 lua require('config')
-lua require('lsp')
+lua require('lsp_config')
+lua require('cmp_config')
+lua require('snippet_config')
 lua require('keymaps')
 
 """ Python3 VirtunlEnv
