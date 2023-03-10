@@ -60,10 +60,10 @@ let g:python_host_prog='/bin/python'
 
 
 "Copilot 
-let g:copilot_no_tab_map = v:true
-let g:copilot_filetypes = {
-\ '*': v:false,
-\ }
+" let g:copilot_no_tab_map = v:true
+" let g:copilot_filetypes = {
+" \ '*': v:false,
+" \ }
 
 "Codi
 let g:codi#virtual_text = 0
@@ -119,7 +119,7 @@ endfunction
 let g:perl_enabled = 1
 set wrap breakindent
 
-inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <silent><expr> <C-Space> coc#select()
-imap <silent><script><expr> <M-j> copilot#Accept("\<CR>")
+" inoremap <silent><expr> <c-space> coc#refresh()
+" inoremap <silent><expr> <C-Space> coc#select()
+" imap <silent><script><expr> <M-j> copilot#Accept("\<CR>")
 

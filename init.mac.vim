@@ -58,11 +58,11 @@ let g:python3_host_prog='/opt/homebrew/bin/python3.9'
 let g:python_host_prog='/opt/homebrew/bin/python3.9'
 
 "Copilot 
-let g:copilot_no_tab_map = v:true
-let g:copilot_filetypes = {
-\ '*': v:false,
-\ }
-
+" let g:copilot_no_tab_map = v:true
+" let g:copilot_filetypes = {
+" \ '*': v:false,
+" \ }
+"
 "Codi
 let g:codi#virtual_text = 0
 let g:codi#width = 20
@@ -117,7 +117,7 @@ endfunction
 let g:perl_enabled = 1
 set wrap breakindent
 
-inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <silent><expr> <C-Space> coc#select()
-imap <silent><script><expr> <M-j> copilot#Accept("\<CR>")
+" inoremap <silent><expr> <c-space> coc#refresh()
+" inoremap <silent><expr> <C-Space> coc#select()
+" imap <silent><script><expr> <M-j> copilot#Accept("\<CR>")
 

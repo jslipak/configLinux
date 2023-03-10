@@ -15,10 +15,11 @@ vim.g.mapleader = " "
 
 -- Copilot
 -- TODO: imap <silent><script><expr> <M-j> copilot#Accept("\<CR>")
-map("i", "<M-,>", "<Plug>(copilot-previous)")
-map("i", "<M-.>", "<Plug>(copilot-next)")
-map("i", "<M-;>", "<Plug>(copilot-suggest)")
-map("i", "<M-:>", "<C-O>:Copilot Panel<CR>")
+-- map("i", "<M-,>", "<Plug>(copilot-previous)")
+-- map("i", "<M-.>", "<Plug>(copilot-next)")
+-- map("i", "<M-;>", "<Plug>(copilot-suggest)")
+-- map("i", "<M-:>", "<C-O>:Copilot Panel<CR>")
+
 -- F
 map("n", "<F3>", ":set invpaste paste?<CR>")
 vim.opt.pastetoggle = "<F3>"
