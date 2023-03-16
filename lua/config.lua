@@ -220,3 +220,9 @@ require("project_nvim").setup {
 require("harpoon").setup()
 require("telescope").load_extension('harpoon')
 require('telescope').load_extension('projects')
+require("copilot").setup({
+  suggestion = { enabled = false },
+  panel = { enabled = false },
+})
+require("copilot_cmp").setup()
+

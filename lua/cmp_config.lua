@@ -2,6 +2,7 @@
 local kind_icons = {
 	Text = "",
 	Method = "",
+	Copilot = "",
 	Function = "",
 	Constructor = "",
 	Field = "",
@@ -127,3 +128,5 @@ cmp.setup.cmdline({ ":" }, {
         { name = 'buffer' }
       }
     })
+
+	

@@ -17,6 +17,8 @@ return require("packer").startup(function()
 	--
 	use("hrsh7th/cmp-vsnip")
 	use("hrsh7th/vim-vsnip")
+	use { "zbirenbaum/copilot.lua" }
+	use { "zbirenbaum/copilot-cmp" }
 	-- LSP
 	use({
 		"williamboman/mason.nvim",
@@ -72,6 +74,11 @@ return require("packer").startup(function()
 	})
 	use({ "nvim-treesitter/nvim-treesitter" })
 	use("rrethy/nvim-treesitter-endwise")
+	-- Chrome 
+	use {
+    'glacambre/firenvim',
+    run = function() vim.fn['firenvim#install'](0) end 
+	}
 	-- colors and icons
 	use("ayu-theme/ayu-vim")
 	use("kyazdani42/nvim-web-devicons")
@@ -98,7 +105,6 @@ return require("packer").startup(function()
 	})
 	use("ThePrimeagen/harpoon")
 	-- git
-	use("github/copilot.vim")
 	use("tpope/vim-fugitive")
 	use("airblade/vim-gitgutter")
 	use("mhinz/vim-signify")

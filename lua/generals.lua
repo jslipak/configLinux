@@ -42,4 +42,3 @@ vim.opt.sidescrolloff = 8
 vim.opt.showmatch = true
 vim.cmd.colorscheme('ayu')
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
-
