@@ -59,12 +59,6 @@ let g:python3_host_prog='/bin/python'
 let g:python_host_prog='/bin/python'
 
 
-"Copilot 
-" let g:copilot_no_tab_map = v:true
-" let g:copilot_filetypes = {
-" \ '*': v:false,
-" \ }
-
 "Codi
 let g:codi#virtual_text = 0
 let g:codi#width = 20
