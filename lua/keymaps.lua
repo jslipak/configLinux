@@ -77,7 +77,6 @@ map("i", "<C-e>", "<ESC>A")
 map("i", "<C-a>", "<ESC>I")
 map("i", "<M-h>", "<C-O>:SidewaysLeft<CR>")
 map("i", "<M-l>", "<C-O>:SidewaysRight<CR>")
-map("i", "<C-l>", "<C-O>:w<CR>")
 
 -- Movement
 map("n", "<leader>ma", ":HopAnywhere<CR>")
@@ -93,7 +92,6 @@ map("i", "<C-j>", "<C-o>:HopChar1<CR>")
 -- Nomal mode
 map("n", "<M-h>", ":SidewaysLeft<CR>")
 map("n", "<M-l>", ":SidewaysRight<CR>")
-map("n", "<C-l>", ":w<CR>")
 map("n", "<C-j>", ":HopChar1<CR>")
 map("n", "<leader>o", 'o<Esc>0"_D')
 map("n", "<leader>O", 'O<Esc>0"_D')
