@@ -48,6 +48,11 @@ return require("packer").startup(function()
 	-- Packer
 	-- base
 	use("nvim-lua/plenary.nvim")
+	use {
+  'nvim-telescope/telescope.nvim', tag = '0.1.4',
+-- or                            , branch = '0.1.x',
+  requires = { {'nvim-lua/plenary.nvim'} }
+}
 	use("MunifTanjim/nui.nvim")
 	use({
 		"kylechui/nvim-surround",
@@ -63,20 +68,6 @@ return require("packer").startup(function()
 		config = function()
 			require("nvim-autopairs").setup({})
 		end,
-	})
-	-- ChatGPT, Autocomplete
-	use({
-		"jackMort/ChatGPT.nvim",
-		config = function()
-			require("chatgpt").setup({
-				-- optional configuration
-			})
-		end,
-		requires = {
-			"MunifTanjim/nui.nvim",
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim",
-		},
 	})
 	use({ "nvim-treesitter/nvim-treesitter" })
 	use("rrethy/nvim-treesitter-endwise")
