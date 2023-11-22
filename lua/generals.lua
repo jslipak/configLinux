@@ -21,15 +21,15 @@ vim.opt.termguicolors = true -- habilita una gama de colores extendida (la mayor
 vim.opt.timeoutlen = 100 -- tiempo a esperar para que se complete el mapeo de una secuencia (en milisegundos)
 vim.opt.title = true -- establece el titulo de la ventan al valor de titlestring
 vim.opt.titlestring = "%<%F%=%l/%L - nvim" -- patrón para colocar el valor del titulo de la ventana
-vim.opt.undodir = vim.fn.stdpath "cache" .. "/undo"
+vim.opt.undodir = vim.fn.stdpath("cache") .. "/undo"
 vim.opt.undofile = true -- habilita el deshacer con persistencia
 vim.opt.updatetime = 300 -- completado más rapido
 vim.opt.writebackup = false -- si un archivo se comienza a editar por otro programa (o se modifica por otro programa) entonces no se permite realizar esta edición
 vim.opt.expandtab = true -- convierte tabs a espacios
 vim.opt.shiftwidth = 2 -- el numero de espacios que se agregan en una identación
-vim.opt.tabstop = 2 -- inserta 2 espacios por cada tab 
+vim.opt.tabstop = 2 -- inserta 2 espacios por cada tab
 vim.opt.cursorline = true -- resalta la línea actual
-vim.opt.cursorcolumn= false -- resalta la línea actual
+vim.opt.cursorcolumn = false -- resalta la línea actual
 vim.opt.number = true -- activa las líneas enumeradas
 vim.opt.relativenumber = false -- activa los numeros relativos a la línea actual
 vim.opt.numberwidth = 4 -- establece el ancho de una columna a 4
@@ -40,5 +40,11 @@ vim.opt.spelllang = "es" -- importante para editar escritos en español
 vim.opt.scrolloff = 8 -- cambia la cantidad de líneas del scroll
 vim.opt.sidescrolloff = 8
 vim.opt.showmatch = true
-vim.cmd.colorscheme('ayu')
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
+
+if vim.g.vscode then
+	-- VSCode extension
+else
+	-- ordinary Neovim
+	vim.cmd.colorscheme("ayu")
+end
