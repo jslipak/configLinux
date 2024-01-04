@@ -13,21 +13,21 @@ Switch to Next Keyboard Layout=Ctrl+Alt+K
 [StandardShortcuts]
 AboutApp=
 AboutKDE=
-Activate Next Tab=Ctrl+PgDown; Ctrl+]
-Activate Previous Tab=Ctrl+PgUp; Ctrl+[
+Activate Next Tab=Ctrl+]; Ctrl+PgDown
+Activate Previous Tab=Ctrl+[; Ctrl+PgUp
 ActualSize=Ctrl+0
 AddBookmark=Ctrl+B
-Back=Alt+Left; Back
+Back=Back; Alt+Left
 BackwardWord=Ctrl+Left
 Begin=Ctrl+Home
 BeginningOfLine=Home
 Clear=
-Close=Ctrl+W; Ctrl+Esc
+Close=Ctrl+Esc; Ctrl+W
 ConfigureNotifications=
 ConfigureToolbars=
 Copy=Ctrl+Ins; Ctrl+C
 CreateFolder=F10
-Cut=Ctrl+X; Shift+Del
+Cut=Shift+Del; Ctrl+X
 DeleteFile=Shift+Del
 DeleteWordBack=Ctrl+Backspace
 DeleteWordForward=Ctrl+Del
@@ -44,14 +44,14 @@ FindPrev=Shift+F3
 FitToHeight=
 FitToPage=
 FitToWidth=
-Forward=Alt+Right; Forward
+Forward=Forward; Alt+Right
 ForwardWord=Ctrl+Right
 FullScreen=Ctrl+Shift+F
 Goto=
 GotoLine=Ctrl+G
 GotoPage=
 Help=F1
-Home=Alt+Home; Home Page
+Home=Home Page; Alt+Home
 KeyBindings=Ctrl+Alt+,
 Mail=
 MoveToTrash=Del
@@ -60,7 +60,7 @@ Next=PgDown
 NextCompletion=Ctrl+Down
 Open=Ctrl+O
 OpenRecent=
-Paste=Shift+Ins; Ctrl+V
+Paste=Ctrl+V; Shift+Ins
 Paste Selection=Ctrl+Shift+Ins
 Preferences=Ctrl+Shift+,
 PrevCompletion=Ctrl+Up
@@ -69,7 +69,7 @@ PrintPreview=
 Prior=PgUp
 Quit=Ctrl+Q
 Redo=Ctrl+Shift+Z
-Reload=F5; Refresh
+Reload=Refresh; F5
 RenameFile=F2
 Replace=Ctrl+R
 ReportBug=
@@ -100,13 +100,13 @@ ZoomOut=Ctrl+-
 Toggle Screen Reader On and Off=Meta+Alt+S
 
 [kcm_touchpad][Global Shortcuts]
-Disable Touchpad=Touchpad Off
+Disable Touchpad=
 Enable Touchpad=Touchpad On
 Toggle Touchpad=Touchpad Toggle
 
 [kded5][Global Shortcuts]
 Show System Activity=Ctrl+Esc
-display=Meta+P; Display
+display=Display; Meta+P
 
 [khotkeys][Global Shortcuts]
 {d03619b6-9b3c-48cc-9d9c-a2aadb485550}=
@@ -127,11 +127,11 @@ Log Out Without Confirmation=
 Reboot Without Confirmation=
 
 [kwin][Global Shortcuts]
-Activate Window Demanding Attention=Ctrl+Alt+A
+Activate Window Demanding Attention=
 Decrease Opacity=
 Edit Tiles=Meta+T
 Expose=Ctrl+F9
-ExposeAll=Launch (C); Ctrl+F10
+ExposeAll=Ctrl+F10; Launch (C)
 ExposeClass=Ctrl+F7
 ExposeClassCurrentDesktop=
 Increase Opacity=
@@ -153,8 +153,8 @@ Switch One Desktop Up=
 Switch One Desktop to the Left=
 Switch One Desktop to the Right=
 Switch Window Down=Meta+Alt+Down
-Switch Window Left=Meta+Alt+H; Meta+Alt+Left
-Switch Window Right=Meta+Alt+Right; Meta+Alt+L
+Switch Window Left=Meta+Alt+Left; Meta+Alt+H
+Switch Window Right=Meta+Alt+L; Meta+Alt+Right
 Switch Window Up=Meta+Alt+Up
 Switch to Desktop 1=Meta+F1
 Switch to Desktop 10=Meta+F10
@@ -198,11 +198,11 @@ Walk Through Desktop List=
 Walk Through Desktop List (Reverse)=
 Walk Through Desktops=
 Walk Through Desktops (Reverse)=
-Walk Through Windows=Meta+Tab
+Walk Through Windows=Alt+Tab
 Walk Through Windows (Reverse)=Alt+Shift+Tab
 Walk Through Windows Alternative=
 Walk Through Windows Alternative (Reverse)=
-Walk Through Windows of Current Application=Alt+A
+Walk Through Windows of Current Application=Meta+Tab
 Walk Through Windows of Current Application (Reverse)=Alt+~
 Walk Through Windows of Current Application Alternative=Alt+Y
 Walk Through Windows of Current Application Alternative (Reverse)=
@@ -279,7 +279,7 @@ Window to Screen 4=
 Window to Screen 5=
 Window to Screen 6=
 Window to Screen 7=
-view_actual_size=Meta+0
+view_actual_size=
 view_zoom_in=Meta+=
 view_zoom_out=Meta+-
 
@@ -306,7 +306,7 @@ _launch=Ctrl+Alt+T
 
 [org.kde.krunner.desktop][Global Shortcuts]
 RunClipboard=Alt+Shift+F2
-_launch=Alt+F2; Alt+Space; Search
+_launch=Alt+Space; Alt+F2; Search
 
 [org.kde.plasma.emojier.desktop][Global Shortcuts]
 _launch=Meta+.
@@ -333,16 +333,16 @@ Toggle Keyboard Backlight=Keyboard Light On/Off
 Turn Off Screen=
 
 [plasmashell][Global Shortcuts]
-activate task manager entry 1=Meta+Ctrl+Shift+T
-activate task manager entry 10=Meta+Ctrl+Shift+A
-activate task manager entry 2=Meta+Ctrl+Shift+B
-activate task manager entry 3=Meta+Ctrl+Shift+W
-activate task manager entry 4=Meta+Ctrl+Shift+E
-activate task manager entry 5=Meta+Ctrl+Shift+D
-activate task manager entry 6=Meta+Ctrl+Shift+V
-activate task manager entry 7=Meta+Ctrl+Shift+F
-activate task manager entry 8=Meta+Ctrl+Shift+N
-activate task manager entry 9=Meta+Ctrl+Shift+G
+activate task manager entry 1=Meta+Ctrl+Shift+T; Meta+1
+activate task manager entry 10=Meta+Ctrl+Shift+C; Meta+0
+activate task manager entry 2=Meta+Ctrl+Shift+B; Meta+2
+activate task manager entry 3=Meta+3; Meta+Ctrl+Shift+W
+activate task manager entry 4=Meta+Ctrl+Shift+E; Meta+4
+activate task manager entry 5=Meta+5; Meta+Ctrl+Shift+D
+activate task manager entry 6=Meta+Ctrl+Shift+V; Meta+6
+activate task manager entry 7=Meta+Ctrl+Shift+F; Meta+7
+activate task manager entry 8=Meta+Ctrl+Shift+N; Meta+8
+activate task manager entry 9=Meta+Ctrl+Shift+G; Meta+9
 activate widget 4=Alt+F1
 clear-history=
 clipboard_action=Ctrl+Alt+X

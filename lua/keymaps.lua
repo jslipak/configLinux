@@ -77,7 +77,7 @@ map("i", "<C-e>", "<ESC>A")
 map("i", "<C-a>", "<ESC>I")
 map("i", "<M-h>", "<C-O>:SidewaysLeft<CR>")
 map("i", "<M-l>", "<C-O>:SidewaysRight<CR>")
-
+map("i", "<M-s>", "<C-O>:w<CR>")
 -- Movement
 map("n", "<leader>ma", ":HopAnywhere<CR>")
 map("n", "<leader>m1", ":HopChar1<CR>")
@@ -95,6 +95,7 @@ map("n", "<M-l>", ":SidewaysRight<CR>")
 map("n", "<C-j>", ":HopChar1<CR>")
 map("n", "<leader>o", 'o<Esc>0"_D')
 map("n", "<leader>O", 'O<Esc>0"_D')
+map("n", "<M-s>", ":w<CR>")
 
 -- Panels
 map("n", "<leader>pf", ":Telescope fd<CR>")
