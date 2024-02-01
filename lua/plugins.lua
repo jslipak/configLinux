@@ -136,6 +136,9 @@ return require("packer").startup(function()
 	use("slim-template/vim-slim")
 	use("metakirby5/codi.vim")
 	use("tpope/vim-rvm")
+	
+	-- GO 
+	use("fatih/vim-go")
 
 	--Sessions
 	use({
