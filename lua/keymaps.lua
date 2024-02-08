@@ -113,29 +113,32 @@ map("n", "<leader>t", ":TodoTelescope<CR>")
 
 --LSP information
 map("n", "<leader>li", "<cmd>LspInfo<CR>")
-map("n", "<space>ld", "<cmd>lua vim.diagnostic.open_float()<cr>")
-map("n", "<space>ll", "<cmd>lua vim.diagnostic.setloclist()<cr>")
--- Displays hover information about the symbol under the cursor
-map("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>")
-map("n", "<leader>lk", "<cmd>lua vim.lsp.buf.hover()<cr>")
--- Jump to the definition
+-- show me a popup with the error , not use frecuntly because the linter show me the error
+map("n", "<space>le", "<cmd>lua vim.diagnostic.open_float()<cr>")
+-- Window show list of errors
+map("n", "<space>ll", "<cmd>lua vim.diagnostic.setloclist()<cr>") 
+-- Jump to the definition into function or scope
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>")
 map("n", "<leader>lgd", "<cmd>lua vim.lsp.buf.definition()<cr>")
+-- Jumps to the definition of the type symbol
+map("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>")
+map("n", "<leader>lgo", "<cmd>lua vim.lsp.buf.type_definition()<cr>")
 -- Jump to declaration
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>")
 map("n", "<leader>lgD", "<cmd>lua vim.lsp.buf.declaration()<cr>")
 -- Lists all the implementations for the symbol under the cursor
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>")
 map("n", "<leader>lgi", "<cmd>lua vim.lsp.buf.implementation()<cr>")
--- Jumps to the definition of the type symbol
-map("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>")
-map("n", "<leader>lgo", "<cmd>lua vim.lsp.buf.type_definition()<cr>")
 -- Lists all the references
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>")
 map("n", "<leader>lgr", "<cmd>lua vim.lsp.buf.references()<cr>")
 -- Displays a function's signature information
 map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
 map("n", "<leader>lh", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
+-- Displays hover information about the symbol under the cursor
+map("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>")
+map("n", "<leader>lk", "<cmd>lua vim.lsp.buf.hover()<cr>")
+
 -- Renames all references to the symbol under the cursor
 map("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>")
 map("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>")
