@@ -211,10 +211,12 @@ map("n", "<leader>ss", ":tabnew ~/.config/nvim/lua/snippet_config.lua<CR>")
 map("n", "<leader>sn", ":set rnu!<CR>")
 map("n", "<leader>so", ":Telescope vim_options<CR>")
 
--- Visual Mode
--- NOTE: make this map in keymaps in LUA
--- map('v', 'J', ":m '>+1<CR>gv=gv'")
--- map('v', 'K', ":m '<-2<CR>gv=gv'")
+-- Move lines
+map("n", "<M-j>", ":m .+1<CR>==")
+map("n", "<M-k>", ":m .-2<CR>==")
+-- Move lines visual mode
+map("v", "<M-j>", ":m '>+1<CR>gv=gv")
+map("v", "<M-k>", ":m '<-2<CR>gv=gv")
 
 -- Quit, Exit and Save
 map("n", "<leader>qt", ":bd<CR>")
