@@ -13,13 +13,6 @@ end
 -- Change leader to a comma
 vim.g.mapleader = " "
 
--- Copilot
--- TODO: imap <silent><script><expr> <M-j> copilot#Accept("\<CR>")
--- map("i", "<M-,>", "<Plug>(copilot-previous)")
--- map("i", "<M-.>", "<Plug>(copilot-next)")
--- map("i", "<M-;>", "<Plug>(copilot-suggest)")
--- map("i", "<M-:>", "<C-O>:Copilot Panel<CR>")
-
 -- F
 map("n", "<F3>", ":set invpaste paste?<CR>")
 vim.opt.pastetoggle = "<F3>"
@@ -88,7 +81,7 @@ map("n", "<leader>mv", ":HopVertical<CR>")
 map("n", "<leader>mp", ":HopPattern<CR>")
 map("n", "<leader>mw", ":HopWord<CR>")
 map("i", "<C-j>", "<C-o>:HopChar1<CR>")
-
+map("n", "<leader>w", ":lua require('nvim-window').pick()<CR>",{desc = 'Pick a window'})
 -- Nomal mode
 map("n", "<C-h>", ":SidewaysLeft<CR>")
 map("n", "<C-l>", ":SidewaysRight<CR>")
@@ -110,6 +103,7 @@ map("n", "<leader>pj", ":Telescope jumplist<CR>")
 map("n", "<leader>pT", ":Telescope<CR>")
 map("n", "<leader>pp", ":Telescope projects<CR>")
 map("n", "<leader>t", ":TodoTelescope<CR>")
+map("n", "<leader>pc", ":Telescope colorscheme<CR>")
 
 --LSP information
 map("n", "<leader>li", "<cmd>LspInfo<CR>")
@@ -185,15 +179,15 @@ map("n", "gt", ":bnext<CR>")
 map("n", "gT", ":bprevious<CR>")
 map("n", "<leader>mt", ":BufferLinePick<CR>")
 map("n", "<F4>", ":BufferLinePickClose<CR>")
-map("n", "<leader>1", "<Cmd>BufferLineGoToBuffer 1<CR>")
-map("n", "<leader>2", "<Cmd>BufferLineGoToBuffer 2<CR>")
-map("n", "<leader>3", "<Cmd>BufferLineGoToBuffer 3<CR>")
-map("n", "<leader>4", "<Cmd>BufferLineGoToBuffer 4<CR>")
-map("n", "<leader>5", "<Cmd>BufferLineGoToBuffer 5<CR>")
-map("n", "<leader>6", "<Cmd>BufferLineGoToBuffer 6<CR>")
-map("n", "<leader>7", "<Cmd>BufferLineGoToBuffer 7<CR>")
-map("n", "<leader>8", "<Cmd>BufferLineGoToBuffer 8<CR>")
-map("n", "<leader>9", "<Cmd>BufferLineGoToBuffer 9<CR>")
+map("n", "<leader>1", "<Cmd>BufferLineGoToBuffer 1<CR>",{desc = 'go Tab1'})
+map("n", "<leader>2", "<Cmd>BufferLineGoToBuffer 2<CR>",{desc = 'go Tab2'})
+map("n", "<leader>3", "<Cmd>BufferLineGoToBuffer 3<CR>",{desc = 'go Tab3'})
+map("n", "<leader>4", "<Cmd>BufferLineGoToBuffer 4<CR>",{desc = 'go Tab4'})
+map("n", "<leader>5", "<Cmd>BufferLineGoToBuffer 5<CR>",{desc = 'go Tab5'})
+map("n", "<leader>6", "<Cmd>BufferLineGoToBuffer 6<CR>",{desc = 'go Tab6'})
+map("n", "<leader>7", "<Cmd>BufferLineGoToBuffer 7<CR>",{desc = 'go Tab7'})
+map("n", "<leader>8", "<Cmd>BufferLineGoToBuffer 8<CR>",{desc = 'go Tab8'})
+map("n", "<leader>9", "<Cmd>BufferLineGoToBuffer 9<CR>",{desc = 'go Tab9'})
 
 -- Todos
 map("n", "<leader>t", ":TodoTelescope<CR>")
@@ -212,11 +206,11 @@ map("n", "<leader>sn", ":set rnu!<CR>")
 map("n", "<leader>so", ":Telescope vim_options<CR>")
 
 -- Move lines
-map("n", "<M-j>", ":m .+1<CR>==")
-map("n", "<M-k>", ":m .-2<CR>==")
+map("n", "<M-j>", ":m .+1<CR>==", {desc= "move line(s) down"})
+map("n", "<M-k>", ":m .-2<CR>==", {desc= "move line(s) up"})
 -- Move lines visual mode
-map("v", "<M-j>", ":m '>+1<CR>gv=gv")
-map("v", "<M-k>", ":m '<-2<CR>gv=gv")
+map("v", "<M-j>", ":m '>+1<CR>gv=gv", {desc = "move line(s) down"})
+map("v", "<M-k>", ":m '<-2<CR>gv=gv", {desc = "move line(s) up"})
 
 -- Quit, Exit and Save
 map("n", "<leader>qt", ":bd<CR>")

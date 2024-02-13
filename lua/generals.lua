@@ -46,5 +46,5 @@ if vim.g.vscode then
 	-- VSCode extension
 else
 	-- ordinary Neovim
-	vim.cmd.colorscheme("ayu")
+	vim.cmd.colorscheme("noctis")
 end

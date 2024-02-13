@@ -11,20 +11,20 @@ return require("packer").startup(function()
 	use("hrsh7th/cmp-path")
 	use("hrsh7th/cmp-cmdline")
 	use("hrsh7th/nvim-cmp")
-	use("L3MON4D3/LuaSnip") -- Snippets plugin
+	use("L3MON4D3/LuaSnip")        -- Snippets plugin
 	use("saadparwaiz1/cmp_luasnip") -- Snippets source for nvim-cmp
-	use "rafamadriz/friendly-snippets"
+	use("rafamadriz/friendly-snippets")
 	--
 	use("hrsh7th/cmp-vsnip")
 	use("hrsh7th/vim-vsnip")
-	use { "zbirenbaum/copilot.lua" }
-	use {
-  "zbirenbaum/copilot-cmp",
-  after = { "copilot.lua" },
-  config = function ()
-    require("copilot_cmp").setup()
-  end
-}
+	use({ "zbirenbaum/copilot.lua" })
+	use({
+		"zbirenbaum/copilot-cmp",
+		after = { "copilot.lua" },
+		config = function()
+			require("copilot_cmp").setup()
+		end,
+	})
 	-- LSP
 	use({
 		"williamboman/mason.nvim",
@@ -48,12 +48,14 @@ return require("packer").startup(function()
 	-- Packer
 	-- base
 	use("nvim-lua/plenary.nvim")
-	use {
-  'nvim-telescope/telescope.nvim', tag = '0.1.4',
--- or                            , branch = '0.1.x',
-  requires = { {'nvim-lua/plenary.nvim'} }
-}
+	use({
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.4",
+		-- or                            , branch = '0.1.x',
+		requires = { { "nvim-lua/plenary.nvim" } },
+	})
 	use("MunifTanjim/nui.nvim")
+	use({"rcarriga/nvim-notify"})
 	use({
 		"kylechui/nvim-surround",
 		tag = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -71,16 +73,36 @@ return require("packer").startup(function()
 	})
 	use({ "nvim-treesitter/nvim-treesitter" })
 	use("rrethy/nvim-treesitter-endwise")
-	-- Chrome 
-	use {
-    'glacambre/firenvim',
-    run = function() vim.fn['firenvim#install'](0) end 
-	}
+	-- Chrome
+	use({
+		"glacambre/firenvim",
+		run = function()
+			vim.fn["firenvim#install"](0)
+		end,
+	})
+	use({'famiu/bufdelete.nvim'})
 	-- colors and icons
 	use("ayu-theme/ayu-vim")
 	use("kyazdani42/nvim-web-devicons")
+	use("oxfist/night-owl.nvim")
 	use("norcalli/nvim-colorizer.lua")
 	use("uga-rosa/ccc.nvim")
+	use({
+		"olivercederborg/poimandres.nvim",
+		config = function()
+			require("poimandres").setup({})
+		end,
+	})
+	use({ "uloco/bluloco.nvim", requires = { "rktjmp/lush.nvim" } })
+	use({ "dasupradyumna/midnight.nvim" })
+	use({ "kartikp10/noctis.nvim", requires = { "rktjmp/lush.nvim" } })
+	use({ "lalitmee/cobalt2.nvim", requires = "tjdevries/colorbuddy.nvim" })
+	use({ "zootedb0t/citruszest.nvim" })
+	use({ "AstroNvim/astrotheme" })
+	use({ "kihachi2000/yash.nvim" })
+	use({ "water-sucks/darkrose.nvim" })
+	use({ "DeviusVim/deviuspro.nvim" })
+	use({ "datsfilipe/vesper.nvim" })
 
 	-- explorer file
 	use({ --nvim-tree explorer
@@ -88,7 +110,7 @@ return require("packer").startup(function()
 		requires = {
 			"nvim-tree/nvim-web-devicons", -- optional, for file icons
 		},
-		tag = "nightly", -- optional, updated every week. (see issue #1193)
+		tag = "nightly",              -- optional, updated every week. (see issue #1193)
 	})
 	use({
 		"ahmedkhalf/project.nvim",
@@ -136,8 +158,8 @@ return require("packer").startup(function()
 	use("slim-template/vim-slim")
 	use("metakirby5/codi.vim")
 	use("tpope/vim-rvm")
-	
-	-- GO 
+
+	-- GO
 	use("fatih/vim-go")
 
 	--Sessions
@@ -149,10 +171,10 @@ return require("packer").startup(function()
 			require("telescope").load_extension("persisted") -- To load the telescope extension
 		end,
 	})
-	--Tab
+	--Tab and windows
 	use({ "alvarosevilla95/luatab.nvim", requires = "kyazdani42/nvim-web-devicons" })
 	use({ "akinsho/bufferline.nvim", tag = "v3.*", requires = "nvim-tree/nvim-web-devicons" })
-
+  use({  "yorickpeterse/nvim-window"})
 	--UI
 	use({
 		"folke/todo-comments.nvim",

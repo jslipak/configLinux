@@ -132,13 +132,7 @@ require("nvim-tree").setup({
   },
 })
 
-require('which-key').setup({
-	plugins = {
-		presets = {
-			operators = false,
-		},
-	},
-})
+require('which-key').setup()
 require('Comment').setup()
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
