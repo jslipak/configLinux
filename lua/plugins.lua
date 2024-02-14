@@ -73,6 +73,11 @@ return require("packer").startup(function()
 	})
 	use({ "nvim-treesitter/nvim-treesitter" })
 	use("rrethy/nvim-treesitter-endwise")
+	use({
+  "nvim-treesitter/nvim-treesitter-textobjects",
+  after = "nvim-treesitter",
+  requires = "nvim-treesitter/nvim-treesitter",
+})
 	-- Chrome
 	use({
 		"glacambre/firenvim",

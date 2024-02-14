@@ -86,8 +86,8 @@ map("n", "<leader>w", ":lua require('nvim-window').pick()<CR>",{desc = 'Pick a w
 map("n", "<C-h>", ":SidewaysLeft<CR>")
 map("n", "<C-l>", ":SidewaysRight<CR>")
 map("n", "<C-j>", ":HopChar1<CR>")
-map("n", "<leader>o", 'o<Esc>0"_D')
-map("n", "<leader>O", 'O<Esc>0"_D')
+map("n", "<leader>o", 'o<Esc>0"_D', {desc= "Insert line Below"})
+map("n", "<leader>O", 'O<Esc>0"_D', {desc= "Insert line Above" })
 map("n", "<M-s>", ":w<CR>")
 
 -- Panels
@@ -174,6 +174,7 @@ vim.api.nvim_set_keymap("i", "<M-n>", "<Plug>luasnip-next-choice", {})
 vim.api.nvim_set_keymap("s", "<M-n>", "<Plug>luasnip-next-choice", {})
 vim.api.nvim_set_keymap("i", "<M-p>", "<Plug>luasnip-prev-choice", {})
 vim.api.nvim_set_keymap("s", "<M-p>", "<Plug>luasnip-prev-choice", {})
+
 -- Tab
 map("n", "gt", ":bnext<CR>")
 map("n", "gT", ":bprevious<CR>")
