@@ -213,6 +213,11 @@ map("n", "<M-k>", ":m .-2<CR>==", {desc= "move line(s) up"})
 map("v", "<M-j>", ":m '>+1<CR>gv=gv", {desc = "move line(s) down"})
 map("v", "<M-k>", ":m '<-2<CR>gv=gv", {desc = "move line(s) up"})
 
+-- toggel terminal
+map("n", "<C-\\>", ":ToggleTerm direction=float<CR>")
+map("t", "<C-\\>", "<C-\\><C-n>:ToggleTerm direction=float<CR>")
+map("i", "<C-\\>", "<C-\\><C-n>:ToggleTerm direction=float<CR>")
+
 -- Quit, Exit and Save
 map("n", "<leader>qt", ":bd<CR>")
 map("n", "<leader>qv", ":qa<CR>")

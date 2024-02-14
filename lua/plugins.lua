@@ -11,7 +11,7 @@ return require("packer").startup(function()
 	use("hrsh7th/cmp-path")
 	use("hrsh7th/cmp-cmdline")
 	use("hrsh7th/nvim-cmp")
-	use("L3MON4D3/LuaSnip")        -- Snippets plugin
+	use("L3MON4D3/LuaSnip") -- Snippets plugin
 	use("saadparwaiz1/cmp_luasnip") -- Snippets source for nvim-cmp
 	use("rafamadriz/friendly-snippets")
 	--
@@ -55,7 +55,7 @@ return require("packer").startup(function()
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
 	use("MunifTanjim/nui.nvim")
-	use({"rcarriga/nvim-notify"})
+	use({ "rcarriga/nvim-notify" })
 	use({
 		"kylechui/nvim-surround",
 		tag = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -74,10 +74,10 @@ return require("packer").startup(function()
 	use({ "nvim-treesitter/nvim-treesitter" })
 	use("rrethy/nvim-treesitter-endwise")
 	use({
-  "nvim-treesitter/nvim-treesitter-textobjects",
-  after = "nvim-treesitter",
-  requires = "nvim-treesitter/nvim-treesitter",
-})
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		after = "nvim-treesitter",
+		requires = "nvim-treesitter/nvim-treesitter",
+	})
 	-- Chrome
 	use({
 		"glacambre/firenvim",
@@ -85,7 +85,7 @@ return require("packer").startup(function()
 			vim.fn["firenvim#install"](0)
 		end,
 	})
-	use({'famiu/bufdelete.nvim'})
+	use({ "famiu/bufdelete.nvim" })
 	-- colors and icons
 	use("ayu-theme/ayu-vim")
 	use("kyazdani42/nvim-web-devicons")
@@ -115,7 +115,7 @@ return require("packer").startup(function()
 		requires = {
 			"nvim-tree/nvim-web-devicons", -- optional, for file icons
 		},
-		tag = "nightly",              -- optional, updated every week. (see issue #1193)
+		tag = "nightly", -- optional, updated every week. (see issue #1193)
 	})
 	use({
 		"ahmedkhalf/project.nvim",
@@ -179,7 +179,7 @@ return require("packer").startup(function()
 	--Tab and windows
 	use({ "alvarosevilla95/luatab.nvim", requires = "kyazdani42/nvim-web-devicons" })
 	use({ "akinsho/bufferline.nvim", tag = "v3.*", requires = "nvim-tree/nvim-web-devicons" })
-  use({  "yorickpeterse/nvim-window"})
+	use({ "yorickpeterse/nvim-window" })
 	--UI
 	use({
 		"folke/todo-comments.nvim",
@@ -244,6 +244,13 @@ return require("packer").startup(function()
 		tag = "v0.2.0",
 		config = function()
 			require("modes").setup()
+		end,
+	})
+	use({
+		"akinsho/toggleterm.nvim",
+		tag = "*",
+		config = function()
+			require("toggleterm").setup()
 		end,
 	})
 end)
