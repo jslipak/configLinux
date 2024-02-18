@@ -127,7 +127,19 @@ return require("packer").startup(function()
 			})
 		end,
 	})
-	use("ThePrimeagen/harpoon")
+	-- use("ThePrimeagen/harpoon")
+	use({
+		"otavioschwanck/arrow.nvim",
+		config = function()
+			require("arrow").setup({
+				show_icons = true,
+				always_show_path = true,
+				separate_by_branch = true,
+				leader_key = ";", -- Recommended to be a single key
+				window = { border = "double" },
+			})
+		end,
+	})
 	-- git
 	use("tpope/vim-fugitive")
 	use("airblade/vim-gitgutter")
@@ -231,7 +243,7 @@ return require("packer").startup(function()
 			require("which-key").setup({
 				plugins = {
 					marks = true, -- shows a list of your marks on ' and `
-					registers = false, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+					registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
 				},
 			})
 		end,

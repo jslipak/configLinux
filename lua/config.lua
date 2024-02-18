@@ -227,22 +227,21 @@ require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
 require("alpha").setup(require("alpha_themes/theta").config)
 require("registers").setup()
 require("todo-comments").setup({})
-require("nvim-autopairs").setup({fast_wrap = {
-      map = '<M-e>',
-      chars = { '{', '[', '(', '"', "'" },
-      pattern = [=[[%'%"%>%]%)%}%,]]=],
-      end_key = '$',
-      before_key = 'h',
-      after_key = 'l',
-      cursor_pos_before = true,
-      keys = 'qwertyuiopzxcvbnmasdfghjkl',
-      manual_position = true,
-      highlight = 'Search',
-      highlight_grey='Comment'
-    }
-	}
-)
-
+require("nvim-autopairs").setup({
+	fast_wrap = {
+		map = "<M-e>",
+		chars = { "{", "[", "(", '"', "'" },
+		pattern = [=[[%'%"%>%]%)%}%,]]=],
+		end_key = "$",
+		before_key = "h",
+		after_key = "l",
+		cursor_pos_before = true,
+		keys = "qwertyuiopzxcvbnmasdfghjkl",
+		manual_position = true,
+		highlight = "Search",
+		highlight_grey = "Comment",
+	},
+})
 
 require("modes").setup({
 	colors = {
@@ -266,9 +265,8 @@ require("modes").setup({
 })
 
 require("project_nvim").setup({})
-
-require("harpoon").setup()
-require("telescope").load_extension("harpoon")
+-- require("harpoon").setup()
+-- require("telescope").load_extension("harpoon")
 require("telescope").load_extension("projects")
 require("copilot").setup({
 	suggestion = { enabled = false },
