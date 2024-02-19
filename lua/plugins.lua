@@ -284,4 +284,5 @@ return require("packer").startup(function()
 			require("toggleterm").setup()
 		end,
 	})
+	use({ "sitiom/nvim-numbertoggle" })
 end)
