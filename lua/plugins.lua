@@ -65,12 +65,13 @@ return require("packer").startup(function()
 			})
 		end,
 	})
-	use({
-		"windwp/nvim-autopairs",
-		config = function()
-			require("nvim-autopairs").setup({})
-		end,
-	})
+	-- use({
+	-- 	"windwp/nvim-autopairs",
+	-- 	config = function()
+	-- 		require("nvim-autopairs").setup({})
+	-- 	end,
+	-- })
+	use {'ZhiyuanLck/smart-pairs', event = 'InsertEnter', config = function() require('pairs'):setup() end}
 	use({ "nvim-treesitter/nvim-treesitter" })
 	use("rrethy/nvim-treesitter-endwise")
 	use({
