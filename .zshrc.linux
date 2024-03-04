@@ -72,7 +72,7 @@ POWERLEVEL9K_DISABLE_RPROMPT=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux rails ruby rvm golang vagrant alias-finder docker node  zsh-autosuggestions zsh-syntax-highlighting fzf heroku)
+plugins=(git tmux rails ruby golang vagrant alias-finder docker node  zsh-autosuggestions zsh-syntax-highlighting fzf)
 ZSH_ALIAS_FINDER_AUTOMATIC=true
 bindkey '^ ' autosuggest-accept
 
@@ -113,12 +113,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# RVM can encounter errors if it's not the last thing in .bash_profile
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to path for scripting (to manage Ruby versions)
-export PATH="$GEM_HOME/bin:$PATH"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # Load RVM into a shell session *as a function*
-source ~/.rvm/scripts/rvm
-
 if [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
 fi
@@ -144,3 +138,9 @@ PERL5LIB="/home/jona/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/jona/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/jona/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/jona/perl5"; export PERL_MM_OPT;
+
+# Ruby rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+export IRBRC=/home/jona/.irbrcl
+eval "$(rbenv init - zsh)"
+
