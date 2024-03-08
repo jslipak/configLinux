@@ -125,7 +125,7 @@ map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>")
 map("n", "<leader>lgi", "<cmd>lua vim.lsp.buf.implementation()<cr>")
 -- Lists all the references
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>")
-map("n", "<leader>lgr", "<cmd>lua vim.lsp.buf.references()<cr>")
+map("n", "<leader>lr", "<cmd>lua vim.lsp.buf.references()<cr>")
 -- Displays a function's signature information
 map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
 map("n", "<leader>lh", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
@@ -133,9 +133,13 @@ map("n", "<leader>lh", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
 map("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>")
 map("n", "<leader>lk", "<cmd>lua vim.lsp.buf.hover()<cr>")
 
+vim.keymap.set("n", "<leader>e", function() require("scissors").editSnippet() end, {desc = 'Snippet Menu'})
+-- When used in visual mode prefills the selection as body.
+vim.keymap.set({ "n", "x" }, "<leader>a", function() require("scissors").addNewSnippet() end, {desc = "Snippet Add"})
+
 -- Renames all references to the symbol under the cursor
 map("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>")
-map("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>")
+map("n", "<leader>lR", "<cmd>lua vim.lsp.buf.rename()<cr>")
 -- Selects a code action available at the current cursor position
 map("n", "<F5>", "<cmd>lua vim.lsp.buf.code_action()<cr>")
 map("x", "<F5>", "<cmd>lua vim.lsp.buf.code_action()<cr>")

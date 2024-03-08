@@ -14,6 +14,30 @@ return require("packer").startup(function()
 	use("L3MON4D3/LuaSnip") -- Snippets plugin
 	use("saadparwaiz1/cmp_luasnip") -- Snippets source for nvim-cmp
 	use("rafamadriz/friendly-snippets")
+	use({
+		"chrisgrieser/nvim-scissors",
+		dependencies = "nvim-telescope/telescope.nvim", -- optional
+		config = function()
+			require("scissors").setup({
+				snippetDir = "~/configLinux/snippetFolder",
+				editSnippetPopup = {
+					height = 0.4, -- relative to the window, number between 0 and 1
+					width = 0.6,
+					border = "rounded",
+					keymaps = {
+						cancel = "q",
+						saveChanges = "<CR>", -- alternatively, can also use `:w`
+						goBackToSearch = "<BS>",
+						deleteSnippet = "<C-del>",
+						duplicateSnippet = "<C-d>",
+						openInFile = "<C-o>",
+						insertNextToken = "<C-t>", -- insert & normal mode
+						jumpBetweenBodyAndPrefix = "<C-Tab>", -- insert & normal mode
+					},
+				},
+			})
+		end,
+	})
 	--
 	use("hrsh7th/cmp-vsnip")
 	use("hrsh7th/vim-vsnip")
@@ -71,7 +95,13 @@ return require("packer").startup(function()
 	-- 		require("nvim-autopairs").setup({})
 	-- 	end,
 	-- })
-	use {'ZhiyuanLck/smart-pairs', event = 'InsertEnter', config = function() require('pairs'):setup() end}
+	use({
+		"ZhiyuanLck/smart-pairs",
+		event = "InsertEnter",
+		config = function()
+			require("pairs"):setup()
+		end,
+	})
 	use({ "nvim-treesitter/nvim-treesitter" })
 	use("rrethy/nvim-treesitter-endwise")
 	use({

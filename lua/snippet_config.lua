@@ -59,4 +59,4 @@ export default class extends Controller {{
 	),
 })
 
-
+require("luasnip.loaders.from_vscode").lazy_load { paths = { "~/configLinux/snippetFolder/" } }
