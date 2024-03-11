@@ -70,7 +70,7 @@ map("i", "<C-e>", "<ESC>A")
 map("i", "<C-a>", "<ESC>I")
 map("i", "<C-h>", "<C-O>:SidewaysLeft<CR>")
 map("i", "<C-l>", "<C-O>:SidewaysRight<CR>")
-map("i", "<M-s>", "<C-O>:w<CR>")
+map("i", "<M-s>", "<C-c>:w<CR>")
 -- Movement
 map("n", "<leader>ma", ":HopAnywhere<CR>")
 map("n", "<leader>m1", ":HopChar1<CR>")
