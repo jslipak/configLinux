@@ -1,0 +1,1 @@
+{"mapShortcut":{"prefix":"mapShortcut","body":"map(\"${1:Mode}\", \"<leader>${2:keystroke}\", '${3:Command}', {desc= \"${4:desc}\"})"}}

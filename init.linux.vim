@@ -39,6 +39,7 @@ Plug 'luochen1990/rainbow'
 Plug 'heavenshell/vim-pydocstring'
 Plug 'sunaku/vim-dasht'
 
+
 call plug#end()
 
 "" Setup Core plugin, configuration (lua)
@@ -58,6 +59,7 @@ else
   lua require('cmp_config')
   lua require('snippet_config')
   lua require('keymaps')
+
   "" Python3 VirtunlEnv
   let g:python3_host_prog='/bin/python'
   let g:python_host_prog='/bin/python'

@@ -13,6 +13,22 @@ end
 -- Change leader to a comma
 vim.g.mapleader = " "
 
+-- CopilotChat
+map("n", "<leader>c", '', {desc= "CopilotChat"})
+map("n", "<leader>cc", ':CopilotChat<CR>', {desc= "Open CopilotChat"})
+map("n", "<leader>ct", ':CopilotChatToggle<CR>', {desc= "Toggle CopilotChat"})
+map("n", "<leader>cd", ':CopilotChatDebugInfo<CR>', {desc= "Debug CopilotChat"})
+map("n", "<leader>ce", ':CopilotChatExplain<CR>', {desc= "Explain CopilotChat"})
+map("n", "<leader>cT", ':CopilotChatTests<CR>', {desc= "Test CopilotChat"})
+map("n", "<leader>cf", ':CopilotChatFix<CR>', {desc= "Fix CopilotChat"})
+map("n", "<leader>co", ':CopilotChatOptimize<CR>', {desc= "Optimize Selected Code CopilotChat"})
+map("n", "<leader>cD", ':CopilotChatDocs<CR>', {desc= "Write documentation for the selected code"})
+map("n", "<leader>cF", ':CopilotChatFixDiagnostic<CR>', {desc= "assist with the following diagnostic issue in file"})
+map("n", "<leader>cg", ':CopilotChatCommit<CR>', {desc= "Write commit message for the change "})
+map("n", "<leader>cG", ':CopilotChatCommitStaged<CR>', {desc= "Write commit message for the change Stage"})
+
+
+
 -- F
 map("n", "<F3>", ":set invpaste paste?<CR>")
 vim.opt.pastetoggle = "<F3>"
@@ -40,23 +56,6 @@ map("n", "<leader>gtb", ":Telescope git_branches<CR>")
 map("n", "<leader>gtco", ":Telescope git_commits<CR>")
 map("n", "<leader>gtcb", ":Telescope git_bcommits<CR>")
 map("n", "<leader>gtf", ":Telescope git_files<CR>")
-
---Harpoon changed by arrow
-
--- map("n", "<leader>fm", ':lua require("harpoon.ui").toggle_quick_menu()<CR>')
--- map("n", "<leader>ft", ":Telescope harpoon marks<CR>")
--- map("n", "<leader>fa", ':lua require("harpoon.mark").add_file()<CR>')
--- map("n", "<leader>fn", ':lua require("harpoon.ui").nav_next()<CR>')
--- map("n", "<leader>fp", ':lua require("harpoon.ui").nav_prev()<CR>')
--- map("n", "<leader>f1", ':lua require("harpoon.ui").nav_file(1)<CR>')
--- map("n", "<leader>f2", ':lua require("harpoon.ui").nav_file(2)<CR>')
--- map("n", "<leader>f3", ':lua require("harpoon.ui").nav_file(3)<CR>')
--- map("n", "<leader>f4", ':lua require("harpoon.ui").nav_file(4)<CR>')
--- map("n", "<leader>f5", ':lua require("harpoon.ui").nav_file(5)<CR>')
--- map("n", "<leader>f6", ':lua require("harpoon.ui").nav_file(6)<CR>')
--- map("n", "<leader>f7", ':lua require("harpoon.ui").nav_file(7)<CR>')
--- map("n", "<leader>f8", ':lua require("harpoon.ui").nav_file(8)<CR>')
--- map("n", "<leader>f9", ':lua require("harpoon.ui").nav_file(9)<CR>')
 
 --Help
 map("n", "<leader>hm", ":Telescope man_pages")

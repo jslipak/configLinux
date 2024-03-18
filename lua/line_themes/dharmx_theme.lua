@@ -42,6 +42,8 @@ local mode_theme = {
 
 local component = {}
 
+
+
 component.vim_mode = {
   provider = function()
     return vim.api.nvim_get_mode().mode:upper()
@@ -260,7 +262,24 @@ component.scroll_bar = {
   right_sep = "block",
 }
 
-local left = {}
+-- component fill_name full-path
+component.file_name = {
+  provider = {
+    name = 'file_info',
+    opts = {
+      type = 'relative'
+    }
+  },
+  hl = {
+    fg = "fg",
+    bg = "bg",
+    style = "bold",
+  },
+  left_sep = "block",
+  right_sep = "block",
+}
+
+local left = {component.file_name}
 local middle = {}
 local right = {
   component.vim_mode,

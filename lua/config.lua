@@ -45,6 +45,7 @@ require("bufferline").setup({
 		separator_style = "tight",
 	},
 })
+
 require("range-highlight").setup({})
 require("ccc").setup()
 require("persisted").setup()
@@ -258,3 +259,8 @@ require("copilot").setup({
 	panel = { enabled = false },
 })
 require("toggleterm").setup()
+
+require("CopilotChat").setup {
+  debug = true, -- Enable debugging
+  -- See Configuration section for rest
+}

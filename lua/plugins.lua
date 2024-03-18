@@ -49,6 +49,20 @@ return require("packer").startup(function()
 			require("copilot_cmp").setup()
 		end,
 	})
+	-- add copilot chat
+	use({
+		"CopilotC-Nvim/CopilotChat.nvim",
+		branch = "canary",
+		dependencies = {
+			{ "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+			{ "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+		},
+		opts = {
+			debug = true,
+			-- your options here
+		},
+	})
+
 	-- LSP
 	use({
 		"williamboman/mason.nvim",
