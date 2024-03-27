@@ -38,6 +38,8 @@ Plug 'kana/vim-textobj-user'
 Plug 'luochen1990/rainbow'
 Plug 'heavenshell/vim-pydocstring'
 Plug 'sunaku/vim-dasht'
+Plug 'dense-analysis/ale'
+
 
 
 call plug#end()
@@ -80,6 +82,10 @@ else
   " TagBar
   let g:tagbar_width = 30
   let g:tagbar_iconchars = ['↠', '↡']
+
+  let g:ale_linters = {
+\   'eruby': ['erb'],
+\}
 
   " fzf-vim
   let g:fzf_action = {

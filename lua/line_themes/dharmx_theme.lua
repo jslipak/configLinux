@@ -279,10 +279,12 @@ component.file_name = {
   right_sep = "block",
 }
 
-local left = {component.file_name}
+local left = {
+  component.vim_mode,
+  component.file_name,
+}
 local middle = {}
 local right = {
-  component.vim_mode,
   component.file_type,
   component.lsp,
   component.git_branch,

@@ -26,6 +26,7 @@ map("n", "<leader>cD", ':CopilotChatDocs<CR>', {desc= "Write documentation for t
 map("n", "<leader>cF", ':CopilotChatFixDiagnostic<CR>', {desc= "assist with the following diagnostic issue in file"})
 map("n", "<leader>cg", ':CopilotChatCommit<CR>', {desc= "Write commit message for the change "})
 map("n", "<leader>cG", ':CopilotChatCommitStaged<CR>', {desc= "Write commit message for the change Stage"})
+map("n", "<leader>cq", ':CopilotChatClose<CR>', {desc= "Close Copilot Chat"})
 
 
 
@@ -215,7 +216,8 @@ map("n", "<M-k>", ":m .-2<CR>==", {desc= "move line(s) up"})
 -- Move lines visual mode
 map("v", "<M-j>", ":m '>+1<CR>gv=gv", {desc = "move line(s) down"})
 map("v", "<M-k>", ":m '<-2<CR>gv=gv", {desc = "move line(s) up"})
-
+-- add in visual mode when press leader f find as live grep the select 
+map('v', '<leader>f', 'y<ESC>:Telescope live_grep default_text=<c-r>0<CR>')
 -- toggel terminal
 map("n", "<C-\\>", ":ToggleTerm direction=float<CR>")
 map("t", "<C-\\>", "<C-\\><C-n>:ToggleTerm direction=float<CR>")
