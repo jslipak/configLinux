@@ -72,7 +72,7 @@ POWERLEVEL9K_DISABLE_RPROMPT=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux ruby rails  golang vagrant alias-finder docker node  zsh-autosuggestions zsh-syntax-highlighting fzf)
+plugins=(git tmux ruby rails golang vagrant alias-finder docker node  zsh-autosuggestions zsh-syntax-highlighting fzf)
 ZSH_ALIAS_FINDER_AUTOMATIC=true
 bindkey '^ ' autosuggest-accept
 
@@ -107,11 +107,6 @@ source $ZSH/oh-my-zsh.sh
 alias vim='nvim'
 alias v='nvim'
 
-#add NVM
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
@@ -144,3 +139,8 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 export IRBRC=/home/jona/.irbrcl
 eval "$(rbenv init - zsh)"
 
+export EDITOR=nvim
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

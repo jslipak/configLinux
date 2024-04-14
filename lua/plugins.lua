@@ -71,6 +71,8 @@ return require("packer").startup(function()
 		"jose-elias-alvarez/null-ls.nvim",
 		"jay-babu/mason-null-ls.nvim",
 	})
+	use("mattn/emmet-vim")
+	use("dcampos/cmp-emmet-vim")
 
 	use({
 		"folke/trouble.nvim",
@@ -212,7 +214,6 @@ return require("packer").startup(function()
 	use("kurtpreston/vim-autoformat-rails")
 	use("tpope/vim-rails")
 	use("tpope/vim-endwise")
-	use("ngmy/vim-rubocop")
 	use("tpope/vim-cucumber")
 	use("tpope/vim-bundler")
 	use("janko-m/vim-test")
