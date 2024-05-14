@@ -125,6 +125,12 @@ return require("packer").startup(function()
 		after = "nvim-treesitter",
 		requires = "nvim-treesitter/nvim-treesitter",
 	})
+	use({
+		"stevearc/oil.nvim",
+		config = function()
+			require("oil").setup()
+		end,
+	})
 	-- Chrome
 	use({
 		"glacambre/firenvim",
@@ -188,6 +194,13 @@ return require("packer").startup(function()
 		end,
 	})
 	-- git
+	use({
+		"kdheepak/lazygit.nvim",
+		-- optional for floating window border decoration
+		requires = {
+			"nvim-lua/plenary.nvim",
+		},
+	})
 	use("tpope/vim-fugitive")
 	use("airblade/vim-gitgutter")
 	use("mhinz/vim-signify")
