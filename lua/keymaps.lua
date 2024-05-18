@@ -28,8 +28,6 @@ map("n", "<leader>cg", ':CopilotChatCommit<CR>', {desc= "Write commit message fo
 map("n", "<leader>cG", ':CopilotChatCommitStaged<CR>', {desc= "Write commit message for the change Stage"})
 map("n", "<leader>cq", ':CopilotChatClose<CR>', {desc= "Close Copilot Chat"})
 
-
-
 -- F
 map("n", "<F3>", ":set invpaste paste?<CR>")
 vim.opt.pastetoggle = "<F3>"
@@ -37,6 +35,13 @@ map("n", "<F12>", ":Codi!!<CR>")
 map("n", "<F7>", ":call ToggleSpellCheck()<CR>")
 map("n", "<F8>", ":TagbarToggle<CR>")
 map("n", "<F6>", ":NvimTreeToggle<CR>")
+
+-- Files
+map("n", "<leader>F", ":Telescope fd<CR>",{desc = "Find Files"})
+map("n", "<leader>G", ":Telescope live_grep<CR>", {desc = "Grep Files"})
+-- add in visual mode when press leader f find as live grep the select 
+map('v', '<leader>f', 'y<ESC>:Telescope live_grep default_text=<c-r>0<CR>')
+
 
 -- Git
 map("n", "<leader>g.", ":G<CR>")
@@ -72,6 +77,7 @@ map("i", "<C-a>", "<ESC>I")
 map("i", "<C-h>", "<C-O>:SidewaysLeft<CR>")
 map("i", "<C-l>", "<C-O>:SidewaysRight<CR>")
 map("i", "<M-s>", "<C-c>:w<CR>")
+
 -- Movement
 map("n", "<leader>ma", ":HopAnywhere<CR>")
 map("n", "<leader>m1", ":HopChar1<CR>")
@@ -83,6 +89,13 @@ map("n", "<leader>mp", ":HopPattern<CR>")
 map("n", "<leader>mw", ":HopWord<CR>")
 map("i", "<C-j>", "<C-o>:HopChar1<CR>")
 map("n", "<leader>w", ":lua require('nvim-window').pick()<CR>",{desc = 'Pick a window'})
+-- Move lines
+map("n", "<M-j>", ":m .+1<CR>==", {desc= "move line(s) down"})
+map("n", "<M-k>", ":m .-2<CR>==", {desc= "move line(s) up"})
+-- Move lines visual mode
+map("v", "<M-j>", ":m '>+1<CR>gv=gv", {desc = "move line(s) down"})
+map("v", "<M-k>", ":m '<-2<CR>gv=gv", {desc = "move line(s) up"})
+
 -- Nomal mode
 map("n", "<C-h>", ":SidewaysLeft<CR>")
 map("n", "<C-l>", ":SidewaysRight<CR>")
@@ -103,7 +116,7 @@ map("n", "<leader>pb", ":Telescope buffers<CR>")
 map("n", "<leader>pj", ":Telescope jumplist<CR>")
 map("n", "<leader>pT", ":Telescope<CR>")
 map("n", "<leader>pp", ":Telescope projects<CR>")
-map("n", "<leader>t", ":TodoTelescope<CR>")
+map("n", "<leader>pt", ":TodoTelescope<CR>")
 map("n", "<leader>pc", ":Telescope colorscheme<CR>")
 map("n", "-", "<CMD>Oil --float<CR>",{desc = "Open parent directory"})
 
@@ -135,10 +148,6 @@ map("n", "<leader>lh", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
 map("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>")
 map("n", "<leader>lk", "<cmd>lua vim.lsp.buf.hover()<cr>")
 
-vim.keymap.set("n", "<leader>e", function() require("scissors").editSnippet() end, {desc = 'Snippet Menu'})
--- When used in visual mode prefills the selection as body.
-vim.keymap.set({ "n", "x" }, "<leader>a", function() require("scissors").addNewSnippet() end, {desc = "Snippet Add"})
-
 -- Renames all references to the symbol under the cursor
 map("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>")
 map("n", "<leader>lR", "<cmd>lua vim.lsp.buf.rename()<cr>")
@@ -166,7 +175,6 @@ map("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format { async = true }<CR>", opts)
 -- null-ls all keybindign
 map("n", "<leader>lF", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 -- Format selected text using LSP client
---FIX: problem shortcut
 map("v", "<leader>lF", '<cmd>lua vim.lsp.buf.format(vim.fn.getpos("\'<"), vim.fn.getpos("\'>")', opts)
 
 map("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
@@ -176,6 +184,10 @@ map("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", { silent = true, norema
 map("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { silent = true, noremap = true })
 map("n", "<leader>xR", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, noremap = true })
 
+-- Snipeet
+vim.keymap.set("n", "<leader>e", function() require("scissors").editSnippet() end, {desc = 'Snippet Menu'})
+-- When used in visual mode prefills the selection as body.
+vim.keymap.set({ "n", "x" }, "<leader>a", function() require("scissors").addNewSnippet() end, {desc = "Snippet Add"})
 vim.api.nvim_set_keymap("i", "<M-n>", "<Plug>luasnip-next-choice", {})
 vim.api.nvim_set_keymap("s", "<M-n>", "<Plug>luasnip-next-choice", {})
 vim.api.nvim_set_keymap("i", "<M-p>", "<Plug>luasnip-prev-choice", {})
@@ -196,8 +208,22 @@ map("n", "<leader>7", "<Cmd>BufferLineGoToBuffer 7<CR>",{desc = 'go Tab7'})
 map("n", "<leader>8", "<Cmd>BufferLineGoToBuffer 8<CR>",{desc = 'go Tab8'})
 map("n", "<leader>9", "<Cmd>BufferLineGoToBuffer 9<CR>",{desc = 'go Tab9'})
 
+--Test
+
+map("n", "<leader>tf", ":TestFile<CR>",{desc = 'Test the File'})
+map("n", "<leader>ts", ":TestSuite<CR>",{desc = 'all Test Suite'})
+map("n", "<leader>tl", ":TestLast<CR>",{desc = 'Last Test Again'})
+map("n", "<leader>tc", ":TestClass<CR>",{desc = 'first Test class above'})
+map("n", "<leader>tr", ":Neotest run<CR>",{desc = 'Run select Test in Buffer'})
+map("n", "<leader>ta", ':lua require("neotest").run.run(vim.fn.expand("%")) <CR>',{desc = 'Run all Test in Buffer'})
+map("n", "<leader>th", ":Neotest stop<CR>",{desc = 'Halt Test'})
+map("n", "<leader>to", ':lua require("neotest").output.open({ enter = true })<CR>',{desc = 'Output Test in buffer'})
+map("n", "<leader>ti", ':lua require("neotest").summary.toggle()<CR>',{desc = 'Test Info sidebar'})
+
+
+
 -- Todos
-map("n", "<leader>t", ":TodoTelescope<CR>")
+map("n", "<leader>T", ":TodoTelescope<CR>")
 
 -- Vim Config
 map("n", "<leader>sr", ":so ~/.config/nvim/init.vim<CR>")
@@ -212,14 +238,6 @@ map("n", "<leader>ss", ":tabnew ~/.config/nvim/lua/snippet_config.lua<CR>")
 map("n", "<leader>sn", ":set rnu!<CR>")
 map("n", "<leader>so", ":Telescope vim_options<CR>")
 
--- Move lines
-map("n", "<M-j>", ":m .+1<CR>==", {desc= "move line(s) down"})
-map("n", "<M-k>", ":m .-2<CR>==", {desc= "move line(s) up"})
--- Move lines visual mode
-map("v", "<M-j>", ":m '>+1<CR>gv=gv", {desc = "move line(s) down"})
-map("v", "<M-k>", ":m '<-2<CR>gv=gv", {desc = "move line(s) up"})
--- add in visual mode when press leader f find as live grep the select 
-map('v', '<leader>f', 'y<ESC>:Telescope live_grep default_text=<c-r>0<CR>')
 -- toggel terminal
 map("n", "<C-\\>", ":ToggleTerm direction=float<CR>")
 map("t", "<C-\\>", "<C-\\><C-n>:ToggleTerm direction=float<CR>")
@@ -232,4 +250,8 @@ map("n", "<leader>q!", ":qa!<CR>")
 map("n", "<leader>qw", ":wq<CR>")
 
 -- Zen Mode
-map("n", "<leader>z", ":Goyo<CR>")
+map("n", "<leader>z", ":Goyo<CR>", {desc = "Zen Mode"})
+
+map("n", "<leader>R", ":RorCommands<CR>", {desc = "Rails CMS"})
+
+

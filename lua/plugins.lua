@@ -11,7 +11,7 @@ return require("packer").startup(function()
 	use("hrsh7th/cmp-path")
 	use("hrsh7th/cmp-cmdline")
 	use("hrsh7th/nvim-cmp")
-	use("L3MON4D3/LuaSnip") -- Snippets plugin
+	use("L3MON4D3/LuaSnip")        -- Snippets plugin
 	use("saadparwaiz1/cmp_luasnip") -- Snippets source for nvim-cmp
 	use("rafamadriz/friendly-snippets")
 	use({
@@ -31,7 +31,7 @@ return require("packer").startup(function()
 						deleteSnippet = "<C-del>",
 						duplicateSnippet = "<C-d>",
 						openInFile = "<C-o>",
-						insertNextToken = "<C-t>", -- insert & normal mode
+						insertNextToken = "<C-t>",      -- insert & normal mode
 						jumpBetweenBodyAndPrefix = "<C-Tab>", -- insert & normal mode
 					},
 				},
@@ -65,9 +65,10 @@ return require("packer").startup(function()
 
 	-- LSP
 	use({
+		"junnplus/lsp-setup.nvim",
+		"neovim/nvim-lspconfig",
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
-		"neovim/nvim-lspconfig",
 		"jose-elias-alvarez/null-ls.nvim",
 		"jay-babu/mason-null-ls.nvim",
 	})
@@ -168,7 +169,7 @@ return require("packer").startup(function()
 		requires = {
 			"nvim-tree/nvim-web-devicons", -- optional, for file icons
 		},
-		tag = "nightly", -- optional, updated every week. (see issue #1193)
+		tag = "nightly",              -- optional, updated every week. (see issue #1193)
 	})
 	use({
 		"ahmedkhalf/project.nvim",
@@ -226,10 +227,11 @@ return require("packer").startup(function()
 	use("vim-ruby/vim-ruby")
 	use("kurtpreston/vim-autoformat-rails")
 	use("tpope/vim-rails")
+	use({ "stevearc/dressing.nvim" })
+	use("weizheheng/ror.nvim")
 	use("tpope/vim-endwise")
 	use("tpope/vim-cucumber")
 	use("tpope/vim-bundler")
-	use("janko-m/vim-test")
 	use("gmarik/Vundle.vim")
 	use("slim-template/vim-slim")
 	use("metakirby5/codi.vim")
@@ -251,6 +253,52 @@ return require("packer").startup(function()
 	use({ "alvarosevilla95/luatab.nvim", requires = "kyazdani42/nvim-web-devicons" })
 	use({ "akinsho/bufferline.nvim", tag = "v3.*", requires = "nvim-tree/nvim-web-devicons" })
 	use({ "yorickpeterse/nvim-window" })
+	-- Test
+	use("vim-test/vim-test")
+	use({
+		"nvim-neotest/neotest",
+		requires = {
+			"nvim-neotest/nvim-nio",
+			"nvim-lua/plenary.nvim",
+			"antoinemadec/FixCursorHold.nvim",
+			"nvim-treesitter/nvim-treesitter",
+			"zidhuss/neotest-minitest",
+			"olimorris/neotest-rspec",
+			"nvim-neotest/neotest-jest",
+			"nvim-neotest/neotest-go",
+			"nvim-neotest/neotest-python",
+			"marilari88/neotest-vitest",
+		},
+		config = function()
+			require("neotest").setup({
+				adapters = {
+					require("neotest-minitest")({
+						test_cmd = function()
+							return vim.tbl_flatten({
+								"bundle",
+								"exec",
+								"rails",
+								"test",
+							})
+						end,
+					}),
+					require("neotest-rspec"),
+					require("neotest-jest")({
+						jestCommand = "npm test --",
+						jestConfigFile = "custom.jest.config.ts",
+						env = { CI = true },
+						cwd = function(path)
+							return vim.fn.getcwd()
+						end,
+					}),
+					require("neotest-go"),
+					require("neotest-python"),
+					require("neotest-vitest"),
+				},
+			})
+		end,
+	})
+
 	--UI
 	use({
 		"folke/todo-comments.nvim",
