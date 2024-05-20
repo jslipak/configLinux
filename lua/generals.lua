@@ -47,5 +47,15 @@ if vim.g.vscode then
 	-- VSCode extension
 else
 	-- ordinary Neovim
-	vim.cmd.colorscheme("noctis")
+	vim.cmd.colorscheme("kanagawa")
 end
+
+local open_floating_win = function()
+  vim.api.nvim_open_win(
+    vim.api.nvim_create_buf(true, false),
+    false,
+    { relative = 'editor', row = 0, col = 0, width = 20, height = 10 }
+  )
+end
+
+vim.keymap.set('n', '<Space>@', open_floating_win)

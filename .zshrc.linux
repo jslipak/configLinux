@@ -74,10 +74,8 @@ POWERLEVEL9K_DISABLE_RPROMPT=true
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git tmux ruby rails golang vagrant alias-finder docker node  zsh-autosuggestions zsh-syntax-highlighting fzf)
 ZSH_ALIAS_FINDER_AUTOMATIC=true
-bindkey '^ ' autosuggest-accept
-
 source $ZSH/oh-my-zsh.sh
-
+bindkey '^ ' autosuggest-accept
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"

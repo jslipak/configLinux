@@ -11,7 +11,7 @@ return require("packer").startup(function()
 	use("hrsh7th/cmp-path")
 	use("hrsh7th/cmp-cmdline")
 	use("hrsh7th/nvim-cmp")
-	use("L3MON4D3/LuaSnip")        -- Snippets plugin
+	use("L3MON4D3/LuaSnip") -- Snippets plugin
 	use("saadparwaiz1/cmp_luasnip") -- Snippets source for nvim-cmp
 	use("rafamadriz/friendly-snippets")
 	use({
@@ -31,7 +31,7 @@ return require("packer").startup(function()
 						deleteSnippet = "<C-del>",
 						duplicateSnippet = "<C-d>",
 						openInFile = "<C-o>",
-						insertNextToken = "<C-t>",      -- insert & normal mode
+						insertNextToken = "<C-t>", -- insert & normal mode
 						jumpBetweenBodyAndPrefix = "<C-Tab>", -- insert & normal mode
 					},
 				},
@@ -162,14 +162,14 @@ return require("packer").startup(function()
 	use({ "water-sucks/darkrose.nvim" })
 	use({ "DeviusVim/deviuspro.nvim" })
 	use({ "datsfilipe/vesper.nvim" })
-
+	use({ "rebelot/kanagawa.nvim" })
 	-- explorer file
 	use({ --nvim-tree explorer
 		"nvim-tree/nvim-tree.lua",
 		requires = {
 			"nvim-tree/nvim-web-devicons", -- optional, for file icons
 		},
-		tag = "nightly",              -- optional, updated every week. (see issue #1193)
+		tag = "nightly", -- optional, updated every week. (see issue #1193)
 	})
 	use({
 		"ahmedkhalf/project.nvim",
