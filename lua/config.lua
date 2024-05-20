@@ -467,4 +467,4 @@ require("ror").setup({
   }
 })
 
-
+require("noice").setup()

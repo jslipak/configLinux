@@ -47,7 +47,7 @@ if vim.g.vscode then
 	-- VSCode extension
 else
 	-- ordinary Neovim
-	vim.cmd.colorscheme("kanagawa")
+	vim.cmd.colorscheme("kanagawa-wave")
 end
 
 local open_floating_win = function()

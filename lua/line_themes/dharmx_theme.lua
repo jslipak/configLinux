@@ -5,21 +5,38 @@ if not present then
   return
 end
 
+-- local theme = {
+--   aqua = "#7AB0DF",
+--   bg = "#1C212A",
+--   blue = "#5FB0FC",
+--   cyan = "#70C0BA",
+--   darkred = "#FB7373",
+--   fg = "#C7C7CA",
+--   gray = "#222730",
+--   green = "#79DCAA",
+--   lime = "#54CED6",
+--   orange = "#FFD064",
+--   pink = "#D997C8",
+--   purple = "#C397D8",
+--   red = "#F87070",
+--   yellow = "#FFE59E"
+-- }
+
 local theme = {
-  aqua = "#7AB0DF",
-  bg = "#1C212A",
-  blue = "#5FB0FC",
-  cyan = "#70C0BA",
-  darkred = "#FB7373",
-  fg = "#C7C7CA",
-  gray = "#222730",
-  green = "#79DCAA",
-  lime = "#54CED6",
-  orange = "#FFD064",
-  pink = "#D997C8",
-  purple = "#C397D8",
-  red = "#F87070",
-  yellow = "#FFE59E"
+  aqua = "#7AA2F7",    -- Light blue
+  bg = "#E1E2E7",      -- Light background color typical of the day theme
+  blue = "#7AA2F7",    -- Soft blue
+  cyan = "#7DCFFF",    -- Light cyan
+  darkred = "#F7768E", -- Soft red
+  fg = "#3760BF",      -- Darker foreground for contrast
+  gray = "#C0CAF5",    -- Light gray for subtle elements
+  green = "#9ECE6A",   -- Pastel green
+  lime = "#73DACA",    -- Light lime
+  orange = "#FF9E64",  -- Soft orange
+  pink = "#BB9AF7",    -- Soft pink/purple
+  purple = "#9D7CD8",  -- Pastel purple
+  red = "#F7768E",     -- Soft red
+  yellow = "#E0AF68"   -- Pastel yellow
 }
 
 local mode_theme = {
@@ -169,7 +186,7 @@ component.lsp = {
   hl = function()
     local progress = vim.lsp.util.get_progress_messages()[1]
     return {
-      fg = progress and "yellow" or "green",
+      fg = progress and "yellow" or "red",
       bg = "gray",
       style = "bold",
     }

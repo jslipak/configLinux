@@ -97,6 +97,7 @@ return require("packer").startup(function()
 	})
 	use("MunifTanjim/nui.nvim")
 	use({ "rcarriga/nvim-notify" })
+	use({ "folke/noice.nvim" })
 	use({
 		"kylechui/nvim-surround",
 		tag = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -163,6 +164,9 @@ return require("packer").startup(function()
 	use({ "DeviusVim/deviuspro.nvim" })
 	use({ "datsfilipe/vesper.nvim" })
 	use({ "rebelot/kanagawa.nvim" })
+	use({ "nyoom-engineering/oxocarbon.nvim" })
+	use({ "folke/tokyonight.nvim" })
+	use({ "Rigellute/shades-of-purple.vim" })
 	-- explorer file
 	use({ --nvim-tree explorer
 		"nvim-tree/nvim-tree.lua",
@@ -209,6 +213,7 @@ return require("packer").startup(function()
 	use({
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
+		theme = 'tokyonight'
 	})
 	use("feline-nvim/feline.nvim")
 	use("yorik1984/lualine-theme.nvim") -- newpaper-[dark, light], theme
