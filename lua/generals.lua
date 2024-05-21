@@ -58,4 +58,3 @@ local open_floating_win = function()
   )
 end
 
-vim.keymap.set('n', '<Space>@', open_floating_win)

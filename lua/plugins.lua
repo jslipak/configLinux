@@ -167,6 +167,11 @@ return require("packer").startup(function()
 	use({ "nyoom-engineering/oxocarbon.nvim" })
 	use({ "folke/tokyonight.nvim" })
 	use({ "Rigellute/shades-of-purple.vim" })
+	use({ "catppuccin/nvim", as = "catppuccin" })
+	use({ "rose-pine/neovim", as = "rose-pine" })
+	use({ "jascha030/nitepal.nvim" })
+	use({ "projekt0n/caret.nvim" })
+	use({ "ribru17/bamboo.nvim" })
 	-- explorer file
 	use({ --nvim-tree explorer
 		"nvim-tree/nvim-tree.lua",
@@ -213,7 +218,7 @@ return require("packer").startup(function()
 	use({
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
-		theme = 'tokyonight'
+		theme = "tokyonight",
 	})
 	use("feline-nvim/feline.nvim")
 	use("yorik1984/lualine-theme.nvim") -- newpaper-[dark, light], theme
