@@ -44,17 +44,21 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 -- vim.wo.relativenumber = true
 
 if vim.g.vscode then
-	-- VSCode extension
+-- VSCode extension
 else
 	-- ordinary Neovim
-	vim.cmd.colorscheme("kanagawa-wave")
-end
+	--vim.cmd.colorscheme("kanagawa-wave")
+	-- Python3 Virtual Environment
+	vim.g.python3_host_prog = "/bin/python"
+	vim.g.python_host_prog = "/bin/python"
 
-local open_floating_win = function()
-  vim.api.nvim_open_win(
-    vim.api.nvim_create_buf(true, false),
-    false,
-    { relative = 'editor', row = 0, col = 0, width = 20, height = 10 }
-  )
-end
+	-- Codi configuration
+	vim.g.codi_virtual_text = 0
+	vim.g.codi_width = 20
+	vim.g.codi_rightsplit = 0
+	vim.g.codi_rightalign = 0
 
+	-- Comment in the same buffer
+	-- vim.g.codi_virtual_text_prefix = '🎯➔'
+	-- vim.g.codi_virtual_text_pos = 60
+end

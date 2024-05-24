@@ -11,7 +11,7 @@ return require("packer").startup(function()
 	use("hrsh7th/cmp-path")
 	use("hrsh7th/cmp-cmdline")
 	use("hrsh7th/nvim-cmp")
-	use("L3MON4D3/LuaSnip") -- Snippets plugin
+	use("L3MON4D3/LuaSnip")        -- Snippets plugin
 	use("saadparwaiz1/cmp_luasnip") -- Snippets source for nvim-cmp
 	use("rafamadriz/friendly-snippets")
 	use({
@@ -31,7 +31,7 @@ return require("packer").startup(function()
 						deleteSnippet = "<C-del>",
 						duplicateSnippet = "<C-d>",
 						openInFile = "<C-o>",
-						insertNextToken = "<C-t>", -- insert & normal mode
+						insertNextToken = "<C-t>",      -- insert & normal mode
 						jumpBetweenBodyAndPrefix = "<C-Tab>", -- insert & normal mode
 					},
 				},
@@ -88,13 +88,29 @@ return require("packer").startup(function()
 	})
 	-- Packer
 	-- base
+	use({ "preservim/tagbar" })
+	use({ "tpope/vim-sensible" })
+	use({ "tpope/vim-ragtag" })
+	use({ "tpope/vim-abolish" })
+	use({ "tpope/vim-repeat" })
+	use({ "chrisbra/matchit" })
+	use({ "andrewradev/splitjoin.vim" })
+	use({ "AndrewRadev/sideways.vim" })
+	use({ "andrewradev/switch.vim" })
+  use({ "lukas-reineke/indent-blankline.nvim" })
 	use("nvim-lua/plenary.nvim")
+	use({
+		"ibhagwan/fzf-lua",
+		-- optional for icon support
+		requires = { "nvim-tree/nvim-web-devicons" },
+	})
 	use({
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.4",
 		-- or                            , branch = '0.1.x',
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
+	use({ "folke/zen-mode.nvim" })
 	use("MunifTanjim/nui.nvim")
 	use({ "rcarriga/nvim-notify" })
 	use({ "folke/noice.nvim" })
@@ -107,12 +123,12 @@ return require("packer").startup(function()
 			})
 		end,
 	})
-	-- use({
-	-- 	"windwp/nvim-autopairs",
-	-- 	config = function()
-	-- 		require("nvim-autopairs").setup({})
-	-- 	end,
-	-- })
+	use({
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup({})
+		end,
+	})
 	use({
 		"ZhiyuanLck/smart-pairs",
 		event = "InsertEnter",
@@ -133,6 +149,34 @@ return require("packer").startup(function()
 			require("oil").setup()
 		end,
 	})
+  -- Lua
+use {
+  'abecodes/tabout.nvim',
+  config = function()
+    require('tabout').setup {
+    tabkey = '<Tab>', -- key to trigger tabout, set to an empty string to disable
+    backwards_tabkey = '<S-Tab>', -- key to trigger backwards tabout, set to an empty string to disable
+    act_as_tab = true, -- shift content if tab out is not possible
+    act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
+    default_tab = '<C-t>', -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
+    default_shift_tab = '<C-d>', -- reverse shift default action,
+    enable_backwards = true, -- well ...
+    completion = true, -- if the tabkey is used in a completion pum
+    tabouts = {
+      {open = "'", close = "'"},
+      {open = '"', close = '"'},
+      {open = '`', close = '`'},
+      {open = '(', close = ')'},
+      {open = '[', close = ']'},
+      {open = '{', close = '}'}
+    },
+    ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
+    exclude = {} -- tabout will ignore these filetypes
+}
+  end,
+	wants = {'nvim-treesitter'}, -- (optional) or require if not used so far
+	after = {'nvim-cmp'} -- if a completion plugin is using tabs load it before
+}
 	-- Chrome
 	use({
 		"glacambre/firenvim",
@@ -178,7 +222,7 @@ return require("packer").startup(function()
 		requires = {
 			"nvim-tree/nvim-web-devicons", -- optional, for file icons
 		},
-		tag = "nightly", -- optional, updated every week. (see issue #1193)
+		tag = "nightly",              -- optional, updated every week. (see issue #1193)
 	})
 	use({
 		"ahmedkhalf/project.nvim",
@@ -213,7 +257,6 @@ return require("packer").startup(function()
 	})
 	use("tpope/vim-fugitive")
 	use("airblade/vim-gitgutter")
-	use("mhinz/vim-signify")
 	--status bar
 	use({
 		"nvim-lualine/lualine.nvim",
@@ -336,10 +379,9 @@ return require("packer").startup(function()
 	use("winston0410/range-highlight.nvim")
 	use("yamatsum/nvim-cursorline")
 	use({
-		"anuvyklack/fold-preview.nvim",
-		requires = "anuvyklack/keymap-amend.nvim",
+		"anuvyklack/pretty-fold.nvim",
 		config = function()
-			require("fold-preview").setup()
+			require("pretty-fold").setup()
 		end,
 	})
 	use({

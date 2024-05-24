@@ -22,29 +22,4 @@ require("trouble").setup({
 	-- or leave it empty to use the default settings
 	-- refer to the configuration section below
 })
--- null-ls
-local null_ls_status_ok, null_ls = pcall(require, "null-ls")
-if not null_ls_status_ok then
-	return
-end
 
-local formatting = null_ls.builtins.formatting
-local diagnostics = null_ls.builtins.diagnostics
-
-require("null-ls").setup({
-	sources = {
-		formatting.prettier,
-		formatting.black,
-		formatting.stylua,
-		formatting.rubocop,
-		formatting.erb_lint,
-		formatting.gofmt,
-		diagnostics.flake8,
-	},
-})
-
-require("mason-null-ls").setup({
-	ensure_installed = nil,
-	automatic_installation = false,
-	automatic_setup = false,
-})

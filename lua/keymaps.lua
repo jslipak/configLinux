@@ -30,15 +30,14 @@ map("n", "<leader>cq", ':CopilotChatClose<CR>', {desc= "Close Copilot Chat"})
 
 -- F
 map("n", "<F3>", ":set invpaste paste?<CR>")
-vim.opt.pastetoggle = "<F3>"
 map("n", "<F12>", ":Codi!!<CR>")
 map("n", "<F7>", ":call ToggleSpellCheck()<CR>")
 map("n", "<F8>", ":TagbarToggle<CR>")
 map("n", "<F6>", ":NvimTreeToggle<CR>")
 
 -- Files
-map("n", "<leader>F", ":Telescope fd<CR>",{desc = "Find Files"})
-map("n", "<leader>G", ":Telescope live_grep<CR>", {desc = "Grep Files"})
+map("n", "<C-p>", ":Telescope fd<CR>",{desc = "Find Files"})
+map("n", "<C-g>", ":Telescope live_grep<CR>", {desc = "Grep Files"})
 -- add in visual mode when press leader f find as live grep the select 
 map('v', '<leader>f', 'y<ESC>:Telescope live_grep default_text=<c-r>0<CR>')
 
@@ -227,10 +226,11 @@ map("n", "<leader>T", ":TodoTelescope<CR>")
 
 -- Vim Config
 map("n", "<leader>sr", ":so ~/.config/nvim/init.vim<CR>")
-map("n", "<leader>si", ":tabnew ~/.config/nvim/init.vim<CR>")
+map("n", "<leader>si", ":tabnew ~/.config/nvim/init.lua<CR>")
 map("n", "<leader>sc", ":tabnew ~/.config/nvim/lua/config.lua<CR>")
 map("n", "<leader>sg", ":tabnew ~/.config/nvim/lua/generals.lua<CR>")
-map("n", "<leader>sp", ":tabnew ~/.config/nvim/lua/plugins.lua<CR>")
+map("n", "<leader>sP", ":tabnew ~/.config/nvim/lua/plugins.lua<CR>")
+map("n", "<leader>sp", ":tabnew ~/.config/nvim/lua/plugins_lazy.lua<CR>")
 map("n", "<leader>sk", ":tabnew ~/.config/nvim/lua/keymaps.lua<CR>")
 map("n", "<leader>sl", ":tabnew ~/.config/nvim/lua/lsp_config.lua<CR>")
 map("n", "<leader>sa", ":tabnew ~/.config/nvim/lua/cmp_config.lua<CR>")
@@ -250,7 +250,7 @@ map("n", "<leader>q!", ":qa!<CR>")
 map("n", "<leader>qw", ":wq<CR>")
 
 -- Zen Mode
-map("n", "<leader>z", ":Goyo<CR>", {desc = "Zen Mode"})
+map("n", "<leader>z", ":ZenMode<CR>", {desc = "Zen Mode"})
 
 map("n", "<leader>R", ":RorCommands<CR>", {desc = "Rails CMS"})
 
