@@ -1,3 +1,8 @@
+-- Asociar tipos de archivo a efm-langserver
+vim.cmd [[
+  au BufRead,BufNewFile *.html.erb set filetype=eruby
+]]
+
 require("mason").setup()
 require("mason-lspconfig").setup()
 
@@ -14,6 +19,26 @@ for _, server in ipairs(servers) do
 		flags = lsp_flags,
 	})
 end
+
+-- Cargar los módulos necesarios
+local null_ls = require("null-ls")
+
+null_ls.setup({
+    sources = {
+
+        -- Formateador para archivos ERB
+        null_ls.builtins.formatting.prettier.with({
+            extra_args = { "--plugin=@prettier/plugin-ruby", "--parser", "html" },
+            filetypes = { "eruby" }
+        }),
+
+        -- Linter para archivos ERB
+        null_ls.builtins.diagnostics.rubocop.with({
+            filetypes = { "eruby" }
+        }),
+    },
+})
+
 
 -- Trouble
 

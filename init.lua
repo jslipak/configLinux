@@ -31,5 +31,5 @@ else
   vim.g.perl_enabled = 1
   vim.o.wrap = true
   vim.o.breakindent = true
-  vim.cmd [[colorscheme catppuccin-frappe]]
+  vim.cmd [[colorscheme caret]]
 end

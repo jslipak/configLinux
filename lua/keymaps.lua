@@ -170,7 +170,7 @@ map("n", "<leader>lwa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
 map("n", "<leader>lwr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
 map("n", "<leader>lwl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
 -- formating
-map("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format { async = true }<CR>", opts)
+map("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format({async = true})<CR>", opts)
 -- null-ls all keybindign
 map("n", "<leader>lF", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 -- Format selected text using LSP client

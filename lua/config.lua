@@ -496,7 +496,7 @@ require("ibl").setup { indent = { highlight = highlight } }
 require('lualine').setup({
   options = {
     icons_enabled = true,
-    theme = 'auto',
+    theme = 'onelight',
     component_separators = { left = '', right = '' },
     section_separators = { left = '', right = '' },
     disabled_filetypes = {},
