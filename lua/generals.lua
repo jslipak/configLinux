@@ -46,11 +46,15 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 if vim.g.vscode then
 -- VSCode extension
 else
-	-- ordinary Neovim
 	--vim.cmd.colorscheme("kanagawa-wave")
-	-- Python3 Virtual Environment
-	vim.g.python3_host_prog = "/bin/python"
-	vim.g.python_host_prog = "/bin/python"
+	-- Python3 Virtual Environment one for Mac and other for Linux
+if vim.fn.has("mac") == 1 then
+   vim.g.python3_host_prog = "/opt/homebrew/bin/python3.9"
+   vim.g.python_host_prog = "/opt/homebrew/bin/python3.9"
+else
+   vim.g.python3_host_prog = "/bin/python"
+   vim.g.python_host_prog = "/bin/python"
+end
 
 	-- Codi configuration
 	vim.g.codi_virtual_text = 0
