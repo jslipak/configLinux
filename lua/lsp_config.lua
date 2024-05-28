@@ -3,6 +3,10 @@ vim.cmd [[
   au BufRead,BufNewFile *.html.erb set filetype=eruby
 ]]
 
+vim.cmd [[
+  au BufRead,BufNewFile *.yml set filetype=yaml
+]]
+
 require("mason").setup()
 require("mason-lspconfig").setup()
 

@@ -24,6 +24,7 @@ else
   -- Ordinary Neovim
   require('config')
   require('lsp_config')
+  require('formatter_config')
   require('cmp_config')
   require('snippet_config')
   require('keymaps')

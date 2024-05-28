@@ -86,8 +86,8 @@ local plugins = {
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
     },
-  }
-  ,
+  },
+  {  'mhartington/formatter.nvim' },
   -- Packer
   -- bnamee
   { "preservim/tagbar" },
@@ -140,14 +140,14 @@ local plugins = {
     opts = {},
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
-  -- Lua
-  {
-    "roobert/tabtree.nvim",
-    config = function()
-      require("tabtree").setup()
-    end,
-
-  },
+  -- FIX: Trae probrelam con ctrl-tab y ctrl-i jump foward
+  -- {
+  --   "roobert/tabtree.nvim",
+  --   config = function()
+  --     require("tabtree").setup()
+  --   end,
+  --
+  -- },
   {
     "L3MON4D3/LuaSnip",
     keys = function()
