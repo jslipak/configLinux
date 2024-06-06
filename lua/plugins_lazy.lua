@@ -127,6 +127,7 @@ local plugins = {
   },
   {
     "windwp/nvim-autopairs",
+    config = true,
     opts = {}
   },
   { "nvim-treesitter/nvim-treesitter" },
