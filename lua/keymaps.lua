@@ -12,6 +12,7 @@ end
 
 -- Change leader to a comma
 vim.g.mapleader = " "
+vim.g.user_emmet_leader_key = "<C-e>"
 
 -- CopilotChat
 map("n", "<leader>c", '', {desc= "CopilotChat"})
@@ -62,6 +63,8 @@ map("n", "<leader>gtb", ":Telescope git_branches<CR>")
 map("n", "<leader>gtco", ":Telescope git_commits<CR>")
 map("n", "<leader>gtcb", ":Telescope git_bcommits<CR>")
 map("n", "<leader>gtf", ":Telescope git_files<CR>")
+map("n", "]c", "<Plug>(GitGutterNextHunk)")
+map("n", "[c", "<plug>(GitGutterPrevHunk)")
 
 --Help
 map("n", "<leader>hm", ":Telescope man_pages")
@@ -75,7 +78,7 @@ map("i", "<C-e>", "<ESC>A")
 map("i", "<C-a>", "<ESC>I")
 map("i", "<C-h>", "<C-O>:SidewaysLeft<CR>")
 map("i", "<C-l>", "<C-O>:SidewaysRight<CR>")
-map("i", "<M-s>", "<C-c>:w<CR>")
+map("i", "<C-s>", "<C-c>:w<CR>")
 
 -- Movement
 map("n", "<leader>ma", ":HopAnywhere<CR>")
@@ -101,7 +104,7 @@ map("n", "<C-l>", ":SidewaysRight<CR>")
 map("n", "<C-j>", ":HopChar1<CR>")
 map("n", "<leader>o", 'o<Esc>0"_D', {desc= "Insert line Below"})
 map("n", "<leader>O", 'O<Esc>0"_D', {desc= "Insert line Above" })
-map("n", "<M-s>", ":w<CR>")
+map("n", "<C-s>", ":w<CR>")
 
 -- Panels
 map("n", "<leader>pf", ":Telescope fd<CR>")

@@ -5,8 +5,14 @@ local plugins = {
   "hrsh7th/cmp-path",
   "hrsh7th/cmp-cmdline",
   "hrsh7th/nvim-cmp",
-  "L3MON4D3/LuaSnip",
   -- Snippets plugin
+  {
+    "L3MON4D3/LuaSnip",
+    -- follow latest release.
+    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    -- install jsregexp (optional!).
+    build = "make install_jsregexp"
+  },
   "saadparwaiz1/cmp_luasnip",
   -- Snippets source for nvim-cmp
   "rafamadriz/friendly-snippets",
@@ -35,7 +41,23 @@ local plugins = {
   --
   "hrsh7th/cmp-vsnip",
   "hrsh7th/vim-vsnip",
-  "zbirenbaum/copilot.lua",
+  {
+    "zbirenbaum/copilot.lua",
+    verylazy = true,
+    cmd = "Copilot",
+    build = ":Copilot auth",
+    opts = {
+      suggestion = { enabled = false },
+      panel = { enabled = false },
+      filetypes = {
+        markdown = true,
+        help = true,
+        lua = true,
+        bash = true,
+      },
+    },
+  }
+  ,
   {
     "zbirenbaum/copilot-cmp",
     config = function()
@@ -51,10 +73,11 @@ local plugins = {
       { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
       { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
     },
-    lazys = {
-      debug = true,
-      -- your lazyions here
+    opts = {
+      debug = true, -- Enable debugging
+      -- See Configuration section for rest
     },
+    -- See Commands section for default commands if you want to lazy load on them
   },
   -- LSP
   "junnplus/lsp-setup.nvim",
@@ -70,10 +93,10 @@ local plugins = {
       "nvimtools/none-ls.nvim",
     },
     config = function()
-            require("mason-null-ls").setup({
-                ensure_installed = { "prettier", "eslint" },
-                automatic_installation = true,
-            })
+      require("mason-null-ls").setup({
+        ensure_installed = { "prettier", "eslint" },
+        automatic_installation = true,
+      })
     end,
   },
   "mattn/emmet-vim",
@@ -87,7 +110,7 @@ local plugins = {
       -- refer to the configuration section below
     },
   },
-  {  'mhartington/formatter.nvim' },
+  { 'mhartington/formatter.nvim' },
   -- Packer
   -- bnamee
   { "preservim/tagbar" },
@@ -107,10 +130,10 @@ local plugins = {
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   {
-    "nvim-telescope/telescope.nvim",
-    versions = "0.1.4",
-    -- or                            , branch = '0.1.x',
-    dependencies = { { "nvim-lua/plenary.nvim" } },
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.6',
+    -- or                              , branch = '0.1.x',
+    dependencies = { 'nvim-lua/plenary.nvim' }
   },
   { "folke/zen-mode.nvim" },
   "MunifTanjim/nui.nvim",
@@ -118,12 +141,13 @@ local plugins = {
   { "folke/noice.nvim" },
   {
     "kylechui/nvim-surround",
-    versions = "*", -- Use for stability; omit to use `main` branch for the latest features
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
     config = function()
       require("nvim-surround").setup({
         -- Configuration here, or leave empty to use defaults
       })
-    end,
+    end
   },
   {
     "windwp/nvim-autopairs",
@@ -161,7 +185,7 @@ local plugins = {
     cmd = "Screenkey",
     version = "*",
     config = true,
-},
+  },
   -- Chrome
   {
     "glacambre/firenvim",
@@ -172,15 +196,25 @@ local plugins = {
   { "famiu/bufdelete.nvim" },
   -- colors and icons
   "ayu-theme/ayu-vim",
-  "kyazdani42/nvim-web-devicons",
   "oxfist/night-owl.nvim",
   "norcalli/nvim-colorizer.lua",
   "uga-rosa/ccc.nvim",
   {
-    "olivercederborg/poimandres.nvim",
+    'olivercederborg/poimandres.nvim',
+    lazy = false,
+    priority = 1000,
     config = function()
-      require("poimandres").init({})
+      require('poimandres').setup {
+        -- leave this setup function empty for default config
+        -- or refer to the configuration section
+        -- for configuration options
+      }
     end,
+
+    -- optionally set the colorscheme within lazy config
+    init = function()
+      vim.cmd("colorscheme poimandres")
+    end
   },
   { "uloco/bluloco.nvim",              dependencies = { "rktjmp/lush.nvim" } },
   { "dasupradyumna/midnight.nvim" },
@@ -204,10 +238,11 @@ local plugins = {
   -- explorer file
   { --nvim-tree explorer
     "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = false,
     dependencies = {
       "nvim-tree/nvim-web-devicons", -- lazyional, for file icons
-    },
-    versions = "nightly",            -- lazyional, updated every week. (see issue #1193)
+    }
   },
   "ahmedkhalf/project.nvim",
   {
@@ -233,28 +268,8 @@ local plugins = {
   --status bar
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "kyazdani42/nvim-web-devicons", lazy = true },
-  },
-  {
-    'olivercederborg/poimandres.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require('poimandres').setup {
-        -- leave this setup function empty for default config
-        -- or refer to the configuration section
-        -- for configura tion options
-      }
-    end,
-
-    -- optionally set the colorscheme within lazy config
-    init = function()
-      vim.cmd("colorscheme poimandres")
-    end
-  },
-  -- newpaper
-  -- -, theme
-  --Motion
+    dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
+  }, -- Lua
   {
     'smoka7/hop.nvim',
     version = "*",
@@ -289,9 +304,9 @@ local plugins = {
   }
   ,
   --Tab and windows
-  { "alvarosevilla95/luatab.nvim", dependencies = "kyazdani42/nvim-web-devicons" },
-  { "akinsho/bufferline.nvim",     versions = "v3.*",                            dependencies = "nvim-tree/nvim-web-devicons" },
+  { "alvarosevilla95/luatab.nvim", dependencies = "nvim-tree/nvim-web-devicons" },
   { "yorickpeterse/nvim-window" },
+  { 'akinsho/bufferline.nvim',     version = "*",                               dependencies = 'nvim-tree/nvim-web-devicons' },
   -- Test
   "vim-test/vim-test",
   {
