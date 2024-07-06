@@ -79,6 +79,7 @@ map("i", "<C-a>", "<ESC>I")
 map("i", "<C-h>", "<C-O>:SidewaysLeft<CR>")
 map("i", "<C-l>", "<C-O>:SidewaysRight<CR>")
 map("i", "<C-s>", "<C-c>:w<CR>")
+map("i", "<M-s>", "<C-c>:w<CR>")
 
 -- Movement
 map("n", "<leader>ma", ":HopAnywhere<CR>")
@@ -105,6 +106,7 @@ map("n", "<C-j>", ":HopChar1<CR>")
 map("n", "<leader>o", 'o<Esc>0"_D', {desc= "Insert line Below"})
 map("n", "<leader>O", 'O<Esc>0"_D', {desc= "Insert line Above" })
 map("n", "<C-s>", ":w<CR>")
+map("n", "<M-s>", ":w<CR>")
 
 -- Panels
 map("n", "<leader>pf", ":Telescope fd<CR>")
