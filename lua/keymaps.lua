@@ -239,6 +239,7 @@ map("n", "<leader>sk", ":tabnew ~/.config/nvim/lua/keymaps.lua<CR>")
 map("n", "<leader>sl", ":tabnew ~/.config/nvim/lua/lsp_config.lua<CR>")
 map("n", "<leader>sa", ":tabnew ~/.config/nvim/lua/cmp_config.lua<CR>")
 map("n", "<leader>ss", ":tabnew ~/.config/nvim/lua/snippet_config.lua<CR>")
+map("n", "<leader>sf", ":tabnew ~/.config/nvim/lua/formatter_config.lua<CR>")
 map("n", "<leader>sn", ":set rnu!<CR>")
 map("n", "<leader>so", ":Telescope vim_options<CR>")
 
