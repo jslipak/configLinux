@@ -1,3 +1,4 @@
+OS="$(uname)"
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -10,8 +11,13 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/jona/.oh-my-zsh"
-
+if [[ "$OS" == "Linux" ]]; then
+  export ZSH="/home/jona/.oh-my-zsh"
+elif [[ "$OS" == "Darwin" ]]; then
+  export ZSH="/Users/jonathanslipak/.oh-my-zsh"
+else
+    echo "Sistema operativo no soportado: $OS"
+fi
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -76,8 +82,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=( alias-finder brew docker dotenv fzf git golang macos node rails ruby tmux vagrant zsh-autosuggestions zsh-syntax-highlighting
-)
+plugins=( alias-finder brew docker dotenv fzf git golang macos node rails ruby tmux vagrant zsh-autosuggestions zsh-syntax-highlighting)
 ZSH_ALIAS_FINDER_AUTOMATIC=true
 source $ZSH/oh-my-zsh.sh
 bindkey '^ ' autosuggest-accept
@@ -146,7 +151,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-OS="$(uname)"
 
 if [[ "$OS" == "Linux" ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
