@@ -150,6 +150,8 @@ require("nvim-treesitter.configs").setup({
     "ruby",
     "typescript",
     "go",
+    'vim',
+    'vimdoc'
   },
   endwise = {
     enable = true,

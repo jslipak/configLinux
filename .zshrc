@@ -82,7 +82,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=( alias-finder brew docker dotenv fzf git golang macos node rails ruby tmux vagrant zsh-autosuggestions zsh-syntax-highlighting)
+plugins=( alias-finder brew docker dotenv fzf git golang macos node rails rbenv ruby tmux vagrant zsh-autosuggestions zsh-syntax-highlighting)
 ZSH_ALIAS_FINDER_AUTOMATIC=true
 source $ZSH/oh-my-zsh.sh
 bindkey '^ ' autosuggest-accept
@@ -141,7 +141,13 @@ PERL_MM_OPT="INSTALL_BASE=/home/jona/perl5"; export PERL_MM_OPT;
 
 # Ruby rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
-export IRBRC=/home/jona/.irbrcl
+if [[ "$OS" == "Linux" ]]; then
+  export IRBRC=/home/jona/.irbrcl
+elif [[ "$OS" == "Darwin" ]]; then
+  export IRBRC=/Users/jonathanslipak/.irbrcl
+else
+    echo "Sistema operativo no soportado: $OS"
+fi
 eval "$(rbenv init - zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

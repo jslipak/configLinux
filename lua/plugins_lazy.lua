@@ -124,9 +124,14 @@ local plugins = {
   { "lukas-reineke/indent-blankline.nvim" },
   "nvim-lua/plenary.nvim",
   {
-    "ibhagwan/fzf-lua",
-    -- lazyional for icon support
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+      "ibhagwan/fzf-lua",
+        -- optional for icon support
+        --   dependencies = { "nvim-tree/nvim-web-devicons" },
+        --     config = function()
+          --         -- calling `setup` is optional for customization
+          --             require("fzf-lua").setup({})
+          --               end
+          --               }
   },
   {
     'nvim-telescope/telescope.nvim',
@@ -391,34 +396,21 @@ local plugins = {
     },
     lazy = false,
   }
-  ,
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    init = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
-    end,
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-      plugins = {
-        marks = true,     -- shows a list of your marks on ' and `
-        registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
-        spelling = true,
-        presets = true,
-        operators = true,
-        text_objects = true,
-        windows = true,
-        nav = true,
-        z = true,
-        g = true,
-      },
-    }
-  },
+  ,{
+      "folke/which-key.nvim",
+        event = "VeryLazy",
+          init = function()
+                vim.o.timeout = true
+                    vim.o.timeoutlen = 300
+                      end,
+                        opts = {
+                              -- your configuration comes here
+                              --     -- or leave it empty to use the default settings
+                              --       }
+                              --       }
+                        }
+  } ,
   "goolord/alpha-nvim",
-
   "sunjon/shade.nvim",
   {
     "mvllow/modes.nvim",
