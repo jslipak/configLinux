@@ -32,5 +32,5 @@ else
   vim.g.perl_enabled = 1
   vim.o.wrap = true
   vim.o.breakindent = true
-  vim.cmd [[colorscheme poimandres]]
+  vim.cmd [[colorscheme rose-pine]]
 end

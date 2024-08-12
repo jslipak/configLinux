@@ -32,7 +32,7 @@ local plugins = {
           deleteSnippet = "<C-del>",
           duplicateSnippet = "<C-d>",
           openInFile = "<C-o>",
-          insertNextPlaceholder= "<C-t>",            -- insert & normal mode
+          insertNextPlaceholder = "<C-t>", -- insert & normal mode
         },
       },
     }
@@ -124,14 +124,14 @@ local plugins = {
   { "lukas-reineke/indent-blankline.nvim" },
   "nvim-lua/plenary.nvim",
   {
-      "ibhagwan/fzf-lua",
-        -- optional for icon support
-        --   dependencies = { "nvim-tree/nvim-web-devicons" },
-        --     config = function()
-          --         -- calling `setup` is optional for customization
-          --             require("fzf-lua").setup({})
-          --               end
-          --               }
+    "ibhagwan/fzf-lua",
+    -- optional for icon support
+    --   dependencies = { "nvim-tree/nvim-web-devicons" },
+    --     config = function()
+    --         -- calling `setup` is optional for customization
+    --             require("fzf-lua").setup({})
+    --               end
+    --               }
   },
   {
     'nvim-telescope/telescope.nvim',
@@ -396,20 +396,20 @@ local plugins = {
     },
     lazy = false,
   }
-  ,{
-      "folke/which-key.nvim",
-        event = "VeryLazy",
-          init = function()
-                vim.o.timeout = true
-                    vim.o.timeoutlen = 300
-                      end,
-                        opts = {
-                              -- your configuration comes here
-                              --     -- or leave it empty to use the default settings
-                              --       }
-                              --       }
-                        }
-  } ,
+  , {
+  "folke/which-key.nvim",
+  event = "VeryLazy",
+  init = function()
+    vim.o.timeout = true
+    vim.o.timeoutlen = 300
+  end,
+  opts = {
+    -- your configuration comes here
+    --     -- or leave it empty to use the default settings
+    --       }
+    --       }
+  }
+},
   "goolord/alpha-nvim",
   "sunjon/shade.nvim",
   {
