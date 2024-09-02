@@ -6,6 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+source $HOME/.zshenv
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -82,7 +83,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=( alias-finder brew docker dotenv fzf git golang macos node rails rbenv ruby tmux vagrant zsh-autosuggestions zsh-syntax-highlighting)
+plugins=( alias-finder brew docker dotenv fzf git golang macos node rails ruby tmux vagrant zsh-autosuggestions zsh-syntax-highlighting)
 ZSH_ALIAS_FINDER_AUTOMATIC=true
 source $ZSH/oh-my-zsh.sh
 bindkey '^ ' autosuggest-accept
@@ -148,7 +149,10 @@ elif [[ "$OS" == "Darwin" ]]; then
 else
     echo "Sistema operativo no soportado: $OS"
 fi
+
 eval "$(rbenv init - zsh)"
+autoload -U compinit
+compinit
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

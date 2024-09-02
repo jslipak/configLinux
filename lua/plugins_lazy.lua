@@ -198,6 +198,16 @@ local plugins = {
     end,
   },
   { "famiu/bufdelete.nvim" },
+  -- Docker, Containers y remote server
+  {
+    "kit494way/docker.vim"
+  }, {
+  "https://github.com/esensar/nvim-dev-container",
+  config = function()
+    require("devcontainer").setup({})
+  end,
+}
+,
   -- colors and icons
   "ayu-theme/ayu-vim",
   "oxfist/night-owl.nvim",
