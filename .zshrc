@@ -169,3 +169,6 @@ elif [[ "$OS" == "Darwin" ]]; then
 else
     echo "Sistema operativo no soportado: $OS"
 fi
+
+## Es para agregar seguridad cuando creo archivos solo son mios
+umask 077
