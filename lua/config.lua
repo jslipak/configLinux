@@ -45,7 +45,13 @@ require("bufferline").setup({
     separator_style = "tight",
   },
 })
-
+require "telescope".setup {
+  pickers = {
+    colorscheme = {
+      enable_preview = true
+    }
+  }
+}
 require("range-highlight").setup({})
 require("ccc").setup()
 require("persisted").setup()
@@ -214,7 +220,7 @@ require("nvim-treesitter.configs").setup({
       -- You can choose the select mode (default is charwise 'v')
       selection_modes = {
         ["@parameter.outer"] = "v", -- charwise
-        ["@function.outer"] = "V", -- linewise
+        ["@function.outer"] = "V",  -- linewise
         ["@class.outer"] = "<c-v>", -- blockwise
       },
       -- If you set this to `true` (default is `false`) then any textobject is
@@ -512,7 +518,7 @@ require('lualine').setup({
       'filename',
       path = 1 -- 0 = just filename, 1 = relative path, 2 = absolute path
     }, keypress_component },
-    lualine_x = { 'encoding', 'fileformat', 'filetype',  },
+    lualine_x = { 'encoding', 'fileformat', 'filetype', },
     lualine_y = { 'progress' },
     lualine_z = { 'location' }
   },
@@ -532,5 +538,3 @@ require('lualine').setup({
 })
 
 require("noice").setup()
-
-

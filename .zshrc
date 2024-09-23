@@ -171,4 +171,6 @@ else
 fi
 
 ## Es para agregar seguridad cuando creo archivos solo son mios
-umask 077
+# umask 077
+# Trae muchos inconvendientes para programar
+
