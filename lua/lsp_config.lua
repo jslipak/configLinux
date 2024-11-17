@@ -15,7 +15,7 @@ local servers = {
   "solargraph",
   "bashls",
   "eslint",
-  "tsserver",
+  "ts_ls",
   "emmet_ls",
   "lua_ls",
   "gopls",

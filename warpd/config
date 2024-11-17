@@ -1,0 +1,10 @@
+hint_fgcolor: #e54141
+hint_bgcolor: #efef8d
+hint_size: 25
+hint_border_radius: 10
+
+copy_and_exit: y
+
+cursor_color: #F4AC45
+cursor_size: 15
+
