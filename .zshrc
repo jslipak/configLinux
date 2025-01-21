@@ -169,3 +169,7 @@ elif [[ "$OS" == "Darwin" ]]; then
 else
     echo "Sistema operativo no soportado: $OS"
 fi
+
+#Une nvim to man
+export MANPAGER='nvim +Man!'
+
