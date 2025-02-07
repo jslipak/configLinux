@@ -172,4 +172,5 @@ fi
 
 #Une nvim to man
 export MANPAGER='nvim +Man!'
+export HIST_STAMPS="%d-%m-%y %T"
 
