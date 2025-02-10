@@ -20,15 +20,15 @@
       "KC_L",
       "KC_BSPC",
       "LT(4,KC_TAB)",
-      "LCTL(KC_A)",
+      "LCTL_T(KC_A)",
       "LALT_T(KC_O)",
-      "LGUI(KC_E)",
+      "LGUI_T(KC_E)",
       "RCAG_T(KC_U)",
       "LT(2,KC_I)",
       "LT(2,KC_D)",
       "RCAG_T(KC_H)",
-      "LGUI(KC_T)",
-      "RALT(KC_N)",
+      "RGUI_T(KC_T)",
+      "RALT_T(KC_N)",
       "RCTL_T(KC_S)",
       "KC_ENT",
       "LSFT_T(KC_SLSH)",
@@ -48,7 +48,7 @@
       "KC_LALT",
       "KC_LGUI",
       "LT(2,KC_SPC)",
-      "RCAG_T(OSM(MOD_LCTL|MOD_LALT|MOD_LGUI))"
+      "ANY(RCAG_T(OSM(MOD_LCTL|MOD_LALT|MOD_LGUI)))"
     ],
     [
       "KC_CIRC",
