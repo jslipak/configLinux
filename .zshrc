@@ -83,7 +83,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=( alias-finder brew docker dotenv fzf git golang macos nvm node ruby tmux rust vagrant zsh-autosuggestions zsh-syntax-highlighting rails)
+plugins=( alias-finder brew docker dotenv fzf git golang macos nvm node ruby tmux rust vagrant zsh-autosuggestions zsh-syntax-highlighting rails kubectl minikube terraform ansible )
 ZSH_ALIAS_FINDER_AUTOMATIC=true
 source $ZSH/oh-my-zsh.sh
 bindkey '^ ' autosuggest-accept
