@@ -114,8 +114,8 @@ alias vim='nvim'
 alias v='nvim'
 export EDITOR=nvim
 
-if [ -z "$TMUX" ]; then
-    tmux attach -t default || tmux new -s default
+if [[ -o interactive && -t 1 && -z "$TMUX" ]]; then
+    tmux attach -t default 2>/dev/null || tmux new-session -s default 2>/dev/null
 fi
 
 
@@ -173,4 +173,3 @@ fi
 #Une nvim to man
 export MANPAGER='nvim +Man!'
 export HIST_STAMPS="%d-%m-%y %T"
-
