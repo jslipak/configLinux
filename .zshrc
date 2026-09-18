@@ -115,9 +115,10 @@ alias vim='nvim'
 alias v='nvim'
 export EDITOR=nvim
 
-if [[ -o interactive && -t 1 && -z "$TMUX" ]]; then
-    tmux attach -t default 2>/dev/null || tmux new-session -s default 2>/dev/null
-fi
+# Inicio anterior de tmux: queda comentado para poder volver atrás si hace falta.
+# if [[ -o interactive && -t 1 && -z "$TMUX" ]]; then
+#     tmux attach -t default 2>/dev/null || tmux new-session -s default 2>/dev/null
+# fi
 
 
 # add variables and protect to expose in git 
@@ -176,3 +177,8 @@ export MANPAGER='nvim +Man!'
 export HIST_STAMPS="%d-%m-%y %T"
 eval "$(atuin pty-proxy init zsh)"
 eval "$(atuin init zsh --disable-up-arrow)"
+
+# Inicio de tmux después de terminar la carga de Zsh.
+if [[ -o interactive && -t 1 && -z "$TMUX" ]]; then
+  command tmux new-session -A -s default
+fi
