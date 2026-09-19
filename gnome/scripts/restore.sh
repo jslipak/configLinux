@@ -313,6 +313,39 @@ install_native_package() {
   esac
 }
 
+ensure_aur_helper() {
+  local list_file="$1"
+  local bootstrap_dir=""
+
+  [[ "$PACKAGE_MANAGER" == pacman ]] || return 0
+  [[ -s "$list_file" ]] || return 0
+  command -v paru >/dev/null 2>&1 && return 0
+  command -v yay >/dev/null 2>&1 && return 0
+
+  printf 'No se encontró paru ni yay; se instalarán las herramientas de compilación y se preparará paru desde AUR.\n'
+
+  if ! as_root pacman -S --needed --noconfirm base-devel git; then
+    printf 'Error: no se pudieron instalar base-devel y git; se omitirán los paquetes AUR.\n' >&2
+    return 1
+  fi
+
+  bootstrap_dir="$(mktemp -d "${TMPDIR:-/tmp}/paru-bootstrap.XXXXXX")"
+  if ! git clone https://aur.archlinux.org/paru-bin.git "$bootstrap_dir/paru-bin"; then
+    printf 'Error: no se pudo descargar paru-bin; se omitirán los paquetes AUR.\n' >&2
+    rm -rf -- "$bootstrap_dir"
+    return 1
+  fi
+
+  if ! (cd "$bootstrap_dir/paru-bin" && makepkg -si --noconfirm); then
+    printf 'Error: no se pudo compilar o instalar paru; se omitirán los paquetes AUR.\n' >&2
+    rm -rf -- "$bootstrap_dir"
+    return 1
+  fi
+
+  rm -rf -- "$bootstrap_dir"
+  command -v paru >/dev/null 2>&1 || command -v yay >/dev/null 2>&1
+}
+
 install_foreign_packages() {
   local list_file="$1"
   [[ -s "$list_file" ]] || return 0
@@ -323,6 +356,11 @@ install_foreign_packages() {
   fi
 
   local helper=''
+  if ! ensure_aur_helper "$list_file"; then
+    record_failure "AUR: no se pudo preparar paru/yay"
+    return 0
+  fi
+
   if command -v paru >/dev/null 2>&1; then
     helper=paru
   elif command -v yay >/dev/null 2>&1; then

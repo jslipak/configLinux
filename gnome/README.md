@@ -86,7 +86,7 @@ La restauración completa pide confirmación, descifra los inventarios si propor
 
 La configuración actual usa 4 workspaces fijos: `Super`+`F1…F4` cambia de workspace, `Super`+`Shift`+`1…4` mueve la ventana, y `Super`+`,`/`.` navega entre workspaces (`Shift` también mueve la ventana). Estos atajos se restauran explícitamente desde `config/gsettings-org-gnome-desktop-wm-keybindings.txt`.
 
-Los paquetes AUR quedan dentro del archivo privado cifrado; para restaurarlos hace falta proporcionar la contraseña y tener `paru` o `yay` instalado en el equipo nuevo. Revisá esa lista antes de instalar en hardware distinto, especialmente paquetes de kernel, firmware y drivers.
+Los paquetes AUR quedan dentro del archivo privado cifrado. En Arch/Manjaro y derivados, si no existe `paru` ni `yay`, el restaurador instala `base-devel` y `git`, construye `paru-bin` desde AUR y luego instala esa lista automáticamente. En otras distribuciones los paquetes AUR se omiten porque no son compatibles con su gestor nativo. Revisá esa lista antes de instalar en hardware distinto, especialmente paquetes de kernel, firmware y drivers.
 
 Los paquetes que no querés restaurar se anotan en `programs/restore-exclude.txt`. Opera quedó excluido porque no se usa y había dado problemas. Para excluir otro paquete, agregá su nombre en ese archivo; el script lo salta sin marcarlo como error.
 
