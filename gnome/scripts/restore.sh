@@ -345,6 +345,15 @@ ensure_aur_helper() {
     return 1
   fi
 
+  # paru-bin puede haber quedado instalado contra otra versión de libalpm.
+  # Se quita solo ese helper para permitir instalar el paru compilado localmente.
+  if pacman -Q paru-bin >/dev/null 2>&1; then
+    if ! as_root pacman -R --noconfirm paru-bin; then
+      printf 'Error: no se pudo quitar el paru-bin incompatible; se omitirán los paquetes AUR.\n' >&2
+      return 1
+    fi
+  fi
+
   bootstrap_dir="$(mktemp -d "${TMPDIR:-/tmp}/paru-bootstrap.XXXXXX")"
   if ! git clone https://aur.archlinux.org/paru.git "$bootstrap_dir/paru"; then
     printf 'Error: no se pudo descargar paru; se omitirán los paquetes AUR.\n' >&2
