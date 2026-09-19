@@ -346,13 +346,13 @@ ensure_aur_helper() {
   fi
 
   bootstrap_dir="$(mktemp -d "${TMPDIR:-/tmp}/paru-bootstrap.XXXXXX")"
-  if ! git clone https://aur.archlinux.org/paru-bin.git "$bootstrap_dir/paru-bin"; then
-    printf 'Error: no se pudo descargar paru-bin; se omitirán los paquetes AUR.\n' >&2
+  if ! git clone https://aur.archlinux.org/paru.git "$bootstrap_dir/paru"; then
+    printf 'Error: no se pudo descargar paru; se omitirán los paquetes AUR.\n' >&2
     rm -rf -- "$bootstrap_dir"
     return 1
   fi
 
-  if ! (cd "$bootstrap_dir/paru-bin" && makepkg -si --noconfirm); then
+  if ! (cd "$bootstrap_dir/paru" && makepkg -si --noconfirm); then
     printf 'Error: no se pudo compilar o instalar paru; se omitirán los paquetes AUR.\n' >&2
     rm -rf -- "$bootstrap_dir"
     return 1
