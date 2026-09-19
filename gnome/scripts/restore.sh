@@ -10,6 +10,7 @@ SKIP_PACKAGES=0
 FAILED_ITEMS=()
 PACKAGE_LIST=()
 PACKAGE_MANAGER=''
+PACMAN_FULL_UPGRADE_OK=1
 PRIVATE_ARCHIVE="$ROOT_DIR/private/system-and-programs.tar.age"
 PRIVATE_ROOT="$ROOT_DIR"
 PRIVATE_TMP_DIR=''
@@ -313,14 +314,29 @@ install_native_package() {
   esac
 }
 
+prepare_pacman_system() {
+  [[ "$PACKAGE_MANAGER" == pacman ]] || return 0
+
+  printf 'Sincronizando y actualizando completamente el sistema Arch antes de instalar paquetes.\n'
+  if ! as_root pacman -Syu --noconfirm; then
+    printf 'Error: no se pudo completar la actualización de Arch; se continúa con advertencias.\n' >&2
+    PACMAN_FULL_UPGRADE_OK=0
+    record_failure 'pacman: actualización completa'
+  fi
+}
+
 ensure_aur_helper() {
   local list_file="$1"
   local bootstrap_dir=""
 
   [[ "$PACKAGE_MANAGER" == pacman ]] || return 0
   [[ -s "$list_file" ]] || return 0
-  command -v paru >/dev/null 2>&1 && return 0
-  command -v yay >/dev/null 2>&1 && return 0
+  if command -v paru >/dev/null 2>&1 && paru --version >/dev/null 2>&1; then
+    return 0
+  fi
+  if command -v yay >/dev/null 2>&1 && yay --version >/dev/null 2>&1; then
+    return 0
+  fi
 
   printf 'No se encontró paru ni yay; se instalarán las herramientas de compilación y se preparará paru desde AUR.\n'
 
@@ -343,7 +359,8 @@ ensure_aur_helper() {
   fi
 
   rm -rf -- "$bootstrap_dir"
-  command -v paru >/dev/null 2>&1 || command -v yay >/dev/null 2>&1
+  command -v paru >/dev/null 2>&1 && paru --version >/dev/null 2>&1 ||
+    command -v yay >/dev/null 2>&1 && yay --version >/dev/null 2>&1
 }
 
 install_foreign_packages() {
@@ -355,22 +372,35 @@ install_foreign_packages() {
     return 0
   fi
 
+  read_package_list "$list_file"
+  local filtered_package_list=()
+  local package=''
+  for package in "${PACKAGE_LIST[@]}"; do
+    case "$package" in
+      paru|paru-bin|yay|yay-debug) ;;
+      *) filtered_package_list+=("$package") ;;
+    esac
+  done
+  PACKAGE_LIST=("${filtered_package_list[@]}")
+  (( ${#PACKAGE_LIST[@]} )) || return 0
+
+  if (( ! PACMAN_FULL_UPGRADE_OK )); then
+    printf 'Se omiten los paquetes AUR porque la actualización completa de Arch falló.\n' >&2
+    record_failure 'AUR: actualización completa de Arch pendiente'
+    return 0
+  fi
+
   local helper=''
   if ! ensure_aur_helper "$list_file"; then
     record_failure "AUR: no se pudo preparar paru/yay"
     return 0
   fi
 
-  if command -v paru >/dev/null 2>&1; then
+  if command -v paru >/dev/null 2>&1 && paru --version >/dev/null 2>&1; then
     helper=paru
-  elif command -v yay >/dev/null 2>&1; then
+  elif command -v yay >/dev/null 2>&1 && yay --version >/dev/null 2>&1; then
     helper=yay
-  fi
-
-  read_package_list "$list_file"
-  (( ${#PACKAGE_LIST[@]} )) || return 0
-
-  if [[ -z "$helper" ]]; then
+  else
     printf 'No se encontró paru ni yay. Se omiten los paquetes AUR de %s.\n' "$list_file" >&2
     (( DRY_RUN )) || record_failure "AUR: no se encontró paru ni yay para $(basename -- "$list_file")"
     return 0
@@ -472,6 +502,7 @@ if (( SKIP_PACKAGES )); then
   printf 'Se omite el inventario privado cifrado.\n'
 else
   prepare_private_data
+  prepare_pacman_system
   install_native_packages "$(native_package_list)"
   install_foreign_packages "$(private_path programs/pacman-explicit-foreign.txt)"
   restore_flatpak_remotes
