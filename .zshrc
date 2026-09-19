@@ -14,9 +14,9 @@ export PATH="$HOME/.local/bin:$PATH"
 # Path to your oh-my-zsh installation.
 if [[ "$OS" == "Linux" ]]; then
   source $HOME/.zshenv
-  export ZSH="/home/jona/.oh-my-zsh"
+  export ZSH="$HOME/.oh-my-zsh"
 elif [[ "$OS" == "Darwin" ]]; then
-  export ZSH="/Users/jonathanslipak/.oh-my-zsh"
+  export ZSH="$HOME/.oh-my-zsh"
 else
     echo "Sistema operativo no soportado: $OS"
 fi
@@ -84,7 +84,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=( alias-finder brew docker dotenv fzf git golang macos nvm node ruby tmux rust vagrant zsh-autosuggestions zsh-syntax-highlighting rails kubectl minikube terraform ansible )
+plugins=( alias-finder docker dotenv fzf git golang macos nvm node ruby tmux rust vagrant zsh-autosuggestions zsh-syntax-highlighting rails kubectl minikube terraform ansible )
 ZSH_ALIAS_FINDER_AUTOMATIC=true
 source $ZSH/oh-my-zsh.sh
 bindkey '^ ' autosuggest-accept
@@ -136,18 +136,18 @@ export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
 export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
 export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 
-PATH="/home/jona/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/jona/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/jona/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/jona/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/jona/perl5"; export PERL_MM_OPT;
+PATH="$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 
 # Ruby rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 if [[ "$OS" == "Linux" ]]; then
-  export IRBRC=/home/jona/.irbrcl
+  export IRBRC="$HOME/.irbrcl"
 elif [[ "$OS" == "Darwin" ]]; then
-  export IRBRC=/Users/jonathanslipak/.irbrcl
+  export IRBRC="$HOME/.irbrcl"
 else
     echo "Sistema operativo no soportado: $OS"
 fi
@@ -164,11 +164,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
-if [[ "$OS" == "Linux" ]]; then
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-elif [[ "$OS" == "Darwin" ]]; then
-  
-else
+if [[ "$OS" != "Linux" && "$OS" != "Darwin" ]]; then
     echo "Sistema operativo no soportado: $OS"
 fi
 

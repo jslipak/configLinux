@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+
+# Local machine state and encrypted inventories.
+gnome/private/*.age
+gnome/manifest/
+gnome/programs/*
+!gnome/programs/restore-exclude.txt
+
+# Common local credentials and key material.
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*

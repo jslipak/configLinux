@@ -1,0 +1,195 @@
+/* Pomodoro Timer Extension Styles */
+
+.pomodoro-panel-box {
+    spacing: 0px;
+    padding: 0;
+}
+
+.pomodoro-icon {
+    icon-size: 16px;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 2px;
+}
+
+.pomodoro-timer-label {
+    font-weight: bold;
+    font-feature-settings: "tnum";
+    margin-left: 4px;
+}
+
+.pomodoro-status-box {
+    background-color: #e74c3c;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 8px 24px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.pomodoro-interval-label {
+    font-weight: bold;
+    opacity: 0.8;
+}
+
+.pomodoro-button-row {
+    spacing: 8px;
+}
+
+.pomodoro-control-btn {
+    min-width: 80px;
+    min-height: 32px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    border: none;
+    background-color: #e74c3c;
+    color: white;
+}
+
+.pomodoro-control-btn:hover {
+    background-color: #ec7063;
+}
+
+.pomodoro-control-btn:active {
+    background-color: #c0392b;
+}
+
+.pomodoro-btn-primary,
+.pomodoro-btn-secondary,
+.pomodoro-btn-warning,
+.pomodoro-btn-danger {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.pomodoro-btn-primary:hover,
+.pomodoro-btn-secondary:hover,
+.pomodoro-btn-warning:hover,
+.pomodoro-btn-danger:hover {
+    background-color: #ec7063;
+}
+
+.pomodoro-btn-primary:active,
+.pomodoro-btn-secondary:active,
+.pomodoro-btn-warning:active,
+.pomodoro-btn-danger:active {
+    background-color: #c0392b;
+}
+
+.pomodoro-duration-row {
+    spacing: 8px;
+    padding: 2px 0;
+}
+
+.pomodoro-duration-label {
+    min-width: 100px;
+}
+
+.pomodoro-duration-value {
+    min-width: 50px;
+    text-align: center;
+    font-weight: bold;
+    font-feature-settings: "tnum";
+}
+
+.pomodoro-duration-value-btn {
+    background-color: transparent;
+    border: none;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+.pomodoro-duration-value-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.pomodoro-duration-entry {
+    min-width: 60px;
+    max-width: 60px;
+    text-align: center;
+    font-weight: bold;
+    font-feature-settings: "tnum";
+    border-radius: 4px;
+    padding: 2px 4px;
+}
+
+.pomodoro-adjust-button {
+    min-width: 28px;
+    min-height: 28px;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+}
+
+.pomodoro-adjust-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.pomodoro-adjust-button:active {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.pomodoro-paused {
+    opacity: 0.7;
+}
+
+/* Task indicator */
+.pomodoro-task-indicator {
+    spacing: 8px;
+    padding: 2px 0;
+}
+
+.pomodoro-task-icon {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.pomodoro-task-title {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.pomodoro-task-progress {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    min-width: 32px;
+}
+
+/* Prefs button */
+.pomodoro-prefs-btn-box {
+    spacing: 6px;
+}
+
+/* System theme variants */
+.pomodoro-status-box-themed {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: inherit;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 8px 24px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.pomodoro-control-btn-themed {
+    min-width: 80px;
+    min-height: 32px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: inherit;
+}
+
+.pomodoro-control-btn-themed:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.pomodoro-control-btn-themed:active {
+    background-color: rgba(255, 255, 255, 0.3);
+}

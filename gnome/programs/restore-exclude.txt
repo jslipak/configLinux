@@ -1,0 +1,2 @@
+# Paquetes instalados en el equipo original que no deben instalarse al restaurar.
+opera
