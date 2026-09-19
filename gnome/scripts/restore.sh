@@ -11,6 +11,7 @@ FAILED_ITEMS=()
 PACKAGE_LIST=()
 PACKAGE_MANAGER=''
 PACMAN_FULL_UPGRADE_OK=1
+HANDY_MANUAL=0
 PRIVATE_ARCHIVE="$ROOT_DIR/private/system-and-programs.tar.age"
 PRIVATE_ROOT="$ROOT_DIR"
 PRIVATE_TMP_DIR=''
@@ -186,6 +187,11 @@ read_package_list() {
 
   while IFS= read -r package; do
     [[ -n "$package" ]] || continue
+    if [[ "$package" == handy ]]; then
+      HANDY_MANUAL=1
+      printf 'Paquete reservado para instalación manual: %s\n' "$package"
+      continue
+    fi
     if is_excluded_package "$package"; then
       printf 'Paquete excluido de la restauración: %s\n' "$package"
       continue
@@ -621,6 +627,11 @@ if (( DRY_RUN )); then
   printf 'Prueba terminada; no se modificó el equipo.\n'
 else
   printf 'Restauración terminada. Cerrá sesión y volvé a entrar para aplicar GNOME Shell y extensiones.\n'
+fi
+
+if (( HANDY_MANUAL )); then
+  printf '\nPaso manual pendiente:\n'
+  printf '  - handy: paru -S --needed handy\n'
 fi
 
 if (( ! DRY_RUN && ${#FAILED_ITEMS[@]} )); then
