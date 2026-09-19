@@ -6,7 +6,7 @@ ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
 HOME_DIR="${HOME:?No se pudo determinar HOME}"
 DRY_RUN=0
 CONFIRMED=0
-SKIP_PACKAGES=0
+SKIP_PACKAGES=1
 FAILED_ITEMS=()
 PACKAGE_LIST=()
 PACKAGE_MANAGER=''
@@ -45,7 +45,7 @@ for argument in "$@"; do
     --skip-packages) SKIP_PACKAGES=1 ;;
     --config-only) SKIP_PACKAGES=1 ;;
     -h|--help)
-      printf 'Uso: %s [--dry-run] [--yes] [--skip-packages|--config-only]\n' "$0"
+      printf 'Uso: %s [--dry-run] [--yes]\n' "$0"
       exit 0
       ;;
     *)
@@ -60,7 +60,7 @@ detect_package_manager
 if (( DRY_RUN )); then
   printf 'Modo de prueba: no se modificará el equipo.\n'
 elif (( ! CONFIRMED )); then
-  printf 'Este script instalará paquetes y modificará la configuración de GNOME de %s.\n' "$HOME_DIR"
+  printf 'Este script restaurará la configuración de GNOME de %s.\n' "$HOME_DIR"
   read -r -p '¿Continuar? [y/N] ' answer
   [[ "$answer" =~ ^[Yy]$ ]] || { printf 'Restauración cancelada.\n'; exit 0; }
 fi
@@ -510,7 +510,7 @@ restore_flatpak_apps() {
 }
 
 printf 'Restaurando desde %s\n' "$ROOT_DIR"
-printf 'Gestor de paquetes detectado: %s\n' "${PACKAGE_MANAGER:-ninguno}"
+printf 'Restauración de configuración de GNOME únicamente.\n'
 
 if (( SKIP_PACKAGES )); then
   printf 'Se omite la instalación de paquetes.\n'
@@ -627,11 +627,6 @@ if (( DRY_RUN )); then
   printf 'Prueba terminada; no se modificó el equipo.\n'
 else
   printf 'Restauración terminada. Cerrá sesión y volvé a entrar para aplicar GNOME Shell y extensiones.\n'
-fi
-
-if (( HANDY_MANUAL )); then
-  printf '\nPaso manual pendiente:\n'
-  printf '  - handy: paru -S --needed handy\n'
 fi
 
 if (( ! DRY_RUN && ${#FAILED_ITEMS[@]} )); then
