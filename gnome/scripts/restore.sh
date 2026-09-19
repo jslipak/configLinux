@@ -131,7 +131,10 @@ private_path() {
 }
 
 prepare_private_data() {
-  [[ -s "$PRIVATE_ARCHIVE" ]] || return 0
+  if [[ ! -s "$PRIVATE_ARCHIVE" ]]; then
+    printf 'Aviso: no se encontró %s; se omiten paquetes privados y paquetes nativos.\n' "$PRIVATE_ARCHIVE" >&2
+    return 0
+  fi
 
   if (( DRY_RUN )); then
     if command -v age >/dev/null 2>&1; then

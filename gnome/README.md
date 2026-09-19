@@ -22,7 +22,7 @@ cd ~/gnome
 
 ## Restaurar en otra computadora
 
-Primero copia esta carpeta a `~/gnome` en la computadora nueva. El restaurador detecta automáticamente `pacman`, `apt`, `dnf`, `zypper` o `apk`:
+Primero copia esta carpeta a `~/gnome` en la computadora nueva. Si el repositorio fue clonado desde GitHub, copiá también manualmente `private/system-and-programs.tar.age`, porque el inventario cifrado no forma parte del clon público. El restaurador detecta automáticamente `pacman`, `apt`, `dnf`, `zypper` o `apk`:
 
 ```bash
 cd ~/gnome
