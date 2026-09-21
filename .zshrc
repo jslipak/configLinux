@@ -182,6 +182,9 @@ fi
 # Abrir el explorador de archivos local con la secuencia ;o.
 # No intenta abrirlo cuando la shell está dentro de una sesión SSH.
 function open_local_file_manager() {
+  # reset-prompt va PRIMERO: si se llama despues de "zle -M", p10k redibuja el
+  # prompt y borra el mensaje, por eso no se veia nada al pulsar ;o.
+  zle reset-prompt
   if [[ -n "$SSH_CONNECTION" || -n "$SSH_TTY" ]]; then
     zle -M "Sesión SSH: el explorador se abre solo en la máquina local"
   elif command -v xdg-open >/dev/null 2>&1; then
@@ -189,7 +192,6 @@ function open_local_file_manager() {
   else
     zle -M "No se encontró xdg-open"
   fi
-  zle reset-prompt
 }
 zle -N open_local_file_manager
 bindkey -M viins ';o' open_local_file_manager 2>/dev/null
