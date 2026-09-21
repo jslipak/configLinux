@@ -178,3 +178,19 @@ eval "$(atuin init zsh --disable-up-arrow)"
 if [[ -o interactive && -t 1 && -z "$TMUX" ]]; then
   command tmux new-session -A -s default
 fi
+
+# Abrir el explorador de archivos local con la secuencia ;o.
+# No intenta abrirlo cuando la shell está dentro de una sesión SSH.
+function open_local_file_manager() {
+  if [[ -n "$SSH_CONNECTION" || -n "$SSH_TTY" ]]; then
+    zle -M "Sesión SSH: el explorador se abre solo en la máquina local"
+  elif command -v xdg-open >/dev/null 2>&1; then
+    xdg-open . >/dev/null 2>&1 &!
+  else
+    zle -M "No se encontró xdg-open"
+  fi
+  zle reset-prompt
+}
+zle -N open_local_file_manager
+bindkey -M viins ';o' open_local_file_manager 2>/dev/null
+bindkey -M emacs ';o' open_local_file_manager 2>/dev/null
