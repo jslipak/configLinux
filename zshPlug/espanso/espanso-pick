@@ -1,0 +1,143 @@
+#!/usr/bin/env bash
+# espanso-pick — elige un trigger de espanso con fzf y lo expande.
+#
+#   espanso-pick --print [--query Q]  elige y muestra el reemplazo en stdout
+#   espanso-pick --copy  [--query Q]  elige y lo copia al portapapeles
+#   espanso-pick --paste [--query Q]  elige, copia y simula Ctrl+V
+#   espanso-pick --show TRIGGER       muestra trigger + reemplazo (preview fzf)
+#   espanso-pick --list               lista triggers
+#
+# Sirve en el prompt zsh (vía plugin), dentro de opencode y en cualquier
+# programa con un atajo global de GNOME que abra `kitty -e espanso-pick --copy`.
+
+set -u
+MODE="copy"
+QUERY=""
+LOG="/tmp/espanso-pick.log"
+log() { printf '%s %s\n' "$(date '+%F %T')" "$*" >>"$LOG"; }
+
+usage() { sed -n '2,12p' "$0"; }
+
+while (( $# )); do
+  case "$1" in
+    --print|--copy|--paste) MODE="${1#--}"; shift ;;
+    --query) QUERY="${2:-}"; shift 2 ;;
+    --query=*) QUERY="${1#--query=}"; shift ;;
+    --show) espanso match list 2>/dev/null | grep -F -- "${2:-}" | head -n 3; exit 0 ;;
+    --list) espanso match list --only-triggers 2>/dev/null; exit 0 ;;
+    -h|--help) usage; exit 0 ;;
+    *) echo "opción desconocida: $1" >&2; usage >&2; exit 2 ;;
+  esac
+done
+
+command -v fzf >/dev/null || { echo "falta fzf" >&2; exit 3; }
+log "=== run MODE=$MODE QUERY=$QUERY WAYLAND_DISPLAY=${WAYLAND_DISPLAY:-?} XDG_SESSION_TYPE=${XDG_SESSION_TYPE:-?} DISPLAY=${DISPLAY:-?} ==="
+
+TRIGGER="$(espanso match list --only-triggers 2>/dev/null | fzf \
+  --prompt='espanso> ' --reverse --border --height=~40 \
+  --query="$QUERY" --select-1 --exit-0 --cycle \
+  --bind='tab:down,btab:up,ctrl-y:accept' \
+  --preview='espanso-pick --show {}' --preview-window=up:3:wrap)" || { log "fzf cancelado/rc=$?"; exit 1; }
+[[ -n "$TRIGGER" ]] || { log "trigger vacio"; exit 1; }
+
+EXPANSION="$(python3 - "$TRIGGER" <<'PY' || exit 1
+import datetime, glob, json, os, re, subprocess, sys
+t = sys.argv[1]
+out = subprocess.run(["espanso", "match", "list", "-j"], capture_output=True, text=True)
+try:
+  data = json.loads(out.stdout)
+except Exception:
+  sys.exit(1)
+raw = ""
+for m in data:
+  if t in m.get("triggers", []):
+    raw = m.get("replace", "")
+    break
+# Resolver {{vars}} date/shell desde los YAML (match list -j trae el crudo).
+md = os.path.expanduser("~/.config/espanso/match")
+files = glob.glob(os.path.join(md, "*.yml")) + glob.glob(os.path.join(md, "*", "*.yml"))
+re_trig = re.compile(r'^\s*-\s*trigger:\s*["\']?(.*?)["\']?\s*$')
+re_name = re.compile(r'^\s*-\s*name:\s*(\S+)\s*$')
+re_type = re.compile(r'^\s*type:\s*(\S+)\s*$')
+re_fmt = re.compile(r'^\s*format:\s*["\']?(.*?)["\']?\s*$')
+re_cmd = re.compile(r'^\s*cmd:\s*(.*?)\s*$')
+specs = {}
+for f in files:
+  try:
+    lines = open(f, encoding="utf-8", errors="ignore").read().splitlines()
+  except OSError:
+    continue
+  cur_t = cur_v = cur_ty = None
+  for ln in lines:
+    m = re_trig.match(ln)
+    if m:
+      cur_t = m.group(1).strip(); cur_v = cur_ty = None; continue
+    m = re_name.match(ln)
+    if m and cur_t:
+      cur_v = m.group(1).strip().strip("\"'"); cur_ty = None; continue
+    m = re_type.match(ln)
+    if m and cur_t and cur_v:
+      cur_ty = m.group(1).strip().strip("\"'"); continue
+    m = re_fmt.match(ln)
+    if m and cur_t == t and cur_v and cur_ty == "date":
+      specs[cur_v] = ("date", m.group(1)); continue
+    m = re_cmd.match(ln)
+    if m and cur_t == t and cur_v and cur_ty == "shell":
+      arg = m.group(1).strip()
+      if len(arg) >= 2 and arg[0] == arg[-1] and arg[0] in "\"'":
+        arg = arg[1:-1]
+      specs[cur_v] = ("shell", arg); continue
+for var in re.findall(r"\{\{(\w+)\}\}", raw):
+  if var in specs:
+    kind, arg = specs[var]
+    try:
+      if kind == "date":
+        val = datetime.datetime.now().strftime(arg)
+      else:
+        val = subprocess.run(["sh", "-c", arg], capture_output=True, text=True).stdout
+      raw = raw.replace("{{" + var + "}}", val)
+    except Exception:
+      pass
+sys.stdout.write(raw)
+PY
+)" || exit 1
+[[ -n "$EXPANSION" ]] || { echo "sin reemplazo para $TRIGGER" >&2; exit 1; }
+
+case "$MODE" in
+  print) printf '%s' "$EXPANSION" ;;
+  copy)
+    log "trigger=$TRIGGER len=${#EXPANSION}"
+    WL_ERR="$(printf '%s' "$EXPANSION" | wl-copy 2>&1)"; WL_RC=$?
+    log "wl-copy rc=$WL_RC err=$WL_ERR"
+    if (( WL_RC == 0 )); then
+      :
+    else
+      XC_ERR="$(printf '%s' "$EXPANSION" | xclip -selection clipboard 2>&1)"; XC_RC=$?
+      log "xclip rc=$XC_RC err=$XC_ERR"
+      if (( XC_RC != 0 )); then
+        log "COPY_FAIL"
+        echo "no hay portapapeles: wl-copy($WL_ERR) xclip($XC_ERR)" >&2
+        echo "no hay portapapeles, detalle en $LOG (Enter para cerrar)"
+        read -r _
+        exit 1
+      fi
+    fi
+    sleep 0.2
+    PASTE_CHECK="$(wl-paste 2>&1 | head -c 120)"; PASTE_RC=$?
+    log "wl-paste rc=$PASTE_RC head=[$PASTE_CHECK]"
+    N_ERR="$(notify-send "espanso" "$TRIGGER copiado — app: Ctrl+V, terminal: Ctrl+Shift+V" 2>&1)"; N_RC=$?
+    log "notify rc=$N_RC err=$N_ERR"
+    ;;
+  paste)
+    printf '%s' "$EXPANSION" | wl-copy 2>/dev/null || exit 1
+    sleep 0.3
+    if command -v wtype >/dev/null; then
+      wtype -M ctrl v -m ctrl
+    elif command -v ydotool >/dev/null; then
+      ydotool key 29:1 47:1 47:0 29:0
+    else
+      echo "instalá wtype para auto-pegar: sudo pacman -S wtype" >&2
+      exit 4
+    fi
+    ;;
+esac
