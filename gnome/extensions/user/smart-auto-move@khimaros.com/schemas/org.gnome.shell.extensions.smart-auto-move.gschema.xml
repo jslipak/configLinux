@@ -1,0 +1,103 @@
+<schemalist gettext-domain="gnome-shell-extensions">
+  <enum id="org.gnome.shell.extensions.smart-auto-move.sync-mode-enum">
+    <value value="0" nick="IGNORE" />
+    <value value="1" nick="RESTORE" />
+  </enum>
+  <schema id="org.gnome.shell.extensions.smart-auto-move" path="/org/gnome/shell/extensions/smart-auto-move/">
+    <key name="saved-windows" type="s">
+      <default>'{}'</default>
+      <summary>Saved Windows</summary>
+      <description>Persisted window data serialized to JSON.</description>
+    </key>
+    <key name="debug-logging" type="b">
+      <default>false</default>
+      <summary>Debug Logging</summary>
+      <description>Write detailed logs about extension behavior.</description>
+    </key>
+    <key name="config-version" type="i">
+      <default>0</default>
+      <summary>Configuration Format Version</summary>
+      <description>Internal version number for configuration data format. Used for automatic migration between versions.</description>
+    </key>
+
+    <key name="new-window-max-wait-ms" type="i">
+      <default>10000</default>
+      <summary>New Window Max Wait Time (ms)</summary>
+      <description>The maximum time to wait for a new window's title to be finalized. After this period, the window will be processed even if its title is still changing.</description>
+    </key>
+    <key name="new-window-title-stability-ms" type="i">
+      <default>500</default>
+      <summary>New Window Title Stability (ms)</summary>
+      <description>The time a new window's title must remain unchanged before it is considered stable and ready for processing.</description>
+    </key>
+    <key name="generic-title-max-length" type="i">
+      <default>15</default>
+      <summary>Generic Title Max Length</summary>
+      <description>Maximum length for a title to be considered generic. Generic titles get extended wait times.</description>
+    </key>
+
+    <key name="ambiguity-threshold" type="d">
+      <default>0.99</default>
+      <summary>Ambiguity Threshold</summary>
+      <description>Similarity threshold above which windows with specific titles are considered ambiguous.</description>
+    </key>
+
+    <key name="min-score-spread" type="d">
+      <default>0.6</default>
+      <summary>Minimum Score Spread</summary>
+      <description>Minimum difference between best and second-best match scores for confident matching.</description>
+    </key>
+
+    <key name="generic-title-extended-wait" type="i">
+      <default>10000</default>
+      <summary>Generic Title Extended Wait (ms)</summary>
+      <description>Extended wait time for windows with generic titles before forcing a decision.</description>
+    </key>
+    <key name="max-unseen-age" type="i">
+      <default>604800</default>
+      <summary>Max Unseen Age (seconds)</summary>
+      <description>Maximum age in seconds of a window that has not been seen before it is deleted.</description>
+    </key>
+    <key name="match-threshold" type="d">
+      <default>0.7</default>
+      <summary>Match Threshold</summary>
+      <description>Minimum threshold for matching restored windows.</description>
+    </key>
+
+    <key name="sync-mode" enum="org.gnome.shell.extensions.smart-auto-move.sync-mode-enum">
+      <default>'RESTORE'</default>
+      <summary>Sync Mode</summary>
+      <description>Default mode when synchronizing windows.</description>
+    </key>
+    <key name="overrides" type="s">
+      <default>'{}'</default>
+      <summary>Overrides</summary>
+      <description>Overrides for restored window data.</description>
+    </key>
+    <key name="freeze-saves" type="b">
+      <default>false</default>
+      <summary>Freeze Saves</summary>
+      <description>Do not update saved window data.</description>
+    </key>
+    <key name="activate-workspace" type="b">
+      <default>true</default>
+      <summary>Activate Workspace</summary>
+      <description>Follow apps when they are moved to another workspace.</description>
+    </key>
+    <key name="ignore-position" type="b">
+      <default>false</default>
+      <summary>Ignore position</summary>
+      <description>Do not restore windows' position.</description>
+    </key>
+    <key name="ignore-workspace" type="b">
+      <default>false</default>
+      <summary>Ignore workspace</summary>
+      <description>Do not restore windows' workspace.</description>
+    </key>
+    <key name="ignore-monitor" type="b">
+      <default>false</default>
+      <summary>Ignore monitor</summary>
+      <description>Do not restore windows' monitor.</description>
+    </key>
+  </schema>
+</schemalist>

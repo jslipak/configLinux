@@ -1,7 +1,9 @@
 appindicatorsupport@rgcjonas.gmail.com
 apps-menu@gnome-shell-extensions.gcampax.github.com
+auto-move-windows@gnome-shell-extensions.gcampax.github.com
 copyous@boerdereinar.dev
 extension-list@tu.berry
 focus-changer@heartmire
 hotedge@jonathan.jdoda.ca
 pomodoro-timer@Oguzhankokulu.github.com
+smart-auto-move@khimaros.com

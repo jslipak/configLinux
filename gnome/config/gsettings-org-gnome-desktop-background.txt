@@ -1,8 +1,8 @@
 org.gnome.desktop.background color-shading-type 'solid'
 org.gnome.desktop.background picture-opacity 100
 org.gnome.desktop.background picture-options 'zoom'
-org.gnome.desktop.background picture-uri 'file:///usr/share/backgrounds/gnome/sheet-l.jxl'
-org.gnome.desktop.background picture-uri-dark 'file:///usr/share/backgrounds/gnome/sheet-d.jxl'
-org.gnome.desktop.background primary-color '#1a5fb4'
-org.gnome.desktop.background secondary-color '#000000'
+org.gnome.desktop.background picture-uri 'file:///home/jona/.local/share/backgrounds/2026-09-27-06-27-12-ChatGPT%20Image%20Sep%2027,%202026,%2006_26_24%20AM-4.png'
+org.gnome.desktop.background picture-uri-dark 'file:///home/jona/.local/share/backgrounds/2026-09-27-06-27-12-ChatGPT%20Image%20Sep%2027,%202026,%2006_26_24%20AM-4.png'
+org.gnome.desktop.background primary-color '#000000000000'
+org.gnome.desktop.background secondary-color '#000000000000'
 org.gnome.desktop.background show-desktop-icons false
